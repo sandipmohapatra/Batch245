@@ -1,0 +1,111 @@
+The Software Development Life Cycle (SDLC) is a structured process used for developing software applications. 
+It involves several phases, each with specific tasks and objectives.
+The goal of the SDLC is to produce high-quality software that meets or exceeds customer expectations, reaches completion within times and cost estimates, and works efficiently and effectively in the current and planned IT infrastructure.
+
+
+Planning:
+
+Define project goals, scope, and constraints.
+Conduct feasibility studies.
+Develop a project plan, including timelines and resources.
+
+Requirements Analysis:
+
+Gather and analyze user and stakeholder requirements.
+Document functional and non-functional requirements.
+Create use cases and user stories.
+
+Design:
+
+Architect the overall system and software structure.
+Create detailed designs for components, modules, and interfaces.
+Develop data models and design databases.
+
+Implementation (Coding):
+
+Write the actual code based on the design specifications.
+Perform unit testing to ensure individual components work correctly.
+
+Testing:
+
+Conduct various levels of testing (e.g., integration, system, acceptance).
+Identify and fix defects and bugs.
+Ensure the software meets the specified requirements.
+
+Deployment:
+
+Release the software to the production environment.
+Ensure proper installation and configuration.
+Train users and provide documentation.
+
+Maintenance:
+
+Monitor the software for any issues.
+Perform regular updates and bug fixes.
+Enhance the software with new features as required.
+
+Evaluation (optional):
+
+Review the project's success and the software's performance.
+Gather feedback from users and stakeholders.
+Document lessons learned and best practices for future projects.
+-------------------------------------------------------------------------------------------------
+Agile and Waterfall are two distinct methodologies used in project management and software development. 
+
+Waterfall Model
+---------------------------------------
+Sequential Process:
+
+1)Follows a linear and sequential approach.
+2)Each phase must be completed before the next one begins.
+---------------------------------------------
+Phases:
+Requirements
+Design
+Implementation
+Verification
+Maintenance
+Documentation:
+Extensive documentation is created before starting the development phase.
+Changes are difficult and costly to implement after the project has started.
+Testing:
+Performed only after the development phase is complete.
+Issues found late can be more costly to fix.
+Flexibility:
+Less flexible and adaptive to changes.
+Best suited for projects with well-defined requirements and minimal expected changes.
+---------------------------------------------------------------------------------------------------------------------------------
+Agile Model
+Iterative and Incremental Process:
+
+Focuses on iterative development, with cycles called sprints (typically 2-4 weeks).
+Each iteration delivers a potentially shippable product increment.
+Phases:
+
+Involves continuous cycles of planning, designing, coding, testing, and reviewing.
+Documentation:
+
+Less emphasis on documentation, more focus on working software.
+Documentation evolves as the project progresses.
+Project Scope:
+Scope can evolve as the project progresses.
+Allows for changes based on stakeholder feedback and market demands.
+Testing:
+Continuous testing throughout the development process.
+Issues are identified and resolved early, reducing the cost of fixing them.
+Flexibility:
+Highly flexible and adaptive to changes.
+Ideal for projects with dynamic requirements and a need for rapid delivery.
+------------------------------------------------------------------------------------------------------------
+Key Differences
+Approach: Waterfall is linear and sequential, while Agile is iterative and incremental.
+Flexibility: Waterfall is rigid and less adaptable to changes, whereas Agile is flexible and adaptive.
+Documentation: Waterfall requires extensive documentation upfront; Agile focuses on minimal documentation with evolving requirements.
+Testing: Waterfall conducts testing after development; Agile integrates testing throughout the development process.
+Customer Involvement: Waterfall involves customers mainly at the beginning and end, while Agile involves customers continuously.
+------------------------------------------------------------------------------------------------------------------------------
+
+Waterfall: Suitable for projects with well-defined requirements, minimal expected changes, and where a sequential process is more effective (e.g., construction projects).
+Agile: Suitable for projects with dynamic requirements, a need for flexibility, and rapid delivery (e.g., software development, tech startups).
+Each methodology has its strengths and is suited to different types of projects and organizational environments.
+-------------------------------------------------------------------------------------------------------------------------------------------------------
