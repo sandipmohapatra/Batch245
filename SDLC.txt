@@ -148,7 +148,8 @@ Product Design: Create physical models of products (e.g., 3D printing).
 
 Business: Develop business models or service prototypes.
 ---------------------------------------------------------------------------------------
-what is advantage of proper planning in SDLC---->
+Q1)what is advantage of proper planning in SDLC
+---------------------------------------------------------------------
 Clarity of Objectives and Scope,
 Risk Management,
 Resource Allocation and Management,
@@ -158,7 +159,7 @@ Stakeholder Engagement and Communication,
 Cost Management,
 Adaptability and Flexibility
 -----------------------------------------------------------------
-What are different types of Prototype models :- 
+Q2)What are different types of Prototype models :- 
 Throwaway/Rapid Prototypes,
 Evolutionary Prototypes,
 Incremental Prototypes,
