@@ -165,3 +165,9 @@ Evolutionary Prototypes,
 Incremental Prototypes,
 Extreme Prototyping
 ---------------------------------------------------------------------------
+Q3)When will frontend and backend developers both involved in SDLC development phase
+-----------------------------------------------------------------------------------------
+Q4)The Adaptive Maintenance phase in the Software Development Life Cycle (SDLC) refers to the process of modifying a software system to keep it usable in a changing environment. This involves making changes and enhancements to software to ensure it continues to operate correctly as the external environment evolves. These changes can be triggered by new business requirements, technological advancements, legislative changes, or user feedback.
+---------------------------------------------------------------------------------------------
+Q5)A prototyping model is a software development approach that involves creating an incomplete version of the software program being developed. This prototype is then used to visualize and understand the requirements, refine functionalities, and gather feedback from users and stakeholders early in the development process.
+--------------------------------------------------------------------------
