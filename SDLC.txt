@@ -128,4 +128,39 @@ Iterative: Can evolve based on feedback and testing.
 Low-Cost: Uses minimal resources compared to the final product.
 
 Feedback-Oriented: Designed to elicit user input for refinements.
+------------------------------------------------------------------------------------------------
+Types of Prototypes:
+-------------------------------------
+Throwaway Prototypes: Built quickly and discarded after feedback.
+
+Evolutionary Prototypes: Improved iteratively to evolve into the final product.
+
+Functional Prototypes: Mimic specific features or operations.
+
+Conceptual Prototypes: Focus on visualizing ideas rather than functionality.
+Applications:
+
+Engineering: Test mechanical or structural concepts.
+
+Software Development: Test user interfaces or algorithms (e.g., mockups, wireframes).
+
+Product Design: Create physical models of products (e.g., 3D printing).
+
+Business: Develop business models or service prototypes.
 ---------------------------------------------------------------------------------------
+what is advantage of proper planning in SDLC---->
+Clarity of Objectives and Scope,
+Risk Management,
+Resource Allocation and Management,
+Timeline and Milestone Definition,
+Quality Assurance and Testing Strategy,
+Stakeholder Engagement and Communication,
+Cost Management,
+Adaptability and Flexibility
+-----------------------------------------------------------------
+What are different types of Prototype models :- 
+Throwaway/Rapid Prototypes,
+Evolutionary Prototypes,
+Incremental Prototypes,
+Extreme Prototyping
+---------------------------------------------------------------------------
