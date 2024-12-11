@@ -1,0 +1,1527 @@
+https://dev.mysql.com/downloads/installer/
+-------------------------------------------------------------------------------------------
+https://github.com/sandipmohapatra/MLA237JavaSM
+-------------------------------------------------------------------------------------------
+Mysql notes
+----------------------------------------------------
+To see the databases
+1)show databases;
+-----------------------------------------------------
+to create database
+2)create database daimler;
+--------------------------------------------------------
+to goto the database
+3)use daimler;
+-------------------------------------------------------------------------------------------
+to create table
+create table student (rollno int, name varchar(30),address varchar(30));
+---------------------------------------------------------------------------------------------
+to insert data into the table
+insert into student values(101,'sandip','Bangalore');
+insert into student values(102,'Rohan','Bangalore');
+-------------------------------------------------------------------------
+ to view the data 
+select * from student;
+----------------------------------------------------------------------------
+create table employee (empno int,name varchar(30),address varchar(30));
+to add some more columns
+alter table student add phy int;
+alter table student add bio int;
+alter table student add chem int;
+alter table student add tot int;
+alter table student add avg int;
+update student set phy=88,chem=83,bio=74 where rollno=101;
+update student set phy=78,chem=73,bio=84 where rollno=102;
+update student set phy=68,chem=63,bio=64 where rollno=103;
+update student set phy=78,chem=73,bio=84 where rollno=102;
+update student set tot=phy+chem+bio ;
+update student set avg=tot/3;
+----------------------------------------------------------------------------
+to delete a row
+delete from student where rollno=101;
+-----------------------------------------------------------------------------
+to drop a table
+drop table student;
+----------------------------------------------------------------------------------
+to drop a database
+drop database Mphasis237;
+--------------------------------------------------------------------------------------------
+delete all the rows or data but the structure of the table will be there
+truncate table student;
+-------------------------------------------------------------------------------------------
+to update a row
+update student set address='pune' where rollno=101;
+--------------------------------------------------------------------------------------------
+Auto-Increment
+----------------------------------
+create table fare(id INT AUTO_INCREMENT ,fare varchar(25),flight_date varchar(25),flight_number varchar(25),primary key(id)) ;
+
+*primary key :- if we declare the column as primary key then the column is unique and not null.
+we cannot enter duplicate values nor we can leave the field empty.
+
+
+insert into fare(fare,flight_date,flight_number) values('hyd-bang','12-jul-2024','air-207');
+
+ALTER TABLE users MODIFY id INT NOT NULL AUTO_INCREMENT;
+-----------------------------------------------------------------------------------------------------------
+time stamp (2024-07-10 5:00)
+---------------------------------------------------------
+create table booking_record (id INT primary key AUTO_INCREMENT,
+booking_date timestamp, 
+destination VARCHAR(255), 
+price VARCHAR(255), 
+flight_date VARCHAR(255), 
+flight_number VARCHAR(255),
+origin VARCHAR(255), 
+status VARCHAR(255));
+
+insert into booking_record(booking_date,destination,price,flight_date,flight_number,origin,status) values('2024-07-10 5:00','Pune','Rs 5000','12-jul-2024','air-206','Hyd','yes');
+---------------------------------------------------------------------------------------
+CREATE TABLE Books (
+    Book_Id INT PRIMARY KEY,
+    Title VARCHAR(255) NOT NULL,
+    ISBN VARCHAR(13) UNIQUE NOT NULL,
+    Publication_year INT NOT NULL,
+    Publisher_Id INT,
+    Category_Id INT,
+    Author_Name VARCHAR(255),
+    CONSTRAINT fk_publisher
+        FOREIGN KEY (Publisher_Id) REFERENCES Publishers(Publisher_Id)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_category
+        FOREIGN KEY (Category_Id) REFERENCES Categories(Category_Id)
+        ON DELETE CASCADE,
+    CONSTRAINT chk_author_name
+        CHECK (Author_Name IS NOT NULL)
+);
+
+---------------------------------------------------------------------------------------
+CREATE TABLE Categories (
+    Category_Id INT PRIMARY KEY AUTO_INCREMENT,
+    Category_Name VARCHAR(255) UNIQUE NOT NULL
+);
+--------------------------------------------------------------------------------------------------------
+CREATE TABLE Publishers (
+    Publisher_Id INT PRIMARY KEY AUTO_INCREMENT,
+    Publisher_Name VARCHAR(255) NOT NULL
+);
+----------------------------------------------------------------------------------------------
+CREATE TABLE Users (
+    User_Id INT PRIMARY KEY ,
+    Username VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) UNIQUE NOT NULL,
+    Phone_Number VARCHAR(255) UNIQUE NOT NULL
+);
+-----------------------------------------------------------------------------------------------
+CREATE TABLE Borrowings (
+    Borrow_Id INT PRIMARY KEY ,
+    User_Id INT,
+    Book_Id INT,
+    Borrow_Date DATE NOT NULL,
+    Return_Date DATE NOT NULL,
+    FOREIGN KEY (User_Id) REFERENCES Users(User_Id) ON DELETE CASCADE,
+    FOREIGN KEY (Book_Id) REFERENCES Books(Book_Id) ON DELETE CASCADE
+);
+-------------------------------------------------------------------------------------------------------
+create table customers(CustomerID INT PRIMARY KEY AUTO_INCREMENT,
+CustomerName VARCHAR(255),	
+ContactName	VARCHAR(255),
+Address VARCHAR(255),
+City	VARCHAR(255),
+PostalCode VARCHAR(255),
+Country VARCHAR(255));
+------------------------------------------------------------------------------------------------------------
+create table orders(OrderID INT PRIMARY KEY AUTO_INCREMENT,
+CustomerID int,EmployeeID int,OrderDate date,ShipperID int);
+---------------------------------------------------------------------------------------------------------------------
+create table suppliers(SupplierID INT PRIMARY KEY AUTO_INCREMENT,
+	SupplierName VARCHAR(255),
+	ContactName	VARCHAR(255),
+	Address VARCHAR(255),
+	City VARCHAR(255),
+	PostalCode VARCHAR(255),
+	Country	VARCHAR(255),
+	Phone VARCHAR(255));
+----------------------------------------------------------------------------------------------------------------------
+
+Wild character
+-----------------------------------------------------------------------------------
+CREATE TABLE student (
+    Id INT PRIMARY KEY ,
+    name VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) UNIQUE NOT NULL,
+    Phone VARCHAR(255) UNIQUE NOT NULL,
+    Address varchar(50),
+     Salary INT);
+--------------------------------------------------------------------------------
+select * from student where name like 's%';
+-----------------------------------------------------------------------------------
+select * from student where name like '%p';
+---------------------------------------------------------------------
+SELECT * FROM student WHERE Name LIKE 'a%';
+-------------------------------------------------------------------------------
+SELECT * FROM student WHERE Name LIKE '%a';
+----------------------------------------------------------------------------------------------
+SELECT * FROM student WHERE Name LIKE '%no%'
+-------------------------------------------------------------------------------------------------
+SELECT * FROM student WHERE Name LIKE '_o%';
+-----------------------------------------------------------------------------------------------
+SELECT * FROM student WHERE Name LIKE 'a%o';
+----------------------------------------------------------------------------------------------
+SELECT * FROM student WHERE Name LIKE 'a__%';
+-----------------------------------------------------------------------------------------------
+SELECT * FROM student WHERE Name NOT LIKE 'a%';
+------------------------------------------------------------------------------------------------
+To create a table
+-------------------------------------------------------
+create table student2
+( studid int not null auto_increment,
+name varchar(30) not null,
+address varchar(30) not null,
+primary key(studid)
+);
+----------------------------------------------------------------------------------
+6)to insert record
+insert into student values(101,'tarun','chennei');
+-----------------------------------------------------------------------------------
+7)to view the records 
+select * from student;
+-----------------------------------------------------------------------------------
+8)update the record
+update student set address='Bangalore' where name='tarun';
+--------------------------------------------------------------------------
+9)to create a view (view will not contain any data.it will contain only the query)
+create view stud as select studid,name from student;
+we can do insert,update and delete of the view it will reflect to the base table.
+-------------------------------------------------------------------------------
+10)to see all the tables and views
+show tables;
+----------------------------------------------------------------------
+11)where condition :-
+select * from student where name='tarun';
+-------------------------------------------------------------------------
+12)distinct :-(unique data will be displayed)
+select distinct address from student;
+-------------------------------------------------------------------------------
+13)order by:-
+select * from student order by name;
+select * from student order by name asc;
+select * from student order by name desc;
+--------------------------------------------------------------------------------
+14)group by
+select address, count(*) from student group by address;
+select address, sum(salary) from student group by address;
+select address, min(salary) from student group by address;
+select address, max(salary) from student group by address;
+select address, avg(salary) from student group by address;
+------------------------------------------------------------------------------
+In group by we use having clause
+-----------------------------------------------------
+select address, sum(salary) from student group by address having sum(salary)>75000;
+select address, avg(salary) from student group by address having avg(salary)>35000;
+select address, min(salary) from student group by address having min(salary)>35000;
+select address, max(salary) from student group by address having max(salary)>45000;
+-----------------------------------------------------------------------------------
+15)aggregate function
+count(),sum(),avg(),min(),max(),first(),last()
+---------------------------------------------------------------------
+i)select count(*) from student;
+first record  :- select name from student limit 1;
+last record :-select name from student order by name desc limit 1;
+--------------------------------------------------------------------------------------------
+16)alter table:-
+alter table student add salary int not null;
+to add data to salary column :-
+update student set salary=45000 where studid=101;
+update student set salary=35000 where studid in (102,103,104);
+---------------------------------------------------------------------------------
+17)select sum(salary) from student;
+18)select avg(salary) from student;
+19)select min(salary) from student;
+20)select max(salary) from student;
+----------------------------------------------------------------------------------------------
+between and example:-
+21)select * from student where salary between 30000 and 46000;
+----------------------------------------------------------------------------------------------
+like % (wildcard)
+----------------------------------------------------------------------------
+22)select * from student where name like 'p%';(word starting with p will display)
+select * from student where name like '%r';(word ending with r will display)
+---------------------------------------------------------------------------
+23)truncate table:-
+it will delete all the data from the table.
+truncate table student;
+--------------------------------------------------------------------------- 
+24)drop table;
+it will delete the data as well as the table also.
+drop table student;
+-------------------------------------------------------------------------------
+
+25)join
+------------------------
+create table marks
+(studid int(4),
+phy int(4),
+chem int(4),
+maths int(4),
+tot int(4),avg int(4));
+
+i)insert into marks(studid,phy,chem,maths) values(101,56,67,78);
+ii)update marks set tot=(phy+chem+maths) where studid in (101,102,103);
+iii)update marks set avg=tot/3 where studid in (101,102,103);
+--------------------------------------
+
+joining 2 tables:-
+---------------------------
+select a.studid,a.name,a.address,a.salary,b.phy,b.chem,b.maths,b.tot,b.avg from student a,marks b where a.studid=b.studid;
+---------------------------------
+composite KEY
+--------------------------------
+CREATE TABLE mphasisstudents
+( studid INT NOT NULL AUTO_INCREMENT,
+NAME VARCHAR(30) NOT NULL,
+address VARCHAR(30) NOT NULL,
+location VARCHAR(30) NOT NULL,
+PRIMARY KEY(studid,NAME));
+
+----------------------------------------------------------------------------------------
+CREATE TABLE mphasisstudent
+( studid INT NOT NULL AUTO_INCREMENT,
+NAME VARCHAR(30) DEFAULT NULL UNIQUE,
+address VARCHAR(30) DEFAULT NULL,
+location VARCHAR(30) DEFAULT NULL,
+PRIMARY KEY(studid,NAME));
+-------------------------------------------------------------------------------------
+clone as table
+------------------------
+CREATE TABLE persons5 AS SELECT * FROM persons4;
+---------------------------------------------------------------------------------------
+To see non duplicate values
+SELECT DISTINCT id FROM persons4;
+SELECT DISTINCT id,lastname,firstname,age FROM persons4;
+--------------------------------------------------------------------------------------------
+constraints 
+---------------------------------------
+NOT NULL - Ensures that a column cannot have a NULL value
+UNIQUE - Ensures that all values in a column are different
+PRIMARY KEY - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
+
+FOREIGN KEY - It links between two tables
+CHECK - Ensures that the values in a column satisfies a specific condition
+DEFAULT - Sets a default value for a column if no value is specified
+CREATE INDEX - Used to create and retrieve data from the database very quickly
+-------------------------------------------------------------------------------------------------------------
+CREATE TABLE Persons1 (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255) NOT NULL,
+    Age int
+);
+----------------------------------------------------------------------------------
+CREATE TABLE Persons2 (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    UNIQUE (ID)
+);
+---------------------------------------------------------------------
+CREATE TABLE Persons3 (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    CONSTRAINT mphasis_emp UNIQUE (ID,LastName));
+---------------------------------------------------------
+101,'kumar'
+101,'kumar'
+-----------------------------------------
+101,'Mohan'
+102,'Kumar'
+
+-------------------------------------------------------------------------------
+ALTER TABLE Persons3
+DROP INDEX mphasis_emp;
+------------------------------------------------------------------------
+CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    PRIMARY KEY (ID));
+--------------------------------------------------------------------------
+CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    CONSTRAINT PK_Person PRIMARY KEY (ID,LastName));
+-----------------------------------------------------------------------------
+ALTER TABLE Persons
+ADD PRIMARY KEY (ID);
+-----------------------------------------------------------------------------
+ALTER TABLE Persons
+ADD CONSTRAINT PK_Person PRIMARY KEY (ID,LastName);
+----------------------------------------------------------------------------------
+ALTER TABLE Persons
+DROP PRIMARY KEY;
+-----------------------------------------------------------------------------------
+Example of foreign key
+-----------------------------------Master Table-------------------------------
+CREATE TABLE bank(accno INT PRIMARY KEY,NAME VARCHAR(30) NOT NULL,address VARCHAR(30) UNIQUE, branch VARCHAR(30))
+------------------------------------------------------------------------------------------
+INSERT INTO bank VALUES(101,'sunil','Chennei','Karadi');
+INSERT INTO bank VALUES(102,'Kiran','Pune', 'Karadi');
+INSERT INTO bank VALUES(103,'sandip','Bangalore', 'Karadi');
+-------------------------------------------------------------------------
+SELECT * FROM bank;
+
+--------------------------------------------------------------------------------------------------
+child table
+------------------------------
+CREATE TABLE customer(accno INT,
+bal INT NOT NULL,city VARCHAR(30) NOT NULL,
+FOREIGN KEY (accno) REFERENCES bank(accno));
+----------------------------------------------------------------------------------------
+INSERT INTO customer VALUES(101,5000,'Pune');
+INSERT INTO customer VALUES(101,3000,'Pune');
+INSERT INTO customer VALUES(102,4000,'Bangalore');
+INSERT INTO customer VALUES(102,2000,'Pune');
+----------------------------------------------------------------------------------------------
+SELECT * FROM customer;
+----------------------------------------------------------------------------------------------------
+delete from bank where accno=102
+
+Error Code: 1451
+Cannot delete or update a parent row: a foreign key constraint fails (`mphasis237`.`customer`, CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`accno`) REFERENCES `bank` (`accno`))
+------------------------------------------------------------------------------
+ON DELETE CASCADE :If we delete the parent data the child referred data will be automatically deleted.
+
+if we don't use on delete cascade it will give error message 
+and will not able to delete as in the child table the referred data will be present.
+Error Code: 1451
+Cannot delete or update a parent row: a foreign key constraint fails (`mphasis237`.`customer`, CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`accno`) REFERENCES `bank` (`accno`))
+-------------------------------------------------------------------------------------------
+CREATE TABLE bank(accno INT PRIMARY KEY,NAME VARCHAR(30) NOT NULL, address VARCHAR(30) UNIQUE, branch VARCHAR(30))
+
+INSERT INTO bank VALUES(103,'sunil','Chennei','Karadi');
+SELECT * FROM bank;
+
+DELETE FROM bank WHERE accno=102 ;
+
+DROP TABLE customer;
+
+CREATE TABLE customer(accno INT,
+bal INT NOT NULL,city VARCHAR(30) NOT NULL,
+FOREIGN KEY (accno) REFERENCES bank(accno)ON DELETE CASCADE);
+
+INSERT INTO customer VALUES(102,4000,'Pune');
+
+SELECT * FROM customer;
+--------------------------------------------------------------------------------------------------------
+
+CREATE TABLE Orders (
+    OrderID int NOT NULL,
+    OrderNumber int NOT NULL,
+    PersonID int,
+    PRIMARY KEY (OrderID),
+    FOREIGN KEY (PersonID) REFERENCES Persons(PersonID)
+);
+---------------------------------------------------------------------------------------
+CREATE TABLE Orders (
+    OrderID int NOT NULL,
+    OrderNumber int NOT NULL,
+    PersonID int,
+    PRIMARY KEY (OrderID),
+    CONSTRAINT FK_PersonOrder FOREIGN KEY (PersonID)
+    REFERENCES Persons(PersonID)
+);
+-----------------------------------------------------------------------------
+ALTER TABLE Orders
+ADD FOREIGN KEY (PersonID) REFERENCES Persons(PersonID);
+------------------------------------------------------------------------------------
+ALTER TABLE Orders
+ADD CONSTRAINT FK_PersonOrder
+FOREIGN KEY (PersonID) REFERENCES Persons(PersonID);
+----------------------------------------------------------------------
+ALTER TABLE Orders
+DROP FOREIGN KEY FK_PersonOrder;
+-------------------------------------------------------------------------------------
+CREATE TABLE Persons10 (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    CHECK (Age>=18)
+);
+---------------------------------------------------------------------
+CREATE TABLE Persons11 (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    City varchar(255),
+    CONSTRAINT CHK_Person CHECK (Age>=18 AND City='Bangalore')
+);
+----------------------------------------------------------------------------
+ALTER TABLE Persons
+ADD CHECK (Age>=18);
+------------------------------------------------------
+ALTER TABLE Persons
+ADD CONSTRAINT CHK_PersonAge CHECK (Age>=18 AND City='Bangalore');
+------------------------------------------------------------
+ALTER TABLE Persons
+DROP CHECK CHK_PersonAge;
+--------------------------------------------------------------------------
+CREATE TABLE Persons12 (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    City varchar(255) DEFAULT 'Bangalore'
+);
+-----------------------------------------------------------------
+CREATE TABLE Orders1 (
+    ID int NOT NULL,
+    OrderNumber int NOT NULL,
+    OrderDate TIMESTAMP DEFAULT (Current_date));
+-----------------------------------------------
+CREATE TABLE Orders1 (
+    ID int NOT NULL,
+    OrderNumber int NOT NULL,
+    OrderDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+--------------------------------------------------------------------------------------
+insert into orders(id,ordernumber) values(101,1001);
+---------------------------------------------------------------------------------------------
+ALTER TABLE Persons
+ALTER City SET DEFAULT 'Bangalore';
+------------------------------------------------------------------
+ALTER TABLE Persons
+ALTER City DROP DEFAULT;
+-------------------------------------------------------------------------
+CREATE INDEX idx_lastname
+ON Persons (LastName);
+-------------------------------------------------------------------------
+CREATE INDEX idx_pname
+ON Persons (LastName, FirstName);
+---------------------------------------------------------------
+ALTER TABLE table_name
+DROP INDEX index_name;
+----------------------------------------------------------------
+SELECT COUNT(DISTINCT Country) FROM Customers;
+----------------------------------------------------------------------------------------------
+SELECT * FROM Customers
+WHERE Country='India' AND City='Japan';
+-------------------------------------------------------------------------------------------------
+SELECT * FROM Customers
+WHERE City='India' OR City='Japan';
+--------------------------------------------------------------------------------------------
+SELECT * FROM Customers
+WHERE NOT Country='India';
+-------------------------------------------------------------------------------------
+SELECT * FROM Customers
+WHERE Country='India' AND (City='Japan' OR City='China');
+------------------------------------------------------------------------------------------------
+SELECT * FROM Customers
+WHERE NOT Country='India' AND NOT Country='Japan';
+--------------------------------------------------------------------------------------------------
+SELECT CustomerName, ContactName, Address
+FROM Customers
+WHERE Address IS NULL;
+-----------------------------------------------------------------------------------------------
+SELECT CustomerName, ContactName, Address
+FROM Customers
+WHERE Address IS NOT NULL;
+-------------------------------------------------------------------------------------
+SELECT * FROM Customers LIMIT 3;
+---------------------------------------------------------------------
+SELECT * FROM Customers
+WHERE Country='India'
+LIMIT 3;
+---------------------------------------------------------------------------
+SELECT MIN(Price) AS SmallestPrice
+FROM Products; 
+-----------------------------------------------------------------
+SELECT MAX(Price) AS LargestPrice
+FROM Products;
+------------------------------------------------------------------
+SELECT COUNT(ProductID)
+FROM Products;
+------------------------------------------------------------------
+SELECT AVG(Price)
+FROM Products;
+------------------------------------------------------
+SELECT SUM(Quantity)
+FROM OrderDetails;
+-----------------------------------------------------------
+SELECT * FROM Customers
+WHERE Country IN ('India', 'Japan', 'China');
+------------------------------------------------------------------------------
+SELECT * FROM Customers
+WHERE Country NOT IN ('India', 'Japan', 'China');
+--------------------------------------------------------------------------------------
+SELECT * FROM Customers
+WHERE Country IN (SELECT Country FROM Suppliers);
+------------------------------------------------------------------------------------------------
+SELECT * FROM Products
+WHERE Price BETWEEN 10 AND 20;
+------------------------------------------------------------------------------
+SELECT * FROM Products
+WHERE Price NOT BETWEEN 10 AND 20;
+---------------------------------------------------------------------------------
+Joins
+--------------------
+inner join, equi-join
+outer join--left outer ,right outer
+non equi-join
+self join
+----------------------------------------------------------------------------
+CREATE TABLE studentMp (
+    Id INT ,
+    name VARCHAR(255) NOT NULL,
+    Address varchar(50));
+----------------------------------------------------------------------------------------------
+create table marks(Id int, totalmarks int,grade varchar(30));
+----------------------------------------------------------------------------------------------  
+insert into studentMp values(101,'sandip','Bangalore'),
+    (102,'sunil','Pune'),(103,'kiran','Hyd');
+---------------------------------------------------------------------------------------
+insert into marks values(101,350,'First Division'),
+    (102,333,'First division'),
+    (103,202,'Second division');
+--------------------------------------------------------------------------------------------------
+To want to display the id, name, address, total marks and grade
+----------------------------------------------------------------------------------------
+inner/equi join:-In 2 tables one column show be same
+---------------------------------------------------------------------------
+select a.id, a.name, a.address, b.totalmarks, b.grade from studentMp a, marks b where 
+a.id=b.id;
+------------------------------------------------------------------------------------------
+INNER JOIN
+--------------------------
+SELECT studentMp.id, studentMp.name, studentMp.address, marks.totalmarks, marks.grade FROM studentMp
+INNER JOIN marks ON studentMp.id = marks.id;
+-----------------------------------------------------------------------------------------------------
+LEFT JOIN
+-------------------------
+SELECT studentMp.id, studentMp.name, studentMp.address, marks.totalmarks, marks.grade FROM studentMp
+LEFT JOIN  marks ON studentMp.id = marks.id;
+-------------------------------------------------------------------------------
+RIGHT JOIN
+-------------------------
+SELECT marks.id, studentMp.name, studentMp.address, marks.totalmarks, marks.grade FROM studentMp
+RIGHT JOIN  marks ON studentMp.id = marks.id;
+-------------------------------------------------------------------------------
+INNER JOIN
+--------------------------------
+SELECT studentMp.*, marks.* FROM studentMp
+INNER JOIN marks ON studentMp.id = marks.id;
+-----------------------------------------------------------------------------------------------------
+LEFT JOIN
+-------------------------
+SELECT studentMp.*, marks.* FROM studentMp
+LEFT JOIN  marks ON studentMp.id = marks.id;
+-------------------------------------------------------------------------------
+RIGHT JOIN
+-------------------------
+SELECT studentMp.*, marks.*, FROM studentMp
+RIGHT JOIN  marks ON studentMp.id = marks.id;
+-------------------------------------------------------------------------------
+
+
+
+
+------------------------------End Of MySql-----------------------------------
+JDBC
+---------------
+program-1
+-------------------
+package Day5;
+import java.sql.*;
+import java.util.*;
+public class Student 
+{
+public static void main(String[] args)throws Exception
+{
+	Scanner ob=new Scanner(System.in);
+	System.out.println("enter studID,name,address");
+	int studid=ob.nextInt();
+	String name=ob.next();
+	String address=ob.next();
+			Class.forName("com.mysql.cj.jdbc.Driver");//driver will be loaded
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/daimler","root","1234");
+		PreparedStatement st=con.prepareStatement("insert into student1 values(?,?,?)");
+		st.setInt(1, studid);
+		st.setString(2,name);
+		st.setString(3,address);
+		st.execute();
+		System.out.println("row inserted");
+		
+		}
+}
+----------------------------------------------------------------------------------------------------------------------
+program-2
+-------------------
+package Day5;
+import java.sql.*;
+import java.util.*;
+public class Student 
+{
+public static void main(String[] args)throws Exception
+{
+	Scanner ob=new Scanner(System.in);
+	System.out.println("enter rollno who's name,address you want to update");
+	int rollno=ob.nextInt();
+	String name=ob.next();
+	String address=ob.next();
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/daimler","root","1234");
+		PreparedStatement st=con.prepareStatement("update student1 set name=? ,address=? where  rollno=?");
+		st.setString(1,name);
+		st.setString(2,address);
+		st.setInt(3, rollno);
+		st.execute();
+		System.out.println("row updated");
+		
+		}
+}
+--------------------------------------------------------------------------------------------
+program-3
+---------------------
+package Day5;
+import java.sql.*;
+import java.util.*;
+public class Student 
+{
+public static void main(String[] args)throws Exception
+{
+	Scanner ob=new Scanner(System.in);
+	System.out.println("enter rollno to delete");
+	int rollno=ob.nextInt();
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/daimler","root","1234");
+		PreparedStatement st=con.prepareStatement("delete from student1 where  rollno=?");
+		st.setInt(1, rollno);
+		st.execute();
+		System.out.println("row deleted");
+				}
+}
+--------------------------------------------------------------------------------------------------------------
+program-4
+----------------
+import java.sql.*;
+import java.util.*;
+public class Student 
+{
+public static void main(String[] args)throws Exception
+{
+    	Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/daimler","root","1234");
+		Statement st=con.createStatement();
+		st.execute("insert into student1 values(101,'sandip','Bangalore')");
+		System.out.println("row inserted");
+				}}
+--------------------------------------------------------------------------------------------------------
+program-5
+---------------------
+package Day5;
+import java.sql.*;
+import java.util.*;
+public class Student 
+{
+public static void main(String[] args)throws Exception
+{
+    	Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/daimler","root","1234");
+		Statement st=con.createStatement();
+		st.execute("update student1 set name='sandeep' ,address='Pune' where rollno=101");
+		System.out.println("row update");
+				}}
+--------------------------------------------------------------------------------------------------------
+program-6
+---------------------
+package Day5;
+import java.sql.*;
+import java.util.*;
+public class Student 
+{
+public static void main(String[] args)throws Exception
+{
+    	Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/daimler","root","1234");
+		Statement st=con.createStatement();
+		st.execute("delete from student1 where rollno=101");
+		System.out.println("row deleted");
+				}}
+---------------------------------------------------------------------------------------------------------------
+Assignment-4
+-------------------------
+create a bank class having accno, name, balance,
+insert data, update data or delete data from the table as per the requirement.
+use case and switch or if and else 
+
+sandipmohapatra2016@gmail.com
+-------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+------------------------------------------Answer----------------------------------------------------
+import java.sql.*;
+import java.util.Scanner;
+public class bank {
+              public static void main(String[] args)throws Exception
+              {
+                             Scanner ob=new Scanner(System.in);
+                             Class.forName("com.mysql.cj.jdbc.Driver");
+                             Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/daimlertruck","root","1234");
+                      System.out.println("enter 1 for inserting data into bank database");
+                      System.out.println("enter 2 for updating data into bank database");
+                      System.out.println("enter 3 for deleting data into bank database");
+                        int ch=ob.nextInt();
+                             int accno;
+                             String bname;
+                             float balance;
+      if(ch==1)
+                             {
+                                   PreparedStatement st=con.prepareStatement("insert into bank values(?,?,?)");
+                                   System.out.println("enter the account number ,name and balance");
+                                   accno=ob.nextInt();
+                                   bname=ob.next();
+                                   balance=ob.nextFloat();
+                                           st.setInt(1, accno);
+                                           st.setString(2,bname);
+                                           st.setFloat(3,balance);
+                                           st.execute();
+                                           System.out.println("row inserted");
+                             }
+        else if (ch==2)
+                             {
+  PreparedStatement st=con.prepareStatement("update bank set bname=? ,balance=? where  accno=?");
+  System.out.println("enter the account number ,name and balance");
+                                                    accno=ob.nextInt();
+                                                    bname=ob.next();
+                                           balance=ob.nextFloat();
+                                                          st.setString(1,bname);
+                                                          st.setFloat(2,balance);
+                                                          st.setInt(3, accno);
+                                                          st.execute();
+                                                          System.out.println("row updated");
+                             }
+        else if(ch==3)
+                                           {
+                          PreparedStatement st =con.prepareStatement("delete from bank where accno=?");
+                           System.out.println("enter the account number");
+                                                          accno=ob.nextInt();
+                                                          st.setInt(1,accno);          
+                                               st.execute();
+                                                          System.out.println("Row deleted");
+                                           }
+                             else
+                                           {
+                                                          System.out.println("invalid choice");
+                                           }
+
+              }
+
+}
+---------------------------------------------------------------------------------------------------------
+program-7
+--------------------
+package Day6;
+import java.sql.*;
+public class JDBC1 
+{
+	public static void main(String[] args)throws Exception
+	{
+	    	Class.forName("com.mysql.cj.jdbc.Driver");
+Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/daimlertruck","root","1234");
+			Statement st=con.createStatement();
+		//	st.execute("create table student1 (rollno int, name varchar(30),address varchar(30))");
+		//	System.out.println("table created");
+			st.execute("insert into student1 values(101,'sandip','Bangalore')");
+			System.out.println("row inserted");
+
+	}
+}
+-------------------------------------------------------------------------------------------------------------------------
+program-8
+----------------------
+package Day6;
+import java.sql.*;
+import java.util.*;
+public class Student 
+{
+public static void main(String[] args)throws Exception
+{
+	Scanner ob=new Scanner(System.in);
+	System.out.println("enter name,address");
+	String name=ob.next();
+	String address=ob.next();
+			Class.forName("com.mysql.cj.jdbc.Driver");//driver will be loaded
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/daimlertruck","root","1234");
+		PreparedStatement st=con.prepareStatement("insert into student3(name,address) values(?,?)");
+		st.setString(1,name);
+		st.setString(2,address);
+		st.execute();
+		System.out.println("row inserted");
+			}}
+-------------------------------------------------------------------------------------------------------------
+In the context of Relational Database Management Systems (RDBMS), ACID stands for Atomicity, Consistency, Isolation, and Durability. These are the key properties that ensure reliable processing of database transactions. Here's a brief explanation of each property:
+
+Atomicity:
+
+Ensures that each transaction is treated as a single unit, which either succeeds completely or fails completely. If any part of the transaction fails, the entire transaction is rolled back, leaving the database state unchanged.
+Example: In a banking system, transferring money from one account to another involves debiting one account and crediting another. Atomicity ensures that both operations either succeed together or fail together.
+Consistency:
+
+Ensures that a transaction brings the database from one valid state to another valid state, maintaining the integrity constraints. Any transaction will bring the database into a valid state, meaning all rules and constraints are still satisfied after the transaction.
+Example: If a database rule requires that all account balances must be positive, a transaction that would result in a negative balance will be aborted.
+Isolation:
+
+Ensures that transactions are executed in isolation from one another. Even though transactions may run concurrently, they are isolated in such a way that they do not interfere with each other. The results of transactions occurring concurrently must be the same as if they occurred in some serial order.
+Example: If two transactions are updating the same data simultaneously, isolation ensures that one transaction's updates are not visible to the other until the first transaction is complete.
+Durability:
+
+Ensures that once a transaction has been committed, it will remain so, even in the event of a system failure. The changes made by the transaction are permanently recorded in the database.
+Example: After a transaction commits the transfer of money from one account to another, this change will persist even if the system crashes immediately afterward.
+ACID properties are essential for maintaining the reliability, accuracy, and robustness of databases, especially in systems that require a high level of data integrity and consistency.
+
+-----------------------------------------------------------------------------------------------------
+A Database Management System (DBMS) and a Relational Database Management System (RDBMS) are both systems used to manage data, but they have key differences in terms of structure, capabilities, and functionalities. Here’s a detailed comparison:
+
+DBMS (Database Management System)
+Data Storage Structure:
+
+Stores data as files.
+Data is managed in a hierarchical, network, or flat-file structure.
+Data Relationships:
+
+Relationships between data are implicit and need to be handled programmatically.
+There is no inherent support for complex relationships.
+Data Integrity:
+
+Integrity constraints are not usually enforced.
+Data integrity must be managed manually by the user or application.
+Normalization:
+
+Normalization is not usually enforced.
+Data redundancy and inconsistency can occur more frequently.
+Transactions:
+
+Limited support for transactions.
+ACID properties (Atomicity, Consistency, Isolation, Durability) may not be fully supported.
+Query Language:
+
+Typically uses simple, non-standardized query languages.
+Querying might be less flexible and more complex.
+Examples:
+
+File systems, hierarchical databases like IBM IMS.
+RDBMS (Relational Database Management System)
+Data Storage Structure:
+
+Stores data in tables (relations) which are structured rows and columns.
+Each table has a unique identifier called a primary key.
+Data Relationships:
+
+Explicitly defines relationships using foreign keys.
+Supports complex relationships and enforces referential integrity.
+Data Integrity:
+
+Strong emphasis on data integrity with built-in constraints (primary key, foreign key, unique, check, not null).
+Ensures data accuracy and consistency through integrity constraints.
+Normalization:
+
+Promotes normalization to eliminate redundancy and ensure data integrity.
+Follows normal forms to structure data efficiently.
+Transactions:
+
+Fully supports transactions with ACID properties.
+Ensures reliability and robustness of data operations.
+Query Language:
+
+Uses SQL (Structured Query Language) which is a standardized language.
+Provides powerful and flexible querying capabilities.
+Examples:
+
+MySQL, PostgreSQL, Oracle Database, Microsoft SQL Server.
+Summary
+DBMS: Suitable for smaller, simpler applications where data relationships are straightforward and integrity constraints are minimal. It offers basic functionalities without enforcing strict relational principles.
+RDBMS: Suitable for complex applications requiring robust data integrity, complex relationships, and transactions. It enforces relational principles, ensuring higher data accuracy and consistency.
+In modern applications, RDBMS is generally preferred due to its comprehensive support for data management standards and robustness in handling complex data operations.
+
+-----------------------------------------------------------------------------------
+views---------------
+subqueries---------------------
+self join, non-equi join , cross------------
+function----------------
+procedure------------
+transaction-----rollback and commit;
+-------------------------------------------------------
+operations
+----------------------
+1)TL (Transaction language) :- select
+
+2)DML (data manipulation language) :- insert ,update, delete
+They are temporary.if we rollback it will come to the previous state.
+
+3)DCL (data control language):- grant, revoke
+
+4)DDL (data defination language):- create, alter, drop
+
+5)TCL (Transaction control language)  :- commit, rollback ,savepoint. 
+
+-----------------------------------------------------------------------------------------------
+view 
+----------
+A view is a logical table based on a table or another view.
+if we delete/insert/update a data from the view it will reflect the base table.
+The main purpose of view is to store bigger query. The view actually stores query and does not occupies any memory space.
+view can be used to make simple queries to retrieve the result of complicated queries.
+one view can be used to retrieve data from several tables (join).
+we can create a view on another view.
+if you drop the base table or base view the corresponding view will be automatically deleted.
+view created on a single table is called simple view we can do DML operations.
+view created on a multiple tables is called complex view we cannot  do DML operations.
+example:-
+CREATE VIEW abc AS SELECT customerid,customername,address,
+country FROM customer237;
+--------------------------------------------------------------------------------------
+SELECT * FROM abc;
+SELECT * FROM customer237;
+-----------------------------------------------------------------------------------------
+INSERT INTO abc VALUES(104,'Pavan','Kengari','India');
+------------------------------------------------------------------------------------------
+Index:- It is used to retrieve data from a table faster during search operation.
+If the data is sorted then the retrieval will be faster. Other wise full table scan will happen.
+In case of dictionary if words are not arranged in alphabetic order we have to search the whole dictionary .
+-----------------------------------------------------------------
+we have 2 types of index.
+1)unique index:- when we define a column with primary key or unique key constraint oracle/mysql will automatically create a index on the column .Internally it will sort the data and keep so retrieval will be faster.
+
+2)non unique index:- if you donot define a column as PK or unique key then we have to create a index on the table explicitly.
+
+example :- foreign key column are not index.
+
+create index xyz1 on mphasisemp(name);
+-------------------------------------------------------------------------------------
+self join
+------------------
+create table customer237 (CustomerID int,CustomerName varchar(30),ContactName varchar(30),Address varchar(30),City varchar(30),PostalCode int,Country varchar(30));
+
+insert into customer237 values(101,'Anusha','Darshan','MG Road','Bangalore',080,'India');
+insert into customer237 values(102,'swamy','Darshan','MG Road','Bangalore',080,'India');
+insert into customer237 values(103,'sandip','Darshan','MG Road','Bangalore',080,'India');
+
+
+SELECT A.CustomerName AS CustomerName1, B.CustomerName AS CustomerName2, A.City
+FROM Customer237 A, Customer237 B
+WHERE A.CustomerID <> B.CustomerID
+AND A.City = B.City
+ORDER BY A.City;
+------------------------------------------------------------------------------------------------------
+select empno,ename,sal from emp where sal = any(1500,3000);
+select empno,ename,sal from emp where sal>1500 or sal>3000;
+select empno,ename,sal from emp where sal >1600 AND sal<3000;
+------------------------------------------------------------------------------------------
+subquery :-
+-----------------
+A subquery is a select statement that is embedded in a cluse of another select statement.
+
+example:-
+1) select ename from emp where sal>(select sal from emp where name='amit');
+
+2)UPDATE hystud4
+   SET SALARY = salary + SALARY * 0.25
+   WHERE AGE IN (SELECT AGE FROM hystud4 WHERE AGE >= 27 );
+
+3)DELETE FROM CUSTOMERS
+   WHERE AGE IN (SELECT AGE FROM CUSTOMERS WHERE AGE >= 27 );
+------------------------------------------------------------------------------------
+Stored function in MYSql
+----------------------------------------
+function -1
+----------------------
+DELIMITER $$
+CREATE FUNCTION avg_numbers(a INT , b INT, c INT)
+RETURNS INT
+DETERMINISTIC  
+BEGIN
+    RETURN (a + b + c)/3;
+END 
+$$ DELIMITER;
+---------------------------------------------------------------
+SELECT avg_numbers(10,5,7) AS average;
+-----------------------------------------------------------------
+DROP FUNCTION IF EXISTS add_numbers;
+-------------------------------------------------------------------
+DELIMITER // changes the statement delimiter to
+ // to allow the use of semicolons within the function body.
+CREATE FUNCTION add_numbers defines the function name and parameters.
+RETURNS INT specifies the return type of the function.
+The BEGIN ... END block contains the SQL statements for the function.
+DELIMITER ; resets the statement delimiter back to ;.
+The DETERMINISTIC keyword indicates that the function always produces the same result for the same input parameters.
+-------------------------------------------------------------------------------------------
+Function-2
+----------------------
+DELIMITER $$
+CREATE FUNCTION factorial(n INT)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+    DECLARE result INT DEFAULT 1;
+    DECLARE i INT DEFAULT 1;
+
+    WHILE i <= n DO
+        SET result = result * i;
+        SET i = i + 1;
+    END WHILE;
+
+    RETURN result;
+END
+$$ DELIMITER ;
+---------------------------------------------------------
+SELECT factorial(5) AS fact;
+--------------------------------------------------------
+function 3
+--------------------------
+DELIMITER $$  
+CREATE FUNCTION Customer_Occupation(age INT)   
+RETURNS VARCHAR(20)  
+DETERMINISTIC  
+BEGIN  
+    DECLARE customer_occupation VARCHAR(20);  
+    IF age > 35 THEN  
+        SET customer_occupation = 'Scientist';  
+    ELSEIF (age <= 35 AND   
+            age >= 30) THEN  
+        SET customer_occupation = 'Engineer';  
+    ELSEIF age < 30 THEN  
+        SET customer_occupation = 'Actor';  
+    END IF;  
+    -- return the customer occupation  
+    RETURN (customer_occupation);  
+END
+$$  DELIMITER;  
+------------------------------------------------------------
+DROP TABLE customer;
+----------------------------------------------------
+select Customer_Occupation(35);
+----------------------------------------------------
+function-4
+-----------------------------------------------------
+DELIMITER $$
+CREATE FUNCTION add_numbers1(a INT, b INT)
+RETURNS INT
+DETERMINISTIC  
+BEGIN
+    RETURN a + b;
+END 
+$$ DELIMITER;
+------------------------------------------------------------
+
+SELECT add_numbers1(10,5) AS SUM;
+------------------------------------------------------------
+Correlated subqueries
+------------------------------------------
+Correlated subqueries in MySQL are subqueries that depend on the outer query for their values. This means the subquery is executed once for each row processed by the outer query. 
+
+In a correlated subquery, the inner query references a column from the outer query. The subquery is evaluated once for each row in the outer query. This allows you to perform row-by-row processing, making it possible to write more complex queries that compare each row in a table with some aggregated data.
+
+Example
+we have two tables: employees and departments.
+
+CREATE TABLE employees (
+    id INT,
+    name VARCHAR(100),
+    department_id INT,
+    salary DECIMAL(10, 2)
+);
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE departments (
+    id INT,
+    name VARCHAR(100)
+);
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+To find the employees who earn more than the average salary in their department, you can use a correlated subquery:
+
+SELECT name
+FROM employees e
+WHERE salary > (
+    SELECT AVG(salary)
+    FROM employees
+    WHERE department_id = e.department_id
+);
+----------------------------------------------------------------------------------------------------------------------------------------------
+Non-correlated subqueries
+------------------------------------
+Non-correlated subqueries, also known as simple subqueries, are subqueries that are independent of the outer query. They are executed only once and return a value or a set of values that can be used by the outer query. Unlike correlated subqueries, non-correlated subqueries do not reference columns from the outer query.
+
+
+Non-correlated subqueries can be used in various clauses like SELECT, FROM, WHERE, and HAVING. They are typically used to return a single value or a list of values that the outer query can use for comparison or further processing.
+
+CREATE TABLE employees (
+    id INT,
+    name VARCHAR(100),
+    department_id INT,
+    salary DECIMAL(10, 2)
+);
+
+CREATE TABLE departments (
+    id INT,
+    name VARCHAR(100)
+);
+
+Example 1: Subquery in the WHERE Clause
+To find employees who work in the 'Sales' department, you can use a non-correlated subquery:
+
+SELECT name
+FROM employees
+WHERE department_id = (
+    SELECT id
+    FROM departments
+    WHERE name = 'Sales'
+);
+
+
+Subquery: SELECT id FROM departments WHERE name = 'Sales'
+
+This subquery retrieves the id of the 'Sales' department.
+It is executed only once.
+---------------------------------------------------------------------------------------------------------------------------------------------
+Example 2: Subquery in the SELECT Clause
+To get the average salary of all employees along with each employee's details:
+
+SELECT name, salary, 
+    (SELECT AVG(salary) FROM employees) AS avg_salary
+FROM employees;
+
+Subquery: SELECT AVG(salary) FROM employees
+
+This subquery calculates the average salary of all employees.
+It is executed only once.
+----------------------------------------------------------------------------------------------------------------------
+Procedure 
+----------------------------
+DELIMITER :- allow the use of semicolons within the procedure body.
+procedure_name: Name of the procedure.
+IN, OUT, INOUT: Parameter modes. IN for input parameters, OUT for output parameters, and INOUT for both input and output.
+datatype: Data type of the parameters.
+procedure body: SQL statements that make up the procedure.
+------------------------------------------------------------------------------------------------
+example-1
+-------------------------------------------
+DELIMITER &&  
+CREATE PROCEDURE get_merit_student ()  
+BEGIN  
+    SELECT * FROM student_info WHERE marks > 70;  
+    END &&  
+DELIMITER ;  
+------------------------------------------------------------------------------------------------------------
+CREATE TABLE student_info(rollno INT,NAME VARCHAR(30),marks INT);
+INSERT INTO student_info VALUES(101,'Sandip',78);
+INSERT INTO student_info VALUES(102,'Kiran',72);
+INSERT INTO student_info VALUES(103,'Sunil',68);
+INSERT INTO student_info VALUES(104,'Madhu',88);
+INSERT INTO student_info VALUES(105,'Mohan',58);
+-------------------------------------------------------------------------------------------------------------
+CALL get_merit_student();
+--------------------------------------------------------------------------------------------------------------
+example-2
+-----------------
+DELIMITER &&  
+CREATE PROCEDURE get_student (IN var1 INT)  
+BEGIN  
+    SELECT * FROM student_info LIMIT var1;  
+   END &&  
+DELIMITER ;  
+
+----------------------------------------------------------------------------------
+CALL get_student(1);  
+* only one student's details will be seen
+-------------------------------------------------------------------------------------------
+example-3
+----------------------
+DELIMITER &&  
+CREATE PROCEDURE display_max_mark (OUT highestmark INT)  
+BEGIN  
+    SELECT MAX(marks) INTO highestmark FROM student_info;   
+END &&  
+DELIMITER ;  
+--------------------------------------------------------------------------------------------------
+
+CALL display_max_mark(@M);  
+------------------------------------------------------------------------------
+ SELECT @M;  
+-------------------------------------------------------------------------------
+example-4
+------------------
+DROP PROCEDURE display_marks
+---------------------------------------------------------------------------
+DELIMITER &&  
+CREATE PROCEDURE display_marks (INOUT var1 INT)  
+BEGIN  
+    SELECT marks INTO var1 FROM student_info WHERE rollno = var1;   
+END &&  
+DELIMITER ;  
+--------------------------------------------------------------------------------------------
+SET @M = 101;  
+--------------------------------------
+CALL display_marks(@M);  
+---------------------------------------
+SELECT @M; 
+-----------------------------------------------------------------------------------
+Class Test MCQs
+-------------------------------------------------------------------------------------------------
+
+ALL :- this operator return true if all of the subquery values meet the condition.
+------------------------------------------------------------------------------------
+select * from mphasisemp where salary < (select avg(salary)from mphasisemp);
+select * from mphasisemp where salary < all(select avg(salary)from mphasisemp);
+
+X=TRUE/FALSE
+----------------------------------------------------------
+
+select * from mphasisemp where salary > ALL(select avg(salary)from mphasisemp);
+-------------------------------------------------
+with operator
+--------------------------
+find all the employee whose salary is more than the average  salary
+of all the employees.
+----------------------------------------------------
+select * from mphasisemp;
+-----------------------------------------
+with temporaryTable(averageValue) as (select avg(salary) from 
+mphasisemp),select empid,name,salary from mphasisemp,
+temporaryTable where mphasisemp.salary > temporaryTable.averageValue;
+---------------------------------------------------------
+ANY :- this operator return true if ANY of the sbuquery values meet the condition.
+----------------------------------------------------------------------------------------
+select * from mphasisemp where salary > all(select avg(salary)from mphasisemp);
+
+select * from mphasisemp where salary > any(select avg(salary)from mphasisemp);
+
+
+-----------------------------------------------------------------------------
+SOME :- this operator return true if SOME of the subquery values meet the condition.
+-----------------------------------------------------------------------------------------
+select * from mphasisemp where salary > some(select avg(salary)from mphasisemp);
+---------------------------------------------------------------------------------
+EXISTS :- this operator return true if any one or more records of the subquery values meet the condition.
+
+select * from mphasisemp where EXISTS(select salary from mphasisemp where salary > 150000);
+
+
+in the table if the salary exists then whole table will be displayed otherwise no records will be displayed.
+----------------------------------------------------------
+
+which Normal from tells that 
+all columns/attributes should have single(atomic) value.
+1NF
+------------------------------------------------------------------------------------------
+which Normal from tells that 
+columns should not have partial dependency
+2NF
+---------------------------------------------------------------------------------------
+which Normal from tells that 
+columns should not have transitive dependency
+3NF
+
+-------------------------------------------------------------------------
+Tupple value may exist but unknown or many not exists then value  is NULL.
+true
+-------------------------------------------------------------------------------
+wat is an entiry ? object or table
+-----------------------------
+if entity A is associated with all the entity in B then it can be
+1:M,M:1 and M:M 
+
+ans)M:M
+
+-------------------------------------------------------------
+types of entity :- dependent or Independent.(true)
+
+-----------------------------------------------------
+sql server :-
+
+sql server supports :- database design,annalysis and report.
+------------------------------------------------------------------------
+components of sql server
+1)reporting
+2)design
+3)analysis
+4)all of the above
+ans)all of the above
+---------------------------------------------------------------------
+Object oriented programming doesnot support M:M relationship .
+ans :(true)
+------------------------------------------------------------------
+select min/max date(DOB) from mphasisemp;(true)
+---------------------------------------------------------------------------------
+SQL ________ statements may not change the contents of a database
+SELECT
+------------------------------------------------------------------------------------
+________ is an attribute or a set of attributes that uniquely identifies the relation.
+A superkey
+--------------------------------------------------------------------------------------
+Which subset of sql commands used to manipulate database structures including tables
+Data defination language
+--------------------------------------------------------------------------------------------------
+Which better performs pattern matching?
+Like
+-------------------------------------------------------------------------------------
+Which operator tests column for absence of data?
+Is Null
+-----------------------------------------------------------------------------------------
+Which command is used to change a tables storage characteristics?
+Alter table
+------------------------------------------------------------------------------------
+Which of the following is not a DDL command?
+update
+-----------------------------------------------------------------------------------------
+Which command is used to select only one copy of each set of duplicable rows?
+Select Distinct
+-------------------------------------------------------------------------------
+A command to change one or more fields in a record is
+Modify
+--------------------------------------------------------------------
+Which of the following is correct SQL statement?
+SELECT Username, Password FROM Users
+---------------------------------------------------------------------------------------------
+The from SQL clause is used to?
+Specify what table we are selecting or deleting from
+--------------------------------------------------------------------------------------
+which SQL keyword is used to retrieve only unique values?
+Distinct
+----------------------------------------------------------------------------
+Which SQL keyword is sued to retrieve a maximum value
+Max
+-------------------------------------------------------------------------
+What is a view?
+An abstract virtual table which results of executing a pre compiled query.
+-------------------------------------------------------------------------------------------------
+Which SQL command is used to retrieve data
+Select
+-----------------------------------------------------------------------------------
+Which of the following is an SQL aggregate function?
+Avg
+-------------------------------------------------------------
+Which SQL statement is used to update data in a database
+Update
+--------------------------------------------------------------------------------
+Which SQL statement is used to delete from a database
+Delete
+-------------------------------------------------------------------------------------
+"Table employee has 10 records. It has a non-NULL SALARY column which is also UNIQUE.
+The SQL statement
+SELECT COUNT(*) FROM employee WHERE SALARY > ALL (SELECT SALARY FROM EMPLOYEE);
+prints"
+0
+---------------------------------------------------------------------------------------------
+Which of the following SQL commands can be used to add data to a database table?
+INSERT
+---------------------------------------------
+Which of the following join is also called as an 'inner-join'?
+Equijoin
+---------------------------------------------------------
+Which of the following is NOT a type of SQL constraint?
+ALTERNATE KEY
+--------------------------------------------------------------
+What is an SQL virtual table that is constructed from other tables?
+View
+-----------------------------------------------------------------------
+When using the SQL INSERT statement:
+rows can either be inserted into a table one at a time or in groups.
+------------------------------------------------------------------------------------------
+The SQL ALTER statement can be used to:
+change the table structure.
+-----------------------------------------------------
+What SQL command can be used to delete columns from a table?
+ALTER TABLE TableName DROP COLUMN ColumnName
+------------------------------------------------------------------------------------------------
+What SQL command can be used to add columns to a table?
+ALTER TABLE TableName ADD ColumnName
+----------------------------------------------------------------------------------------------
+The command to remove rows from a table 'CUSTOMER' is:
+DELETE FROM CUSTOMER WHERE …
+-------------------------------------------------------------------------------------
+Which of the following is the original purpose of SQL?
+To define the data structures
+To specify the syntax and semantics of SQL data definition language	
+To specify the syntax and semantics of SQL manipulation language
+------------------------------------------------------------------------------------
+The wildcard in a WHERE clause is useful when?
+An exact match is not possible in a SELECT statement
+
+
+-------------------------------------------------------------------------------------
+The command to eliminate a table from a database is:
+DROP TABLE CUSTOMER;
+
+------------------------------------------------------------------------------------
+The SQL keyword(s) ________ is used with wildcards.
+LIKE only
+---------------------------------------------------------------------------------------
+A subquery in an SQL SELECT statement is enclosed in:
+parenthesis -- (...).
+--------------------------------------------------------------------------------
+1)which of the following is not a DDL command
+
+a)Truncate
+b)Alter
+c)create
+d)update
+
+ans)update
+----------------------------------
+2)which of the statement is used to delete all rows in a table.
+a)delete
+b)remove
+c)drop
+d)truncate
+
+a)truncate
+
+3)views are also known as --- virtual tables
+
+4)how many primary key can have in a table -----only 1
+
+5)which of the following is not a valid aggregate function
+a)count
+b)compute
+c)sum
+d)max
+
+ans)compute
+
+6)which operator is used to compare a value to a specified list of values?
+a)any
+b)between
+c)all
+d)IN
+
+ans)IN
+
+7)which operator test column for absence of data
+a)not operator
+b)exists operator
+c)is null operator
+d)none
+
+ans)is null operator
+
+8)------------- clause creates temporary relation for the query on which it is defined.
+a)with
+b)from
+c)where
+d)select
+
+ans)with
+----------------------------------------------------------------------------
