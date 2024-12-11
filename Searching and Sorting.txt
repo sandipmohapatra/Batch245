@@ -1,0 +1,480 @@
+Memory management in Java is handled through an automatic process known as Garbage Collection (GC), which is responsible for reclaiming memory that is no longer in use by the program. Here’s an overview of how memory management works in Java:
+
+1. Memory Allocation
+Java applications use two main types of memory allocation:
+
+Stack Memory:
+
+Used for static memory allocation.
+Stores primitive data types (e.g., int, float) and references to objects.
+Each thread has its own stack, which stores method calls, local variables, and references.
+
+-----------------------------------------------------------------------------------------
+Heap Memory:
+
+Used for dynamic memory allocation.
+Stores objects and arrays.
+Shared among all threads of an application.
+-----------------------------------------------------------------------------------------
+
+2. Garbage Collection (GC)
+GC is the process of automatically reclaiming memory by identifying and discarding objects that are no longer reachable in the application. 
+----------------------------------------------------------------
+4. Memory Leaks
+Although Java handles memory management automatically, memory leaks can still occur if references to unused objects are not cleared. Common causes of memory leaks include:
+
+Static fields holding references to objects.
+Unclosed resources (e.g., file handles, network connections).
+Long-lived collections with objects that are no longer needed.
+
+5. Best Practices for Memory Management
+Minimize object creation: Reuse objects when possible.
+Use appropriate data structures: Choose the right data structure for the job.
+Close resources: Ensure resources are properly closed in a finally block or use try-with-resources.
+Monitor and profile: Use profiling tools to monitor memory usage and identify memory leaks.
+
+
+Conclusion
+Effective memory management in Java is crucial for building efficient and reliable applications. By understanding how the JVM handles memory and following best practices, developers can minimize the risk of memory leaks and optimize the performance of their applications.
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+Binary search is an efficient algorithm for finding an item from a sorted list of items. It works by repeatedly dividing in half the portion of the list that could contain the item, until you've narrowed down the possible locations to just one.
+----------------------------------------------------------------------------------------------------------------------
+4 5 6 7 8 10 12
+----------------------------------------------------------------------------
+public class BinarySearch 
+{
+    // Returns the index of key if it is present in array[], else return -1
+    public static int binarySearch(int[] array, int key) {
+        int left = 0, right = array.length - 1;
+        while (left <= right) 
+{
+            int mid = left + (right - left) / 2;
+
+            // Check if key is present at mid
+            if (array[mid] == key)
+                return mid;
+
+            // If key greater, ignore left half
+            if (array[mid] < key)
+                left = mid + 1;
+
+            // If key is smaller, ignore right half
+            else
+                right = mid - 1;
+        }
+
+        // Key was not present in the array
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        int[] array = {2, 3, 4, 10, 40};
+        int key = 10;
+        int result = binarySearch(array, key);
+        if (result == -1)
+            System.out.println("Element not present in array");
+        else
+            System.out.println("Element found at index " + result);
+    }
+}
+-------------------------------------------------------------------------------------------------------------------
+Initialization:
+
+left is the starting index (0).
+right is the ending index (array.length - 1).
+Loop until the search space is empty (left <= right):
+
+Calculate the middle index: mid = left + (right - left) / 2.
+If the middle element is the key, return the middle index.
+If the key is greater than the middle element, narrow the search to the right half (left = mid + 1).
+If the key is smaller than the middle element, narrow the search to the left half (right = mid - 1).
+If the element is not found, return -1.
+
+Usage
+The example in the main method shows how to use the binarySearch method. It searches for the key 10 in the array {2, 3, 4, 10, 40} and prints the result.
+----------------------------------------------------------------------------------------------------------------------
+linear search in java
+Linear search is a straightforward algorithm for finding a specific element in a list. It works by sequentially checking each element of the list until the desired element is found or the list is exhausted.
+
+public class LinearSearch 
+{
+    // Returns the index of key if it is present in array[], else return -1
+    public static int linearSearch(int[] array, int key) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == key)
+                return i;
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        int[] array = {2, 3, 4, 10, 40};
+        int key = 10;
+        int result = linearSearch(array, key);
+        if (result == -1)
+            System.out.println("Element not present in array");
+        else
+            System.out.println("Element found at index " + result);
+    }
+}
+----------------------------------------------------------------------------------------------------------------------
+
+Loop through each element of the array:
+The loop runs from the first element (index 0) to the last element (index array.length - 1).
+Check each element:
+If the current element array[i] is equal to the key, return the index i.
+If the element is not found, return -1:
+If the loop completes without finding the key, return -1 indicating the element is not present in the array.
+Usage
+The example in the main method demonstrates how to use the linear Search method. It searches for the key 10 in the array {2, 3, 4, 10, 40} and prints the result.
+---------------------------------------------------------------------------------------------------------------
+Bubble Sort
+---------------------
+public class BubbleSort {
+    public static void bubbleSort(int[] arr) {
+        int n = arr.length;
+        boolean swapped;
+        for (int i = 0; i < n - 1; i++) {
+            swapped = false;
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    // Swap arr[j] and arr[j+1]
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                    swapped = true;
+                }
+            }
+            // If no two elements were swapped by inner loop, then the array is sorted
+            if (!swapped) {
+                break;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        System.out.println("Unsorted array:");
+        printArray(arr);
+
+        bubbleSort(arr);
+        
+        System.out.println("Sorted array:");
+        printArray(arr);
+    }
+
+    public static void printArray(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
+}
+--------------------------------------------------------------------------------------------------------------------
+public class MergeSort {
+
+    // Merges two subarrays of arr[].
+    // First subarray is arr[l..m]
+    // Second subarray is arr[m+1..r]
+    public static void merge(int arr[], int left, int mid, int right) {
+        // Find sizes of two subarrays to be merged
+        int n1 = mid - left + 1;
+        int n2 = right - mid;
+
+        // Create temp arrays
+        int leftArray[] = new int[n1];
+        int rightArray[] = new int[n2];
+
+        // Copy data to temp arrays
+        for (int i = 0; i < n1; ++i)
+            leftArray[i] = arr[left + i];
+        for (int j = 0; j < n2; ++j)
+            rightArray[j] = arr[mid + 1 + j];
+
+        // Merge the temp arrays
+
+        // Initial indexes of first and second subarrays
+        int i = 0, j = 0;
+
+        // Initial index of merged subarray array
+        int k = left;
+        while (i < n1 && j < n2) {
+            if (leftArray[i] <= rightArray[j]) {
+                arr[k] = leftArray[i];
+                i++;
+            } else {
+                arr[k] = rightArray[j];
+                j++;
+            }
+            k++;
+        }
+
+        // Copy remaining elements of leftArray[] if any
+        while (i < n1) {
+            arr[k] = leftArray[i];
+            i++;
+            k++;
+        }
+
+        // Copy remaining elements of rightArray[] if any
+        while (j < n2) {
+            arr[k] = rightArray[j];
+            j++;
+            k++;
+        }
+    }
+
+    // Main function that sorts arr[l..r] using merge()
+    public static void mergeSort(int arr[], int left, int right) {
+        if (left < right) {
+            // Find the middle point
+            int mid = (left + right) / 2;
+
+            // Sort first and second halves
+            mergeSort(arr, left, mid);
+            mergeSort(arr, mid + 1, right);
+
+            // Merge the sorted halves
+            merge(arr, left, mid, right);
+        }
+    }
+
+    // A utility function to print array of size n
+    public static void printArray(int arr[]) {
+        int n = arr.length;
+        for (int i = 0; i < n; ++i)
+            System.out.print(arr[i] + " ");
+        System.out.println();
+    }
+
+    // Main method to test above
+    public static void main(String args[]) {
+        int arr[] = { 12, 11, 13, 5, 6, 7 };
+
+        System.out.println("Given Array");
+        printArray(arr);
+
+        mergeSort(arr, 0, arr.length - 1);
+
+        System.out.println("\nSorted array");
+        printArray(arr);
+    }
+}
+----------------------------------------------------------------------------------------------------------
+Explanation
+merge() Method:
+
+Merges two subarrays of arr[].
+First subarray is arr[l..m].
+Second subarray is arr[m+1..r].
+mergeSort() Method:
+
+Recursively sorts the array by dividing it into halves and calling mergeSort() on each half.
+Finally, it merges the sorted halves using the merge() method.
+printArray() Method:
+
+Prints the elements of the array.
+Main Method:
+
+Initializes an array.
+Prints the unsorted array.
+Calls mergeSort() to sort the array.
+Prints the sorted array.
+
+Given Array
+12 11 13 5 6 7 
+
+Sorted array
+5 6 7 11 12 13 
+--------------------------------------------------------------------------
+Quick sort
+-------------------
+Quick Sort
+Quick Sort is a highly efficient sorting algorithm and is based on the divide-and-conquer approach. It works by selecting a 'pivot' element from the array and partitioning the other elements into two sub-arrays, according to whether they are less than or greater than the pivot. The sub-arrays are then sorted recursively.
+
+Steps in Quick Sort
+Choose a Pivot: Pick an element from the array as the pivot (commonly the first, last, or middle element, or a random element).
+Partitioning: Reorder the array so that all elements with values less than the pivot come before the pivot, while all elements with values greater than the pivot come after it.
+Recursively Apply: Recursively apply the above steps to the sub-arrays of elements with smaller and greater values.
+Pseudocode
+Here's a simple pseudocode for Quick Sort:
+----------------------------------------------------------------------------------------------------------------
+procedure quickSort(A, low, high)
+    if low < high
+        pivotIndex = partition(A, low, high)
+        quickSort(A, low, pivotIndex - 1)
+        quickSort(A, pivotIndex + 1, high)
+
+procedure partition(A, low, high)
+    pivot = A[high]
+    i = low - 1
+    for j = low to high - 1
+        if A[j] < pivot
+            i = i + 1
+            swap A[i] with A[j]
+    swap A[i + 1] with A[high]
+    return i + 1
+----------------------------------------------------------------------------------------------------------
+public class QuickSort {
+
+    // This method takes last element as pivot, places
+    // the pivot element at its correct position in sorted
+    // array, and places all smaller elements to left of
+    // pivot and all greater elements to right of pivot
+    public static int partition(int arr[], int low, int high) {
+        int pivot = arr[high];
+        int i = (low - 1); // index of smaller element
+        for (int j = low; j < high; j++) {
+            // If current element is smaller than or equal to pivot
+            if (arr[j] <= pivot) {
+                i++;
+
+                // swap arr[i] and arr[j]
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+
+        // swap arr[i+1] and arr[high] (or pivot)
+        int temp = arr[i + 1];
+        arr[i + 1] = arr[high];
+        arr[high] = temp;
+
+        return i + 1;
+    }
+
+    // The main function that implements QuickSort
+    // arr[] --> Array to be sorted,
+    // low --> Starting index,
+    // high --> Ending index
+    public static void quickSort(int arr[], int low, int high) {
+        if (low < high) {
+            // pi is partitioning index, arr[pi] is now at right place
+            int pi = partition(arr, low, high);
+
+            // Recursively sort elements before
+            // partition and after partition
+            quickSort(arr, low, pi - 1);
+            quickSort(arr, pi + 1, high);
+        }
+    }
+
+    // A utility function to print array of size n
+    public static void printArray(int arr[]) {
+        int n = arr.length;
+        for (int i = 0; i < n; ++i)
+            System.out.print(arr[i] + " ");
+        System.out.println();
+    }
+
+    // Main method to test the QuickSort
+    public static void main(String args[]) {
+        int arr[] = {10, 7, 8, 9, 1, 5};
+        int n = arr.length;
+
+        System.out.println("Unsorted array:");
+        printArray(arr);
+
+        quickSort(arr, 0, n - 1);
+
+        System.out.println("Sorted array:");
+        printArray(arr);
+    }
+}
+Explanation
+partition() Method:
+
+This method selects the last element as the pivot.
+It places all elements smaller than the pivot to the left and all greater elements to the right.
+It returns the partitioning index.
+quickSort() Method:
+
+This method recursively sorts the sub-arrays before and after the partitioning index.
+printArray() Method:
+
+Prints the elements of the array.
+Main Method:
+
+Initializes an array.
+Prints the unsorted array.
+Calls quickSort() to sort the array.
+Prints the sorted array.
+Unsorted array:
+10 7 8 9 1 5 
+Sorted array:
+1 5 7 8 9 10 
+
+--------------------------------------------------------------------------
+Binary Search
+-------------------------------------------------------------------------
+The time complexity of binary search is O(log n), where n is the number of elements in the array. This logarithmic time complexity means that the search time increases slowly as the size of the array grows. 
+Binary search is more efficient than linear search, which has a time complexity of O(n). Binary search works by:
+Reducing the search space by half at each step
+Checking if the middle-most element matches the target
+Performing binary search on a subarray of size at most n/2 if the middle element does not match the target. Continuing recursively until the subarray is empty
+
+*The best-case time complexity of binary search is O(1) when the central index directly matches the desired value.
+-----------------------------------------------------------------------
+Linear search
+-----------------------------------------------------------------------
+The time complexity of linear search is O(n), where n is the number of elements in the list. This means that the time it takes for the algorithm to execute is linearly dependent on the size of the input. As the size of the input increases, so does the time it takes for the algorithm to execute. 
+
+The time complexity of linear search algorithms is O(n), where n is the number of elements in the list. It is used for smaller datasets and the data set is unsorted.
+---------------------------------------------------------------------------------------------
+Bubble sort
+----------------------------------------------------------------------------------------------
+Bubble sort has a time complexity of O(N2) which makes it very slow for large data sets. Bubble sort is a comparison-based sorting algorithm, which means that it requires a comparison operator to determine the relative order of elements in the input data set.
+
+The time complexity of bubble sort in Java is:
+Worst-case: O(n^2)
+Average-case: O(n^2)
+Best-case: O(n)
+--------------------------------------------------------------------------
+Selection sort
+--------------------------------------------------------------------------
+The time complexity of selection sort in Java is O(n^2) in all cases (best, average, and worst).
+This is because:
+The outer loop iterates through the array n times to find the minimum element in the unsorted part.
+The inner loop iterates through the unsorted part of the array (which decreases in size with each iteration of the outer loop) to find the minimum element.
+Regardless of the input data, selection sort always performs the same number of comparisons.
+Therefore, the overall time complexity is O(n^2).
+--------------------------------------------------------------------------------------
+Quick Sort
+----------------------------------------------------------------------------------------
+Best case: O(n log n) - This occurs when the pivot consistently divides the array into two roughly equal halves.
+
+Average case: O(n log n) - This is the expected performance for most inputs.
+
+Worst case: O(n^2) - This occurs when the pivot selection consistently results in unbalanced partitions, such as when the array is already sorted or nearly sorted.
+----------------------------------------------------------------------------------------------
+Quick Sort
+----------------------------
+In the best and average cases, the algorithm divides the array into halves at each recursion level, resulting in a logarithmic number of levels (log n). At each level, the algorithm performs O(n) operations to partition the array. Therefore, the total time complexity becomes O(n log n).
+In the worst case, the pivot selection always results in one partition with a single element and another partition with the remaining elements. This leads to a linear number of recursion levels (n). At each level, the algorithm still performs O(n) operations. Hence, the total time complexity becomes O(n^2).
+
+The time complexity of Quick Sort is O(n log n) on average case, but can become O(n^2) in the worst-case
+-------------------------------------------------------------------------------------------------------
+Merge sort
+--------------------
+The time complexity of merge sort in Java, and in any other language, is O(n log n) for all cases: best, average, and worst. 
+This means that the number of operations required to sort an array of size n grows logarithmically with n.
+
+The time complexity of merge sort is O(n*Log n) for all cases (best, average and worst).
+--------------------------------------------------------------------------------------------------
+Insertion Sort
+------------------------
+The time complexity of insertion sort in Java is the same as in any other language:
+Best case: O(n) - When the array is already sorted.
+Average case: O(n²) - When the array is randomly ordered.
+Worst case: O(n²) - When the array is in reverse order.
+
+Insertion sort is a simple and efficient algorithm for small input sizes or partially sorted data. It has a time complexity of O(n^2) in the worst case and O(n) in the best case. It is a stable sorting algorithm that maintains the relative order of equal elements.
+-------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
