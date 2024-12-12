@@ -16,8 +16,7 @@ to goto the database
 3)use daimler;
 -------------------------------------------------------------------------------------------
 to clear the screen
-system cls
-system clear
+system cls;
 -----------------------------------------------------------------------------------------------
 to create table
 create table student (rollno int, name varchar(30),address varchar(30));
@@ -185,12 +184,12 @@ SELECT * FROM student WHERE Name LIKE 'a__%';
 SELECT * FROM student WHERE Name NOT LIKE 'a%';
 ------------------------------------------------------------------------------------------------
 The ON UPDATE CASCADE is a clause used in SQL to define behavior for a foreign key constraint. It specifies that when the value of a primary key in the parent table is updated, the corresponding foreign key values in the referencing (child) table are automatically updated to match the new value. This ensures that referential integrity is maintained without the need for manual updates in the child table.
-
+-------------------------------------------------
 CREATE TABLE bank (
     id INT PRIMARY KEY,
     name VARCHAR(50)
 );
-
+------------------------------------------------
 CREATE TABLE transaction (
     id INT PRIMARY KEY,
     bank_id INT,
@@ -206,7 +205,28 @@ insert into transaction values(1,101);
 ------------------------------------------------------------------------------------
 update bank set id=1001 where name='sandip';
 -------------------------------------------------------------------------------------
+ON DELETE CASCADE is a referential action used in SQL to maintain the integrity of related tables in a database. It is typically specified as part of a foreign key constraint and ensures that when a referenced row in the parent table is deleted, all associated rows in the child table are automatically deleted as well.
 
+CREATE TABLE bank (
+    id INT PRIMARY KEY,
+    name VARCHAR(50)
+);
+------------------------------------------------
+CREATE TABLE transaction (
+    id INT PRIMARY KEY,
+    bank_id INT,
+    FOREIGN KEY (bank_id) REFERENCES bank(id) ON DELETE CASCADE
+);
+-------------------------------------------------------------------------------
+insert into bank values(101,'sandip');
+insert into bank values(102,'kiran');
+insert into bank values(103,'peter');
+--------------------------------------------------
+insert into transaction values(1,101);
+insert into transaction values(2,101);
+------------------------------------------------------------------------------------
+delete from bank where id=101;
+--------------------------------------------------------------------------
 
 
 To create a table
