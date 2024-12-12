@@ -15,6 +15,10 @@ to create database
 to goto the database
 3)use daimler;
 -------------------------------------------------------------------------------------------
+to clear the screen
+system cls
+system clear
+-----------------------------------------------------------------------------------------------
 to create table
 create table student (rollno int, name varchar(30),address varchar(30));
 ---------------------------------------------------------------------------------------------
