@@ -1,8 +1,10 @@
 https://dev.mysql.com/downloads/installer/
 -------------------------------------------------------------------------------------------
-https://github.com/sandipmohapatra/MLA237JavaSM
+https://github.com/sandipmohapatra/batch245
+
+https://github.com/sandipmohapatra/MLA245-Java-Chan
 -------------------------------------------------------------------------------------------
-Mysql notes
+Mysql
 ----------------------------------------------------
 To see the databases
 1)show databases;
@@ -37,6 +39,10 @@ update student set phy=78,chem=73,bio=84 where rollno=102;
 update student set tot=phy+chem+bio ;
 update student set avg=tot/3;
 ----------------------------------------------------------------------------
+create an employee table -->empno, name, address, salary and designation.
+---------------------------------------------------------------------------------------
+Then add phone no and email to the emp table;
+---------------------------------------------------------------------------------
 to delete a row
 delete from student where rollno=101;
 -----------------------------------------------------------------------------
@@ -44,7 +50,7 @@ to drop a table
 drop table student;
 ----------------------------------------------------------------------------------
 to drop a database
-drop database Mphasis237;
+drop database Mphasis245;
 --------------------------------------------------------------------------------------------
 delete all the rows or data but the structure of the table will be there
 truncate table student;
@@ -53,7 +59,7 @@ to update a row
 update student set address='pune' where rollno=101;
 --------------------------------------------------------------------------------------------
 Auto-Increment
-----------------------------------
+---------------------------------------------------------------------------------------------
 create table fare(id INT AUTO_INCREMENT ,fare varchar(25),flight_date varchar(25),flight_number varchar(25),primary key(id)) ;
 
 *primary key :- if we declare the column as primary key then the column is unique and not null.
@@ -62,7 +68,9 @@ we cannot enter duplicate values nor we can leave the field empty.
 
 insert into fare(fare,flight_date,flight_number) values('hyd-bang','12-jul-2024','air-207');
 
-ALTER TABLE users MODIFY id INT NOT NULL AUTO_INCREMENT;
+ALTER TABLE fare MODIFY id INT NOT NULL AUTO_INCREMENT;
+ALTER TABLE fare MODIFY fare INT NOT NULL;
+
 -----------------------------------------------------------------------------------------------------------
 time stamp (2024-07-10 5:00)
 ---------------------------------------------------------
@@ -75,7 +83,7 @@ flight_number VARCHAR(255),
 origin VARCHAR(255), 
 status VARCHAR(255));
 
-insert into booking_record(booking_date,destination,price,flight_date,flight_number,origin,status) values('2024-07-10 5:00','Pune','Rs 5000','12-jul-2024','air-206','Hyd','yes');
+insert into booking_record(booking_date,destination,price,flight_date,flight_number,origin,status) values('2024-12-12 10:00','Pune','Rs 5000','12-dec-2024','air-206','Hyd','yes');
 ---------------------------------------------------------------------------------------
 CREATE TABLE Books (
     Book_Id INT PRIMARY KEY,
@@ -172,6 +180,31 @@ SELECT * FROM student WHERE Name LIKE 'a__%';
 -----------------------------------------------------------------------------------------------
 SELECT * FROM student WHERE Name NOT LIKE 'a%';
 ------------------------------------------------------------------------------------------------
+The ON UPDATE CASCADE is a clause used in SQL to define behavior for a foreign key constraint. It specifies that when the value of a primary key in the parent table is updated, the corresponding foreign key values in the referencing (child) table are automatically updated to match the new value. This ensures that referential integrity is maintained without the need for manual updates in the child table.
+
+CREATE TABLE bank (
+    id INT PRIMARY KEY,
+    name VARCHAR(50)
+);
+
+CREATE TABLE transaction (
+    id INT PRIMARY KEY,
+    bank_id INT,
+    FOREIGN KEY (bank_id) REFERENCES bank(id) ON UPDATE CASCADE
+);
+-------------------------------------------------------------------------------
+insert into bank values(101,'sandip');
+insert into bank values(102,'kiran');
+insert into bank values(103,'peter');
+--------------------------------------------------
+insert into transaction values(1,101);
+ insert into transaction values(2,101);
+------------------------------------------------------------------------------------
+update bank set id=1001 where name='sandip';
+-------------------------------------------------------------------------------------
+
+
+
 To create a table
 -------------------------------------------------------
 create table student2
