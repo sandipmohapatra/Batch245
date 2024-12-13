@@ -85,9 +85,36 @@ flight_date VARCHAR(255),
 flight_number VARCHAR(255),
 origin VARCHAR(255), 
 status VARCHAR(255));
-
+-----------------------------------------------------------------------------------
 insert into booking_record(booking_date,destination,price,flight_date,flight_number,origin,status) values('2024-12-12 10:00','Pune','Rs 5000','12-dec-2024','air-206','Hyd','yes');
 ---------------------------------------------------------------------------------------
+Date
+---------------
+SELECT DATE_SUB(CURDATE(), INTERVAL 5 DAY) AS ResultDate;
+SELECT DATE_ADD(CURDATE(), INTERVAL 5 DAY) AS ResultDate;
+SELECT STR_TO_DATE('12-13-2024', '%m-%d-%Y');
+SELECT MONTHNAME('2024-12-13');---->December
+SELECT DAYNAME('2024-12-13');----->Friday
+SELECT WEEK('2024-12-13');----->50
+SELECT LAST_DAY('2024-12-13'); -----> 2024-12-31
+SELECT DATEDIFF('2024-12-20', '2024-12-13');---->7
+SELECT DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%s'); -->2024-12-13 14:30:00
+SELECT HOUR('14:30:00'); --> 14
+SELECT DAY('2024-12-13'); -->13
+SELECT MONTH('2024-12-13'); --> 12
+SELECT YEAR('2024-12-13'); --> 2024
+SELECT CURDATE(); -->2024-12-13
+SELECT CURTIME(); -->14:30:00
+SELECT NOW(); --> 2024-12-13 14:30:00
+-----------------------------------------------------------------------------------------------------
+create table orders(order_id int primary key,order_date date);
+insert into orders values(102,'2024-12-10');
+----------------------------------------------------------------------------------------------------
+SELECT order_id,order_date, 
+  DATE_ADD(order_date, INTERVAL 7 DAY) AS delivery_date, 
+  DAYNAME(order_date) AS order_day 
+FROM orders;
+-------------------------------------------------------------------
 CREATE TABLE Books (
     Book_Id INT PRIMARY KEY,
     Title VARCHAR(255) NOT NULL,
@@ -278,6 +305,7 @@ select address, sum(salary) from student group by address having sum(salary)>750
 select address, avg(salary) from student group by address having avg(salary)>35000;
 select address, min(salary) from student group by address having min(salary)>35000;
 select address, max(salary) from student group by address having max(salary)>45000;
+select address, sum(salary) as total_salary from student2 group by address having sum(salary) > 20000;
 -----------------------------------------------------------------------------------
 15)aggregate function
 count(),sum(),avg(),min(),max(),first(),last()
@@ -355,17 +383,17 @@ CREATE TABLE persons5 AS SELECT * FROM persons4;
 ---------------------------------------------------------------------------------------
 To see non duplicate values
 SELECT DISTINCT id FROM persons4;
-SELECT DISTINCT id,lastname,firstname,age FROM persons4;
+SELECT DISTINCT id, lastname, firstname, age FROM persons4;
 --------------------------------------------------------------------------------------------
 constraints 
 ---------------------------------------
 NOT NULL - Ensures that a column cannot have a NULL value
 UNIQUE - Ensures that all values in a column are different
-PRIMARY KEY - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
-
+PRIMARY KEY - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table.
 FOREIGN KEY - It links between two tables
 CHECK - Ensures that the values in a column satisfies a specific condition
 DEFAULT - Sets a default value for a column if no value is specified
+------------------------------------------------------------------------------------------------------------
 CREATE INDEX - Used to create and retrieve data from the database very quickly
 -------------------------------------------------------------------------------------------------------------
 CREATE TABLE Persons1 (
@@ -684,9 +712,81 @@ RIGHT JOIN
 SELECT studentMp.*, marks.*, FROM studentMp
 RIGHT JOIN  marks ON studentMp.id = marks.id;
 -------------------------------------------------------------------------------
-
-
-
+1. Database Basics
+Database: A structured collection of data.
+Table: A collection of rows and columns used to store data in a database.
+Row: A single record in a table (also known as a tuple).
+Column: A field in a table, defines the data type and properties of the data.
+---------------------------------------------------------------------------------------
+2. Data Types
+String Types: CHAR, VARCHAR, TEXT, BLOB.
+Numeric Types: INT, FLOAT, DECIMAL, DOUBLE.
+Date and Time Types: DATE, TIME, DATETIME, TIMESTAMP.
+--------------------------------------------------------------------------------------------
+3. Constraints
+PRIMARY KEY: Ensures uniqueness for a column or set of columns.
+FOREIGN KEY: Links two tables and enforces referential integrity.
+UNIQUE: Ensures all values in a column are unique.
+NOT NULL: Ensures that a column cannot have NULL values.
+CHECK: Defines a condition that each row in a column must satisfy.
+DEFAULT: Sets a default value for a column if no value is provided.
+----------------------------------------------------------------------------------------------
+4. Indexes
+Primary Index: Automatically created with the primary key.
+Unique Index: Prevents duplicate values in indexed columns.
+Full-text Index: Enables fast searching of text.
+Composite Index: Index on multiple columns.
+--------------------------------------------------------------------------------------------------
+5. SQL Commands
+Data Definition Language (DDL):
+CREATE: Create databases, tables, indexes, views, etc.
+ALTER: Modify an existing database or table structure.
+DROP: Delete databases, tables, or other objects.
+TRUNCATE: Remove all rows from a table, resetting it.
+-------------------------------------------------------------------------
+Data Manipulation Language (DML):
+SELECT: Retrieve data from one or more tables.
+INSERT: Add new rows to a table.
+UPDATE: Modify existing rows in a table.
+DELETE: Remove rows from a table.
+---------------------------------------------------------------------------
+Data Control Language (DCL):
+GRANT: Give user access privileges.
+REVOKE: Remove user access privileges.
+----------------------------------------------------------------------
+Transaction Control Language (TCL):
+COMMIT: Save all changes to the database.
+ROLLBACK: Undo changes made in a transaction.
+SAVEPOINT: Set a savepoint within a transaction for partial rollbacks.
+--------------------------------------------------------------------------------------------------
+6. Joins
+INNER JOIN: Returns rows with matching values in both tables.
+LEFT JOIN: Returns all rows from the left table and matching rows from the right table.
+RIGHT JOIN: Returns all rows from the right table and matching rows from the left table.
+FULL JOIN: Returns all rows when there is a match in either table.
+SELF JOIN: A table is joined with itself.
+-------------------------------------------------------------------------------------------------
+7. Advanced Queries
+Aggregate Functions: COUNT(), SUM(), AVG(), MAX(), MIN().
+Group By: Organizes rows into groups for aggregation.
+HAVING: Filters groups based on aggregate conditions.
+Subqueries: Nested queries within another SQL statement.
+Views: Virtual tables created from a SELECT query.
+-------------------------------------------------------------------------------------------
+8. Stored Procedures and Functions
+Stored Procedures: Predefined blocks of SQL code that can be executed as a single unit.
+Functions: Similar to stored procedures but must return a value.
+-----------------------------------------------------------------------------------------------
+9. Triggers
+A block of code executed automatically in response to events like INSERT, UPDATE, or DELETE on a table.
+-------------------------------------------------------------------------------------------------
+10. Transactions
+ACID Properties:
+Atomicity: Ensures all operations in a transaction are completed or none are.
+Consistency: Ensures the database remains in a valid state.
+Isolation: Prevents concurrent transactions from interfering.
+Durability: Ensures committed changes persist despite failures.
+-------------------------------------------------------------------------------------------------
 
 ------------------------------End Of MySql-----------------------------------
 JDBC
@@ -1408,7 +1508,7 @@ types of entity :- dependent or Independent.(true)
 -----------------------------------------------------
 sql server :-
 
-sql server supports :- database design,annalysis and report.
+sql server supports :- database design,analysis and report.
 ------------------------------------------------------------------------
 components of sql server
 1)reporting
