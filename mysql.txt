@@ -160,7 +160,7 @@ CREATE TABLE Borrowings (
     FOREIGN KEY (User_Id) REFERENCES Users(User_Id) ON DELETE CASCADE,
     FOREIGN KEY (Book_Id) REFERENCES Books(Book_Id) ON DELETE CASCADE
 );
--------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
 create table customers(CustomerID INT PRIMARY KEY AUTO_INCREMENT,
 CustomerName VARCHAR(255),	
 ContactName	VARCHAR(255),
@@ -168,11 +168,10 @@ Address VARCHAR(255),
 City	VARCHAR(255),
 PostalCode VARCHAR(255),
 Country VARCHAR(255));
-------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
 create table orders(OrderID INT PRIMARY KEY AUTO_INCREMENT,
 CustomerID int,EmployeeID int,OrderDate date,ShipperID int);
----------------------------------------------------------------------------------------------------------------------
-create table suppliers(SupplierID INT PRIMARY KEY AUTO_INCREMENT,
+-----------------------------------------------------------------------------------create table suppliers(SupplierID INT PRIMARY KEY AUTO_INCREMENT,
 	SupplierName VARCHAR(255),
 	ContactName	VARCHAR(255),
 	Address VARCHAR(255),
@@ -786,7 +785,61 @@ Atomicity: Ensures all operations in a transaction are completed or none are.
 Consistency: Ensures the database remains in a valid state.
 Isolation: Prevents concurrent transactions from interfering.
 Durability: Ensures committed changes persist despite failures.
--------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+14th-Dec-2024
+---------------------------
+mysql> create table bank(accno int primary key,name varchar(30) not null,balance int check (balance >=1000),address varchar(30) not null);
+
+mysql> create table transaction(accno int references bank(accno),deposite int,withdraw int);
+
+mysql> insert into bank values(101,'sandip',6000,'Bangalore');
+mysql> insert into bank values(102,'sunil',5000,'Bangalore');
+mysql> insert into transaction(accno,deposite) values(101,3000);
+
+mysql> insert into transaction(accno,withdraw) values(101,1000);
+mysql> insert into transaction(accno,withdraw) values(102,1000);
+----------------------------------------------------------------------------
+mysql> select * from bank;
++-------+--------+---------+-----------+
+| accno | name   | balance | address   |
++-------+--------+---------+-----------+
+|   101 | sandip |    6000 | Bangalore |
+|   102 | sunil  |    5000 | Bangalore |
++-------+--------+---------+-----------+
+
+mysql> select * from transaction;
++-------+----------+----------+
+| accno | deposite | withdraw |
++-------+----------+----------+
+|   101 |     3000 |     NULL |
+|   101 |     NULL |     1000 |
+|   102 |     NULL |     1000 |
++-------+----------+----------+
+
+mysql> select a.accno,a.name,a.balance,a.address,b.deposite,b.withdraw f
+rom bank a,transaction b where a.accno=b.accno;
++-------+--------+---------+-----------+----------+----------+
+| accno | name   | balance | address   | deposite | withdraw |
++-------+--------+---------+-----------+----------+----------+
+|   101 | sandip |    6000 | Bangalore |     3000 |     NULL |
+|   101 | sandip |    6000 | Bangalore |     NULL |     1000 |
+|   102 | sunil  |    5000 | Bangalore |     NULL |     1000 |
++-------+--------+---------+-----------+----------+----------+
+3rd Table
+---------------------------------
+create table loan(accno int references bank(accno),loan_type varchar(30),amount int);
+
+insert into loan values(101,'Car Loan',70000);
+------------------------------------------------------------------------------------
+select a.accno,a.name,a.balance,a.address,b.deposite,b.withdraw,c.loan_type,c.amount from bank a,transaction b,loan c where a.accno=b.accno and a.accno=c.accno;
++-------+--------+---------+-----------+----------+----------+-----------+---------+
+| accno | name   | balance | address   | deposite | withdraw | loan_type | amount |
++-------+--------+---------+-----------+----------+----------+-----------+---------+
+|   101 | sandip |    6000 | Bangalore |     3000 |     NULL | Car Loan  |   70000 |
+|   101 | sandip |    6000 | Bangalore |     NULL |     1000 | Car Loan  |   70000 |
+|   102 | sunil  |    5000 | Bangalore |     NULL |     1000 | home Loan |   90000 |
++-------+--------+---------+-----------+----------+----------+-----------+---------+
+
 
 ------------------------------End Of MySql-----------------------------------
 JDBC
