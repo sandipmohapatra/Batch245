@@ -2183,50 +2183,6 @@ SELECT BIT_COUNT(7) AS Result;
 -- Output: 3 (Binary of 7 is 111)
 __________________________________________________________________
 
-1)what are Prototype models :- Throwaway/Rapid Prototypes,Evolutionary Prototypes,Incremental Prototypes,Extreme Prototyping
-2)In flowcharts, when you need to indicate that the same process symbol is connected or referenced on the same page, you typically use connectors.----------->On-Page Connectors
-3)what is the core purpose of Normalization---------->
-Minimizes Redundancy,--repeating  
-Reduces Update Anomalies---change in data or update every related data automatically
-Improves Data Integrity---Trusted
-4)what is advantage of proper planning in SDLC---->
-Clarity of Objectives and Scope,
-Risk Management,
-Resource Allocation and Management,
-Timeline and Milestone Definition,
-Quality Assurance and Testing Strategy,
-Stakeholder Engagement and Communication,
-Cost Management,
-Adaptability and Flexibility
-5)which is not a best practice of Pseudocode ---- 
-6)what is the structure of computer program?
-"Sequence"; ordered statements or subroutines executed in sequence. 
-"Selection"; one or a number of statements is executed depending on the state of the program.
-7)what is the relation of deptno --->Foreign key
-8)To unstage a file in Git while preserving its changes (i.e., keeping the modifications intact but removing them from the staging area), you can use the following command-----> git reset HEAD <file>
-9)entity is a real-world object, person, or concept that can be represented in a database and have data stored about it 
-10)which git command creates an empty repository in his specified directory-----The git init command creates a new Git repository
-----------------------------------------------------------------------------
-11)The .git directory is a hidden directory that is automatically created when you initialize a new repository using Git. It serves as the backbone of your Git repository, storing all the metadata and object database for your project.
------------------------------------------------------------------------------------ 
-12)create a query using select where  from order by and alias
-SELECT     customer_id AS id,
-    CONCAT(first_name, ' ', last_name) AS full_name,
-    email,    order_date,    total_amount FROM 
-    orders WHERE     order_status = 'completed'
-ORDER BY order_date DESC;
-
-----------------------------------------------------------------------------------
-13)all the Collage from the region and one university :- 1:M
-14)The Adaptive Maintenance phase in the Software Development Life Cycle (SDLC) refers to the process of modifying a software system to keep it usable in a changing environment. This involves making changes and enhancements to software to ensure it continues to operate correctly as the external environment evolves. These changes can be triggered by new business requirements, technological advancements, legislative changes, or user feedback.
-15)A prototyping model is a software development approach that involves creating an incomplete version of the software program being developed. This prototype is then used to visualize and understand the requirements, refine functionalities, and gather feedback from users and stakeholders early in the development process.
-16)MySQL has a different character set what is the command to show all the character set.------>SHOW CHARACTER SET;
-17)illegal queries associated with group by function ------> Non-Aggregated Columns in SELECT,
-Ambiguous Columns, Using Aliases in GROUP BY,HAVING Clause Without GROUP BY, Inconsistent Data Types.
-18)Staging allows you to prepare and review changes before committing.
-You can selectively stage parts of files or specific files to ensure only intended changes are included.
-
-
 
 
 
