@@ -757,6 +757,8 @@ Transaction Control Language (TCL):
 COMMIT: Save all changes to the database.
 ROLLBACK: Undo changes made in a transaction.
 SAVEPOINT: Set a savepoint within a transaction for partial rollbacks.
+SET autocommit = 0;(auto commit turned off)
+SET autocommit = 1;(auto commit turned on)
 --------------------------------------------------------------------------------------------------
 6. Joins
 INNER JOIN: Returns rows with matching values in both tables.
@@ -788,16 +790,16 @@ Durability: Ensures committed changes persist despite failures.
 ----------------------------------------------------------------------------------------------
 14th-Dec-2024
 ---------------------------
-mysql> create table bank(accno int primary key,name varchar(30) not null,balance int check (balance >=1000),address varchar(30) not null);
+mysql> create table bank(accno int primary key, name varchar(30) not null, balance int check (balance >=1000),address varchar(30) not null);
 
 mysql> create table transaction(accno int references bank(accno),deposite int,withdraw int);
 
 mysql> insert into bank values(101,'sandip',6000,'Bangalore');
 mysql> insert into bank values(102,'sunil',5000,'Bangalore');
-mysql> insert into transaction(accno,deposite) values(101,3000);
+mysql> insert into transaction(accno, deposite) values(101,3000);
 
-mysql> insert into transaction(accno,withdraw) values(101,1000);
-mysql> insert into transaction(accno,withdraw) values(102,1000);
+mysql> insert into transaction(accno, withdraw) values(101,1000);
+mysql> insert into transaction(accno, withdraw) values(102,1000);
 ----------------------------------------------------------------------------
 mysql> select * from bank;
 +-------+--------+---------+-----------+
@@ -816,8 +818,14 @@ mysql> select * from transaction;
 |   102 |     NULL |     1000 |
 +-------+----------+----------+
 
-mysql> select a.accno,a.name,a.balance,a.address,b.deposite,b.withdraw f
-rom bank a,transaction b where a.accno=b.accno;
+mysql> select a.accno,a.name,a.balance,a.address,b.deposite,b.withdraw from bank a,transaction b where a.accno=b.accno;
+----------------------------------------------------------------------------------
+
+SELECT bank.accno, bank.name,bank.balance,bank.address, transaction.deposite, transaction.withdraw FROM bank
+INNER JOIN transaction ON bank.accno = transaction.accno;
+
+---------------------------------------------------------------------------------------
+
 +-------+--------+---------+-----------+----------+----------+
 | accno | name   | balance | address   | deposite | withdraw |
 +-------+--------+---------+-----------+----------+----------+
@@ -839,8 +847,65 @@ select a.accno,a.name,a.balance,a.address,b.deposite,b.withdraw,c.loan_type,c.am
 |   101 | sandip |    6000 | Bangalore |     NULL |     1000 | Car Loan  |   70000 |
 |   102 | sunil  |    5000 | Bangalore |     NULL |     1000 | home Loan |   90000 |
 +-------+--------+---------+-----------+----------+----------+-----------+---------+
+------------------------------
+ create table bank (accno int,name varchar(30),
+    -> address varchar(30),balance int);
 
+create table transaction(accno int,deposite int,withdraw
+    -> int);
+--------------------------------------------------------------------------------------------------
+when there is extra rows in the right table we will do right outer join.
+mysql> select a.*,b.* from bank a right join transaction b on a.accno=b.accno;
++-------+--------+-----------+---------+-------+----------+----------+
+| accno | name   | address   | balance | accno | deposite | withdraw |
++-------+--------+-----------+---------+-------+----------+----------+
+|   101 | sandip | bangalore |    6000 |   101 |     1000 |     NULL |
+|   102 | kiran  | bangalore |    7000 |   102 |     1000 |     NULL |
+|   103 | john   | bangalore |    9000 |   103 |     1000 |     NULL |
+|   104 | amit   | bangalore |    6000 |   104 |     NULL |     1000 |
+|   105 | sunil  | bangalore |    8000 |   105 |     NULL |     1000 |
+|  NULL | NULL   | NULL      |    NULL |   106 |    10000 |     NULL |
+|  NULL | NULL   | NULL      |    NULL |   107 |    10000 |     NULL |
++-------+--------+-----------+---------+-------+----------+----------+
+7 rows in set (0.00 sec)
 
+when there is extra rows in the left table we will do left outer join.
+
+mysql> select a.*,b.* from bank a left join transaction b on a.accno=b.accno;
++-------+--------+-----------+---------+-------+----------+----------+
+| accno | name   | address   | balance | accno | deposite | withdraw |
++-------+--------+-----------+---------+-------+----------+----------+
+|   101 | sandip | bangalore |    6000 |   101 |     1000 |     NULL |
+|   102 | kiran  | bangalore |    7000 |   102 |     1000 |     NULL |
+|   103 | john   | bangalore |    9000 |   103 |     1000 |     NULL |
+|   104 | amit   | bangalore |    6000 |   104 |     NULL |     1000 |
+|   105 | sunil  | bangalore |    8000 |   105 |     NULL |     1000 |
++-------+--------+-----------+---------+-------+----------+----------+
+5 rows in set (0.00 sec)
+------------------------------------------------------------
+self join :-A self join in MySQL is a technique where a table is joined with itself. This is useful when you need to compare rows within the same table. You essentially treat the table as if it were two separate tables, assigning each instance an alias to differentiate between them.
+-----------------------------------------------------------
+create table company (empid int, name varchar(30),managerid int);
+------------------------------------------------------------------------------------------
+mysql> insert into company values(101,'sandip',104);
+mysql> insert into company values(102,'kiran',104);
+mysql> insert into company values(103,'sunil',104);
+mysql> insert into company values(104,'amit',105);
+mysql> insert into company values(105,'nitu',106);
+---------------------------------------------------------------------------------------
+SELECT 
+    e.empid AS Employee,
+    e.name AS EmployeeName,
+    m.empid AS ManagerID,
+    m.name AS ManagerName
+FROM 
+    company AS e
+JOIN 
+    company AS m
+ON 
+    e.managerid = m.empid;
+
+-----------------------------------------------------------------------------------
 ------------------------------End Of MySql-----------------------------------
 JDBC
 ---------------
@@ -1187,7 +1252,7 @@ They are temporary.if we rollback it will come to the previous state.
 
 5)TCL (Transaction control language)  :- commit, rollback ,savepoint. 
 
------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
 view 
 ----------
 A view is a logical table based on a table or another view.
@@ -1199,6 +1264,7 @@ we can create a view on another view.
 if you drop the base table or base view the corresponding view will be automatically deleted.
 view created on a single table is called simple view we can do DML operations.
 view created on a multiple tables is called complex view we cannot  do DML operations.
+---------------------------------------------------------------
 example:-
 CREATE VIEW abc AS SELECT customerid,customername,address,
 country FROM customer237;
@@ -1244,19 +1310,41 @@ subquery :-
 -----------------
 A subquery is a select statement that is embedded in a cluse of another select statement.
 
+mysql> select * from emp;
++-------+--------+------+--------+
+| empid | name   | age  | salary |
++-------+--------+------+--------+
+|   104 | madhu  |   25 |   4700 |
+|   103 | anil   	 |   35 |   7700 |
+|   102 | sandip  |   35 |   8700 |
+|   101 | kiran    |   37 |   9700 |
++-------+--------+------+--------+
+
 example:-
 1) select ename from emp where sal>(select sal from emp where name='amit');
 
-2)UPDATE hystud4
-   SET SALARY = salary + SALARY * 0.25
-   WHERE AGE IN (SELECT AGE FROM hystud4 WHERE AGE >= 27 );
+2)UPDATE emp 
+   SET salary = salary + salary * 0.2
+   WHERE AGE IN (SELECT AGE  WHERE AGE >= 27 );
 
-3)DELETE FROM CUSTOMERS
-   WHERE AGE IN (SELECT AGE FROM CUSTOMERS WHERE AGE >= 27 );
+3)DELETE FROM emp 
+   WHERE AGE IN (SELECT AGE WHERE AGE >= 27 );
+
+4)SELECT name
+FROM emp
+WHERE salary = (SELECT MAX(salary) FROM emp);
+
+5)SELECT name,salary
+FROM emp
+WHERE empid IN (SELECT empid FROM emp WHERE name != 'amit');
+
+6)UPDATE emp
+SET salary = salary * 1.1
+WHERE empid = (SELECT empid WHERE name = 'amit');
 ------------------------------------------------------------------------------------
 Stored function in MYSql
 ----------------------------------------
-function -1
+function -1 It return's a value.
 ----------------------
 DELIMITER $$
 CREATE FUNCTION avg_numbers(a INT , b INT, c INT)
@@ -1268,6 +1356,7 @@ END
 $$ DELIMITER;
 ---------------------------------------------------------------
 SELECT avg_numbers(10,5,7) AS average;
+$$
 -----------------------------------------------------------------
 DROP FUNCTION IF EXISTS add_numbers;
 -------------------------------------------------------------------
@@ -1339,6 +1428,78 @@ $$ DELIMITER;
 
 SELECT add_numbers1(10,5) AS SUM;
 ------------------------------------------------------------
+-------------------
+Procedure does not return  a value
+----------------------------
+DELIMITER :- allow the use of semicolons within the procedure body.
+procedure_name: Name of the procedure.
+IN, OUT, INOUT: Parameter modes. IN for input parameters, OUT for output parameters, and INOUT for both input and output.
+datatype: Data type of the parameters.
+procedure body: SQL statements that make up the procedure.
+------------------------------------------------------------------------------------------------
+example-1
+-------------------------------------------
+DELIMITER &&  
+CREATE PROCEDURE get_merit_student ()  
+BEGIN  
+    SELECT * FROM student_info WHERE marks > 70;  
+    END &&  
+DELIMITER ;  
+------------------------------------------------------------------------------------------------------------
+CREATE TABLE student_info(rollno INT,NAME VARCHAR(30),marks INT);
+INSERT INTO student_info VALUES(101,'Sandip',78);
+INSERT INTO student_info VALUES(102,'Kiran',72);
+INSERT INTO student_info VALUES(103,'Sunil',68);
+INSERT INTO student_info VALUES(104,'Madhu',88);
+INSERT INTO student_info VALUES(105,'Mohan',58);
+-------------------------------------------------------------------------------------------------------------
+CALL get_merit_student();
+--------------------------------------------------------------------------------------------------------------
+example-2
+-----------------
+DELIMITER &&  
+CREATE PROCEDURE get_student (IN var1 INT)  
+BEGIN  
+    SELECT * FROM student_info LIMIT var1;  
+   END &&  
+DELIMITER ;  
+
+----------------------------------------------------------------------------------
+CALL get_student(1);  
+* only one student's details will be seen
+-------------------------------------------------------------------------------------------
+example-3
+----------------------
+DELIMITER &&  
+CREATE PROCEDURE display_max_mark (OUT highestmark INT)  
+BEGIN  
+    SELECT MAX(marks) INTO highestmark FROM student_info;   
+END &&  
+DELIMITER ;  
+--------------------------------------------------------------------------------------------------
+
+CALL display_max_mark(@M);  
+------------------------------------------------------------------------------
+ SELECT @M as HighestMark;  
+-------------------------------------------------------------------------------
+example-4
+------------------
+DROP PROCEDURE display_marks
+---------------------------------------------------------------------------
+DELIMITER &&  
+CREATE PROCEDURE display_marks (INOUT var1 INT)  
+BEGIN  
+    SELECT marks INTO var1 FROM student_info WHERE rollno = var1;   
+END &&  
+DELIMITER ;  
+--------------------------------------------------------------------------------------------
+SET @M = 101;  
+--------------------------------------
+CALL display_marks(@M);  
+---------------------------------------
+SELECT @M; 
+-----------------------------------------------------------------------------------
+
 Correlated subqueries
 ------------------------------------------
 Correlated subqueries in MySQL are subqueries that depend on the outer query for their values. This means the subquery is executed once for each row processed by the outer query. 
@@ -1417,77 +1578,7 @@ Subquery: SELECT AVG(salary) FROM employees
 
 This subquery calculates the average salary of all employees.
 It is executed only once.
-----------------------------------------------------------------------------------------------------------------------
-Procedure 
-----------------------------
-DELIMITER :- allow the use of semicolons within the procedure body.
-procedure_name: Name of the procedure.
-IN, OUT, INOUT: Parameter modes. IN for input parameters, OUT for output parameters, and INOUT for both input and output.
-datatype: Data type of the parameters.
-procedure body: SQL statements that make up the procedure.
-------------------------------------------------------------------------------------------------
-example-1
--------------------------------------------
-DELIMITER &&  
-CREATE PROCEDURE get_merit_student ()  
-BEGIN  
-    SELECT * FROM student_info WHERE marks > 70;  
-    END &&  
-DELIMITER ;  
-------------------------------------------------------------------------------------------------------------
-CREATE TABLE student_info(rollno INT,NAME VARCHAR(30),marks INT);
-INSERT INTO student_info VALUES(101,'Sandip',78);
-INSERT INTO student_info VALUES(102,'Kiran',72);
-INSERT INTO student_info VALUES(103,'Sunil',68);
-INSERT INTO student_info VALUES(104,'Madhu',88);
-INSERT INTO student_info VALUES(105,'Mohan',58);
--------------------------------------------------------------------------------------------------------------
-CALL get_merit_student();
---------------------------------------------------------------------------------------------------------------
-example-2
------------------
-DELIMITER &&  
-CREATE PROCEDURE get_student (IN var1 INT)  
-BEGIN  
-    SELECT * FROM student_info LIMIT var1;  
-   END &&  
-DELIMITER ;  
-
-----------------------------------------------------------------------------------
-CALL get_student(1);  
-* only one student's details will be seen
--------------------------------------------------------------------------------------------
-example-3
-----------------------
-DELIMITER &&  
-CREATE PROCEDURE display_max_mark (OUT highestmark INT)  
-BEGIN  
-    SELECT MAX(marks) INTO highestmark FROM student_info;   
-END &&  
-DELIMITER ;  
---------------------------------------------------------------------------------------------------
-
-CALL display_max_mark(@M);  
-------------------------------------------------------------------------------
- SELECT @M;  
--------------------------------------------------------------------------------
-example-4
-------------------
-DROP PROCEDURE display_marks
----------------------------------------------------------------------------
-DELIMITER &&  
-CREATE PROCEDURE display_marks (INOUT var1 INT)  
-BEGIN  
-    SELECT marks INTO var1 FROM student_info WHERE rollno = var1;   
-END &&  
-DELIMITER ;  
---------------------------------------------------------------------------------------------
-SET @M = 101;  
---------------------------------------
-CALL display_marks(@M);  
----------------------------------------
-SELECT @M; 
------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 Class Test MCQs
 -------------------------------------------------------------------------------------------------
 
@@ -1548,7 +1639,7 @@ columns should not have transitive dependency
 Tupple value may exist but unknown or many not exists then value  is NULL.
 true
 -------------------------------------------------------------------------------
-wat is an entiry ? object or table
+what is an entiry ? object or table
 -----------------------------
 if entity A is associated with all the entity in B then it can be
 1:M,M:1 and M:M 
@@ -1561,7 +1652,7 @@ types of entity :- dependent or Independent.(true)
 -----------------------------------------------------
 sql server :-
 
-sql server supports :- database design,analysis and report.
+sql server supports :- database design, analysis and report.
 ------------------------------------------------------------------------
 components of sql server
 1)reporting
@@ -1735,3 +1826,365 @@ d)select
 
 ans)with
 ----------------------------------------------------------------------------
+create table company1 as select * from company;
+select * from company1 union select * from company;
+select * from company1 intersect select * from company;
+select * from company1 union all select * from company;
+-----------------------------------------------------------------------------
+String Function
+--------------------------------
+1. CONCAT()
+Concatenates two or more strings together.
+Syntax:
+CONCAT(string1, string2, ...)
+Example:
+SELECT CONCAT('Hello', ' ', 'World') AS Result;
+-- Output: Hello World
+--------------------------------------------------------------------------------------------
+2. CONCAT_WS()
+Concatenates strings with a specified separator.
+Syntax:
+CONCAT_WS(separator, string1, string2, ...)
+Example:
+SELECT CONCAT_WS('-', '2024', '06', '17') AS Result;
+-- Output: 2024-06-17
+--------------------------------------------------------------------------------------
+3. SUBSTRING() or SUBSTR()
+Extracts a substring from a string.
+Syntax:
+SUBSTRING(string, start_position, length)
+Example:
+SELECT SUBSTRING('MySQL String Functions', 7, 6) AS Result;
+-- Output: String
+---------------------------------------------------------------------------------------------
+4. LENGTH()
+Returns the length of a string in bytes.
+Syntax:
+LENGTH(string)
+Example:
+SELECT LENGTH('MySQL') AS Result;
+-- Output: 5
+------------------------------------------------------------------------------------------------------
+5. CHAR_LENGTH()
+Returns the number of characters in a string.
+Syntax:
+CHAR_LENGTH(string)
+Example:
+SELECT CHAR_LENGTH('Hello') AS Result;
+-- Output: 5
+---------------------------------------------------------------------------------------------------
+6. LOWER() or LCASE()
+Converts a string to lowercase.
+Syntax:
+LOWER(string)
+Example:
+SELECT LOWER('MYSQL') AS Result;
+-- Output: mysql
+-------------------------------------------------------------------------------------------
+7. UPPER() or UCASE()
+Converts a string to uppercase.
+Syntax:
+UPPER(string)
+Example:
+SELECT UPPER('mysql') AS Result;
+-- Output: MYSQL
+------------------------------------------------------------------------------------------------
+8. TRIM()
+Removes leading and trailing spaces (or other characters) from a string.
+Syntax:
+TRIM([[BOTH | LEADING | TRAILING] 'removal_char' FROM] string)
+Example:
+SELECT TRIM('   MySQL   ') AS Result;
+-- Output: MySQL
+---------------------------------------------------------------------------------------
+9. REPLACE()
+Replaces occurrences of a substring within a string.
+Syntax:
+REPLACE(string, substring_to_replace, replacement_string)
+Example:
+SELECT REPLACE('I love PHP', 'PHP', 'MySQL') AS Result;
+-- Output: I love MySQL
+---------------------------------------------------------------------------------------
+10. INSTR()
+Returns the position of the first occurrence of a substring.
+Syntax:
+INSTR(string, substring)
+Example:
+SELECT INSTR('Hello World', 'World') AS Result;
+-- Output: 7
+--------------------------------------------------------------------------------------
+11. LOCATE()
+Similar to INSTR() but allows specifying a starting position.
+Syntax:
+LOCATE(substring, string, start_position)
+Example:
+SELECT LOCATE('o', 'Hello World', 6) AS Result;
+-- Output: 8
+---------------------------------------------------------------------------------------------
+12. LEFT()
+Extracts a specified number of characters from the left of a string.
+Syntax:
+LEFT(string, length)
+Example:
+SELECT LEFT('MySQL', 3) AS Result;
+-- Output: MyS
+----------------------------------------------------------------------------------------
+13. RIGHT()
+Extracts a specified number of characters from the right of a string.
+Syntax:
+RIGHT(string, length)
+Example:
+SELECT RIGHT('MySQL', 2) AS Result;
+-- Output: QL
+----------------------------------------------------------------------------------------
+14. LPAD()
+Pads the left side of a string with a specified character to a certain length.
+Syntax:
+LPAD(string, length, pad_string)
+Example:
+SELECT LPAD('123', 5, '0') AS Result;
+-- Output: 00123
+---------------------------------------------------------------------------------------------
+15. RPAD()
+Pads the right side of a string with a specified character to a certain length.
+Syntax:
+RPAD(string, length, pad_string)
+Example:
+SELECT RPAD('123', 5, '0') AS Result;
+-- Output: 12300
+-------------------------------------------------------------------------------------------------
+16. REVERSE()
+Reverses a string.
+Syntax:
+REVERSE(string)
+Example:
+SELECT REVERSE('MySQL') AS Result;
+-- Output: LQSyM
+--------------------------------------------------------------------------------------------
+17. FORMAT()
+Formats a number to include commas and a specific decimal precision.
+Syntax:
+FORMAT(number, decimal_places)
+Example:
+SELECT FORMAT(1234567.89, 2) AS Result;
+-- Output: 1,234,567.89
+-------------------------------------------------------------------------------------
+18. ASCII()
+Returns the ASCII code of the first character in a string.
+Syntax:
+ASCII(string)
+Example:
+SELECT ASCII('A') AS Result;
+-- Output: 65
+-------------------------------------------------------------------------------------------
+19. SPACE()
+Returns a string consisting of a specified number of spaces.
+Syntax:
+SPACE(number)
+Example:
+SELECT CONCAT('Hello', SPACE(3), 'World') AS Result;
+-- Output: Hello   World
+-------------------------------------------------------------------------------------------
+20. STRCMP()
+Compares two strings and returns an integer:
+0 if both are equal
+-1 if the first string is less
+1 if the first string is greater
+Syntax:
+STRCMP(string1, string2)
+Example:
+SELECT STRCMP('apple', 'banana') AS Result;
+-- Output: -1
+------------------------------------------------------------------------------------------------
+Math Functions
+---------------------------------------------------------
+1. ABS()
+Returns the absolute value of a number.
+Syntax:
+ABS(number)
+Example:
+SELECT ABS(-15) AS Result;
+-- Output: 15
+________________________________________________________________
+2. CEIL() or CEILING()
+Rounds a number up to the nearest integer.
+Syntax:
+CEIL(number) OR CEILING(number)
+Example:
+SELECT CEIL(4.2) AS Result;
+-- Output: 5
+_________________________________________________________________
+3. FLOOR()
+Rounds a number down to the nearest integer.
+Syntax:
+FLOOR(number)
+Example:
+SELECT FLOOR(4.9) AS Result;
+-- Output: 4
+-------------------------------------------------------------------------------------------------
+4. ROUND()
+Rounds a number to a specified number of decimal places.
+Syntax:
+ROUND(number, decimal_places)
+Example:
+SELECT ROUND(4.567, 2) AS Result;
+-- Output: 4.57
+---------------------------------------------------------------------------------------
+5. TRUNCATE()
+Truncates a number to a specified number of decimal places without rounding.
+Syntax:
+TRUNCATE(number, decimal_places)
+Example:
+SELECT TRUNCATE(4.567, 2) AS Result;
+-- Output: 4.56
+-------------------------------------------------------------------------------------------
+6. MOD() or %
+Returns the remainder of a division operation.
+Syntax:
+MOD(dividend, divisor)
+Example:
+SELECT MOD(10, 3) AS Result;
+-- Output: 1
+------------------------------------------------------
+Using %:
+SELECT 10 % 3 AS Result;
+-- Output: 1
+--------------------------------------------------------------------------
+7. POWER() or POW()
+Returns the value of a number raised to a specified power.
+Syntax:
+POWER(base, exponent)
+Example:
+SELECT POWER(2, 3) AS Result;
+-- Output: 8
+-------------------------------------------------------------------------------------
+8. SQRT()
+Returns the square root of a number.
+Syntax:
+SQRT(number)
+Example:
+SELECT SQRT(16) AS Result;
+-- Output: 4
+-------------------------------------------------------------------------------------------
+9. EXP()
+Returns the exponential value of a number (e raised to the power of the number).
+Syntax:
+EXP(number)
+Example:
+SELECT EXP(1) AS Result;
+-- Output: 2.718281828459
+-----------------------------------------------------------------------------------------
+10. LOG()
+Returns the natural logarithm (base e) of a number.
+Syntax:
+LOG(number)
+Example:
+SELECT LOG(2.718281828459) AS Result;
+-- Output: 1
+----------------------------------------------------------------------------
+11. LOG10()
+Returns the base-10 logarithm of a number.
+Syntax:
+LOG10(number)
+Example:
+SELECT LOG10(1000) AS Result;
+-- Output: 3
+-------------------------------------------------------------
+12. RADIANS()
+Converts degrees to radians.
+Syntax:
+RADIANS(degrees)
+Example:
+SELECT RADIANS(180) AS Result;
+-- Output: 3.141593
+-----------------------------------------------------------------
+13. DEGREES()
+Converts radians to degrees.
+Syntax:
+DEGREES(radians)
+Example:
+SELECT DEGREES(3.141593) AS Result;
+-- Output: 180
+--------------------------------------------------------------
+14. PI()
+Returns the value of π (pi).
+Syntax:
+PI()
+Example:
+SELECT PI() AS Result;
+-- Output: 3.141593
+---------------------------------------------------------------------
+15. Trigonometric Functions
+MySQL supports trigonometric functions such as SIN(), COS(), and TAN().
+
+SIN(): Returns the sine of a number (in radians).
+Syntax:
+SIN(radians)
+Example:
+SELECT SIN(PI()/2) AS Result;
+-- Output: 1
+----------------------------------------------------------------------------------
+COS(): Returns the cosine of a number (in radians).
+Syntax:
+COS(radians)
+Example:
+SELECT COS(PI()) AS Result;
+-- Output: -1
+---------------------------------------------------------------------------------
+TAN(): Returns the tangent of a number (in radians).
+Syntax:
+TAN(radians)
+Example:
+SELECT TAN(PI()/4) AS Result;
+-- Output: 1
+-----------------------------------------------------------------------------------
+16. SIGN()
+Returns the sign of a number:
+1 if positive, -1 if negative, and 0 if zero.
+Syntax:
+SIGN(number)
+Example:
+SELECT SIGN(-45) AS Result;
+-- Output: -1
+---------------------------------------------------------------------------------------
+17. RAND()
+Returns a random floating-point number between 0 (inclusive) and 1 (exclusive).
+Syntax:
+RAND()
+Example:
+SELECT RAND() AS Result;
+-- Output: 0.753849
+To generate a random number in a range:
+SELECT FLOOR(1 + (RAND() * 10)) AS RandomNumber;
+-- Output: A number between 1 and 10
+------------------------------------------------------------------------------
+18. GREATEST()
+Returns the largest value among a list of numbers.
+Syntax:
+GREATEST(value1, value2, ...)
+Example:
+SELECT GREATEST(10, 20, 30, 5) AS Result;
+-- Output: 30
+-----------------------------------------------------------------------------------
+19. LEAST()
+Returns the smallest value among a list of numbers.
+Syntax:
+LEAST(value1, value2, ...)
+Example:
+SELECT LEAST(10, 20, 30, 5) AS Result;
+-- Output: 5
+-------------------------------------------------------------------------------------
+20. BIT_COUNT()
+Returns the number of bits set to 1 in a number.
+Syntax:
+BIT_COUNT(number)
+Example:
+SELECT BIT_COUNT(7) AS Result;
+-- Output: 3 (Binary of 7 is 111)
+__________________________________________________________________
+
+
+
+
+
+
