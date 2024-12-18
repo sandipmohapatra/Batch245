@@ -2183,6 +2183,91 @@ SELECT BIT_COUNT(7) AS Result;
 -- Output: 3 (Binary of 7 is 111)
 __________________________________________________________________
 
+1)github link local repository to remote---->git remote add origin <remote_repo_URL>
+2)which language doesnot support OOP's concept----->C
+3)which has the largest bit size char, varchar, text data ,char and varchar ----> TEXT can store the largest amount of data, up to 65,535 bytes.
+4)order of normalization---1NF,2NF,3NF,BCNF,4NF,5NF
+5)When will frontend and backend developers both involved in SDLC------development phase
+6)what are Prototype models :- 
+Throwaway/Rapid Prototypes,
+Evolutionary Prototypes, 
+Incremental Prototypes,
+Extreme Prototyping
+7)In flowcharts, when you need to indicate that the same process symbol is connected or referenced on the same page, you typically use connectors.----------->On-Page Connectors
+----------------------------------------------------------------------------------------
+8)what is the core purpose of Normalization---------->
+Minimizes Redundancy,--repeating  
+Reduces Update Anomalies---change in data or update every related data automatically
+Improves Data Integrity---Trusted
+-----------------------------------------------------------------------------------------------------
+9)what is advantage of proper planning in SDLC---->
+Clarity of Objectives and Scope,
+Risk Management,
+Resource Allocation and Management,
+Timeline and Milestone Definition,
+Quality Assurance and Testing Strategy,
+Stakeholder Engagement and Communication,
+Cost Management,
+Adaptability and Flexibility
+-----------------------------------------------------------------------
+10)which is not a best practice of Pseudocode ---- 
+11)what is the structure of computer program?
+"Sequence"; ordered statements or subroutines executed in sequence. 
+"Selection"; one or a number of statements is executed depending on the state of the program.
+"Iterator"
+12)what is the relation of deptno --->Foreign key
+13)To unstage a file in Git while preserving its changes (i.e., keeping the modifications intact but removing them from the staging area), you can use the following command-----> git reset HEAD <file>
+14)entity is a real-world object, person, or concept that can be represented in a database and have data stored about it 
+15)which git command creates an empty repository in his specified directory-----The git init command creates a new Git repository
+----------------------------------------------------------------------------
+16)The .git directory is a hidden directory that is automatically created when you initialize a new repository using Git. It serves as the backbone of your Git repository, storing all the metadata and object database for your project.
+----------------------------------------------------------------------------------- 
+17)OOP's advantages ----reusability, easy to debug, easy to test.
+18)"%jim%"
+19)row having null values
+NVL:-
+-----------------------------------------------------------------------------------------
+20)create a query using select where  from order by and alias
+SELECT     customer_id AS id,
+    CONCAT(first_name, ' ', last_name) AS full_name,
+    email,    order_date,    total_amount FROM 
+    orders WHERE     order_status = 'completed'
+ORDER BY order_date DESC;
+
+----------------------------------------------------------------------------------
+21)one university and all the Collage from the region  :- 1:M
+22)The Adaptive Maintenance phase in the Software Development Life Cycle (SDLC) refers to the process of modifying a software system to keep it usable in a changing environment. This involves making changes and enhancements to software to ensure it continues to operate correctly as the external environment evolves. These changes can be triggered by new business requirements, technological advancements, legislative changes, or user feedback.
+23)A prototyping model is a software development approach that involves creating an incomplete version of the software program being developed. This prototype is then used to visualize and understand the requirements, refine functionalities, and gather feedback from users and stakeholders early in the development process.
+24)MySQL has a different character set what is the command to show all the character set.------>SHOW CHARACTER SET;
+25)illegal queries associated with group by function ------> Non-Aggregated Columns in SELECT,
+Ambiguous Columns, Using Aliases in GROUP BY,HAVING Clause Without GROUP BY, Inconsistent Data Types.
+26)Staging allows you to prepare and review changes before committing.
+You can selectively stage parts of files or specific files to ensure only intended changes are included.
+27)what is De-normalization?
+28)Database Administrator
+29)Perfective Maintenance
+30)N tier Architecture 
+31)Pseudocode :- Artificial and informal language used by developers to develop algorithm
+32)git status
+33)git clone
+34)git commit
+34)git reset
+35)git commit "branch1..branch2"
+36)$ git config user.name
+37)group by class
+38)set limit 3 ---retrieve 3 rows from the table.
+39)left joins
+40)how to retrieve null values?
+41)distinct  
+42)salary between 40k and 100k:-between and 
+43)how many days it will take to delete git history automatically ----Git does not automatically delete history. If you want to delete Git history, you must perform specific actions, such as rewriting history or pruning objects, and the effects depend on the repository settings and manual cleanup.
+44)delete from employ where id in(100,101,105);
+all three will be delete
+45)variable name declaration in sql--no numeric,no space in between the variables
+-----------------------------------------------------------------------------------------------------------------
+
+
+
 
 
 
