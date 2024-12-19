@@ -4,7 +4,7 @@ Java 1.8 features
 2)Java is simpler then c and c++ as we don't have pointer concept, Multiple Inheritance, operator overloading.
 3)Java supports multi-threading or multi-tasking.
 4)We can develop web-application, network application, standalone application and also mobile application.
-5)In java we interface which support the concept of multiple inheritance.
+5)In java we have interface which support the concept of multiple inheritance.
 6)In java we have constructor but no destructor. There is automatic garbage clearance.
 7)java is secured language. we have 4 access specifier private, public, protected, default.
 
@@ -32,19 +32,21 @@ Operator
 1)unary :-i++,++i,i--,--i
 
 2)binary :-
-i)arithmatic :- +,-,*,/,%(modules)
+i)arithmetic :- +,-,*,/,%(modules)
 ii)comparative :- <,>,<=,>=
 iii)assignment :- =,!=
 iv)bitwise :- >>,<<
+v)logical:-or, and
+
 3)ternary :- :,?
---------------------------------------
+---------------------------------------------------------------------------------------------------
 we have 4 access specifier private, public, protected, default.
 
 1)private :- if we declare variable and methods as private we can access it within the class only.
 2)public :- if we declare variable and methods as public we can access it within the class, outside the class and also outside the package.
 3)protected :- if we declare variable and methods as protected we can access it within the class and also outside the child class.
 4)default :- if we declare variable and methods as default we can access it within the class ,out side the class but not outside the package.
-------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
 program-1
 ----------------
 package monday;
@@ -78,19 +80,305 @@ System.out.println(d+" "+e+" "+f);
 System.out.println(g+" "+h);
 }
 }
+--------------------------------------------------------------------
+public class Example1 
+{
+public static void main(String[] args) 
+{
+int a=10,b=20,c=30,d=40,e=50;
+int sum=a+b+c+d+e;
+int avg=sum/5;
+System.out.println("the sum is "+sum);
+System.out.println("the average is "+avg);
+}
+}
+-----------------------------------------------------------
+//wap to enter 5 numbers and find the sum and average.
+package tuesday;
+import java.lang.*; //default package
+import java.util.*;
+public class Example1 
+{
+public static void main(String[] args) 
+{
+	Scanner ob=new Scanner(System.in);
+	System.out.println("Enter 5 no");
+int a=ob.nextInt();
+int b=ob.nextInt();
+int c=ob.nextInt();
+int d=ob.nextInt();
+int e=ob.nextInt();
+int sum=a+b+c+d+e;
+int avg=sum/5;
+System.out.println("the sum is "+sum);
+System.out.println("the average is "+avg);
+}
+}
+-------------------------------------------------------------------
+//wap to enter 2 numbers and find the greatest.
+package tuesday;
+import java.lang.*; //default package
+import java.util.*;
+public class Example1 
+{
+	public static void main(String[] args) 
+	{
+		Scanner ob=new Scanner(System.in);
+		System.out.println("Enter 2 no");
+		int a=ob.nextInt();
+		int b=ob.nextInt();
+		if(a>b)
+			System.out.println("the greatest is "+a);
+		else
+			System.out.println("the greatest is "+b);
+	}
+}
 ----------------------------------------------------------------
+wap to find greatest of 3 nos
+----------------------------------------------------------------
+
+package tuesday;
+import java.lang.*; //default package
+import java.util.*;
+public class Example1 
+{
+	public static void main(String[] args) 
+	{
+		Scanner ob=new Scanner(System.in);
+		System.out.println("Enter a no");
+		int a=ob.nextInt();
+		if(a>0)
+			System.out.println("the number is +ve");
+		else
+			System.out.println("the number is -ve");
+			}
+}
+---------------------------------------------------------------------------
+package tuesday;
+import java.util.*;
+public class CaseDemo 
+{
+	public static void main(String[] args) 
+	{
+		int x,y;
+		Scanner ob=new Scanner(System.in);
+		System.out.println("enter your choice");
+		System.out.println("1.Addition");
+		System.out.println("2.Subtraction");
+		System.out.println("3.Multiplication");
+		System.out.println("4.Division");
+		int choice=ob.nextInt();
+		switch(choice)
+		{
+		case 1:System.out.println("enter 2 nos");
+		x=ob.nextInt();
+		y=ob.nextInt();
+		System.out.println("the sum is "+(x+y));
+		break;
+		case 2:System.out.println("enter 2 nos");
+		x=ob.nextInt();
+		y=ob.nextInt();
+		System.out.println("the sub is "+(x-y));
+		break;
+		case 3:System.out.println("enter 2 nos");
+		x=ob.nextInt();
+		y=ob.nextInt();
+		System.out.println("the sum is "+(x*y));
+		break;
+		case 4:System.out.println("enter 2 nos");
+		x=ob.nextInt();
+		y=ob.nextInt();
+		System.out.println("the sum is "+(x/y));
+		break;
+		default: System.out.println("Enter valid number");
+		}
+
+	}
+}
+----------------------------------------------
+package tuesday;
+import java.util.*;
+public class CaseDemo 
+{
+	public static void main(String[] args) 
+	{
+		Scanner ob=new Scanner(System.in);
+		System.out.println("enter your choice");
+		int choice=ob.nextInt();
+		switch(choice)
+		{
+		case 1:System.out.println("January");
+		break;
+		case 2:System.out.println("February");
+		break;
+		case 3:System.out.println("March");
+		break;
+		case 4:System.out.println("April");
+		break;
+		default:
+		System.out.println("Enter valid number");
+		}	}}
+--------------------------------------------------------------------------------------------
+package tuesday;
+import java.util.Scanner;
+
+public class VowelOrConsonant {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("Enter a character: ");
+		char ch = scanner.next().charAt(0);
+		ch = Character.toLowerCase(ch);
+		if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u')
+		{
+			System.out.println(ch + " is a vowel.");
+		} 
+		else {
+			System.out.println(ch + " is a consonent.");
+		}
+	}
+}
+
+-------------------------------------------------------------------------------------------------
+package tuesday;
+import java.util.Scanner;
+
+public class PowerCalculator
+{
+    public static void main(String[] args)
+    {
+             Scanner scanner = new Scanner(System.in);
+                System.out.print("Enter the base number: ");
+        double base = scanner.nextDouble();
+            System.out.print("Enter the exponent number: ");
+        double exponent = scanner.nextDouble();
+        double result = Math.pow(base, exponent);
+        System.out.println(base + " raised to the power of " + exponent + " is: " + result);
+    }
+}
+-------------------------------------------------------------------------------------------------
+package tuesday;
+import java.util.Scanner;
+public class PowerCalculation {
+      public static int power(int base, int exponent)
+    {
+        int result = 1;
+        for (int i = 0; i < exponent; i++) 
+        {
+            result =result * base;
+        }
+        return result;
+    }
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+    
+        System.out.print("Enter the base number: ");
+        int base = scanner.nextInt();
+        System.out.print("Enter the exponent number: ");
+        int exponent = scanner.nextInt();
+        int powerResult = power(base, exponent);
+        System.out.println(base + " to the power of " + exponent + " is: " + powerResult);
+    }
+}
+-------------------------------------------------------------------------------------------------
+package tuesday;
+public class ComplexNumberAddition 
+{
+    public static void main(String[] args) 
+    {
+        double real1 = 3.5;
+        double imaginary1 = 2.5;
+
+        double real2 = 1.5;
+        double imaginary2 = 4.5;
+
+         double sumReal;
+        double sumImaginary;
+
+             if (real1 + real2 != 0) {
+            sumReal = real1 + real2;
+        } else {
+            sumReal = 0;
+        }
+
+              if (imaginary1 + imaginary2 != 0) {
+            sumImaginary = imaginary1 + imaginary2;
+        } else {
+            sumImaginary = 0;
+        }
+
+                System.out.println("The sum of (" + real1 + " + " + imaginary1 + "i) and (" 
+            + real2 + " + " + imaginary2 + "i) is (" + sumReal + " + " + sumImaginary + "i)");
+    }
+}
+-------------------------------------------------------------------------------------------------
+package tuesday;
+import java.util.Scanner;
+
+public class LCMCalculator {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the first number: ");
+        int num1 = scanner.nextInt();
+
+        System.out.print("Enter the second number: ");
+        int num2 = scanner.nextInt();
+
+        int gcd = 1; // Initial value for GCD
+
+              for (int i = 1; i <= num1 && i <= num2; i++) {
+            if (num1 % i == 0 && num2 % i == 0) {
+                gcd = i;
+            }
+        }
+
+             int lcm = (num1 * num2) / gcd;
+
+        System.out.println("The LCM of " + num1 + " and " + num2 + " is: " + lcm);
+    }
+}
+---------------------------------------------------------------------------------------------------
 Class :- A class is a known as object framework.
 A class contains variables and methods.
----------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
 Object is a reference pointer to the class.
 We can access the variables and methods of a class using Object.
-------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
 Assignment-1
 -------------------
 wap to enter employee's data and display it.
 empno, name, address, dept, salary.
 ----------------------------------------------------------------------
-
+package tuesday;
+import java.util.*;
+public class Student 
+{
+int rollno;
+String name,address;
+void input()
+{
+	Scanner ob=new Scanner(System.in);
+	System.out.println("Enter rollno,name,address");
+	rollno=ob.nextInt();
+	name=ob.next();
+	address=ob.next();
+}
+void display()
+{
+	System.out.println("the rollno is "+rollno);
+	System.out.println("the name is "+name);
+	System.out.println("the address is "+address);
+	}
+public static void main(String[] args)
+{
+	Student ob1=new Student();
+	ob1.input();
+	ob1.display();
+	System.out.println("the rollno is "+ob1.rollno);
+}
+}
+-------------------------------------------------------------------------------------------------
 program-3
 ---------------------
 package monday;
@@ -123,8 +411,9 @@ public static void main(String[] args) {
 
 ----------------------------------------------------------------------------------
 Question-1
+--------------------------------
 wap to enter a student data and display it.
-rollno,name,physics,chem,maths marks.
+rollno, name, physics, chem, maths marks.
 -------------------------------------------------------------------------
 package day1;
 import java.util.*;
@@ -197,12 +486,129 @@ public static void main(String[] args) {
 	obj.display();
 }
 }
+---------------------------------------------------------------------------------------------------
+example-5
+-------------------
+//wap to create a book class having book_id,book_name,author,price
+package tuesday;
+class Book
+{
+	 int book_id;
+	 String book_name;
+	 String author;
+	 float price;
+	public int getBook_id() {
+		return book_id;
+	}
+	public void setBook_id(int book_id) {
+		this.book_id = book_id;
+	}
+	public String getBook_name() {
+		return book_name;
+	}
+	public void setBook_name(String book_name) {
+		this.book_name = book_name;
+	}
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	public float getPrice() {
+		return price;
+	}
+	public void setPrice(float price) {
+		this.price = price;
+	}
+	public Book(int book_id, String book_name, String author, float price) {
+		super();
+		this.book_id = book_id;
+		this.book_name = book_name;
+		this.author = author;
+		this.price = price;
+		System.out.println(book_id+" "+book_name+" "+author+" "+price);
+	}
+	public Book() {
+		System.out.println("default constructor");
+	}
+}
+-----------------------------------------------------------------------------------
+package tuesday;
 
-----------------------------------------------------------------------------------------------------
+public class BookAccess 
+{
+public static void main(String[] args) {
+	
+	Book obj=new Book();
+	obj.setBook_id(101);
+	obj.setBook_name("Complete Java");
+	obj.setAuthor("Sandip");
+	obj.setPrice(20.35f);
+	System.out.println("the book id is "+obj.getBook_id());
+	System.out.println("the book name is "+obj.getBook_name());
+	System.out.println("the book author is "+obj.getAuthor());
+	System.out.println("the book price is "+obj.getPrice());
+	Book obj1=new Book(102,"Python","Kiran",25.35f);
+}
+}
+--------------------------------------------------------------------------------------
+package org.thursday;
+
+public class Employee 
+{
+private int empno;
+private String name,address;
+private float salary;
+
+public int getEmpno() {
+	return empno;
+}
+public void setEmpno(int empno) {
+	this.empno = empno;
+}
+public String getName() {
+	return name;
+}
+public void setName(String name) {
+	this.name = name;
+}
+public String getAddress() {
+	return address;
+}
+public void setAddress(String address) {
+	this.address = address;
+}
+public float getSalary() {
+	return salary;
+}
+public void setSalary(float salary) {
+	this.salary = salary;
+}
+}
+-------------------------------------------------------------------------------------
+package org.thursday;
+
+public class TestData 
+{
+public static void main(String[] args) 
+{
+Employee ob=new Employee();
+ob.setEmpno(101);
+ob.setName("sandip");
+ob.setAddress("Bangalore");
+ob.setSalary(34000.90f);
+System.out.println("the empno is "+ob.getEmpno());
+System.out.println("the name is "+ob.getName());
+System.out.println("the address is "+ob.getAddress());
+System.out.println("the salary is "+ob.getSalary());
+}
+}
+---------------------------------------------------------------------------------------------------
 //wap to create a Bank class having accno, name and balance .
 //customer can do withdraw or deposite and then see the final balance.
 //minimum balance is 1000.
-------------------------------------------- 
+--------------------------------------------------------------------------------------------------
 package Day1;
 import java.util.*;
 public class Bank 
@@ -234,7 +640,7 @@ public class Bank
 			System.out.println("The final balance is"+bal);
 		}
 		else
-			System.out.println("cannot withdraw balance is slow");
+			System.out.println("cannot withdraw balance is low");
 	}
 	public static void main(String[] args)
 	{
@@ -266,6 +672,47 @@ There are 2 types of constructor
 2)parameterized constructor :- it is with parameter.
 To access a constructor we require an object.
 -----------------------------------------------------
+package tuesday;
+
+public class ConstructorDemo 
+{
+int rollno;  //global variables
+String name,address;
+public ConstructorDemo(int rollno, String name, String address) //local variables
+{
+	this.rollno = rollno;
+	this.name = name;
+	this.address = address;
+	System.out.println("the rollno is"+rollno+"The name is "+name+"The address is "+address);
+}
+public ConstructorDemo()
+{
+System.out.println("Default constructor");	
+}
+int sum(int a,int b) //function/method overloading or compile time poly-merphisim
+{
+	return a+b;
+}
+float sum(float a,float b)
+{
+	return a+b;
+}
+int sum(int a,int b,int c)
+{
+	return a+b+c;
+}
+public static void main(String[] args) 
+{
+	ConstructorDemo  ob=new ConstructorDemo();
+	ConstructorDemo  ob1=new ConstructorDemo();
+	ConstructorDemo  ob2=new ConstructorDemo(101,"sandip","bangalore");
+	ConstructorDemo  ob3=new ConstructorDemo(102,"Kiran","Pune");
+	System.out.println("The sum is "+ob.sum(5, 6));
+	System.out.println("The sum is "+ob.sum(5.4f, 6.3f));
+	System.out.println("The sum is "+ob.sum(5, 6,7));
+	}
+}
+---------------------------------------------------------------------------
 program-5
 --------------------
 package monday;
@@ -300,7 +747,7 @@ public static void main(String[] args) {
 	ob1.display();ob2.display();
 }
 }
--------------------------------------------------------------
+-----------------------------------------------------------------
 Difference between constructor and a method.
 -----------------------------------------------------------------
 1)a method can have any name but a constructor will have only the class name .
@@ -402,9 +849,9 @@ package monday;
 
 public class Employee 
 {
-int empno;
-String name,designation;
-float salary;
+private int empno;
+private String name,designation;
+private float salary;
 //right click >source >generate getter and setter
 public int getEmpno() {
 	return empno;
@@ -507,6 +954,29 @@ for(int i=0;i<5;i++)
 	System.out.println(a[i]);
 }
 }
+-----------------------------------------------------------
+package tuesday;
+import java.util.*;
+public class ArrayDemo
+{
+	public static void main(String[] args) 
+	{
+		float a[]=new float[5];
+		float sum=0.0f;
+		Scanner ob=new Scanner(System.in);
+
+		System.out.println("enter 5 decimal nos");
+		for(int i=0;i<5;i++)
+			a[i]=ob.nextFloat();
+
+		System.out.println(" 5 decimal nos sum is");
+		for(int i=0;i<5;i++)
+		{
+			sum=sum+a[i];
+		}
+		System.out.println(sum);
+	}
+}
 ----------------------------------------------------------
 package Saturday;
 import java.util.*;
@@ -555,21 +1025,22 @@ public class Student1
 		System.out.println("the address is "+address);
 	}
 	public static void main(String[] args) {
-		Student1[] obj=new Student1[3];
+
+		Student1[] obj=new Student1[3];//array of objects
+
 		for(int i=0;i<3;i++)
 		{
 			System.out.println("enter data of student no"+(i+1));
-			obj[i]=new Student1();
-			obj[i].input();
+			
+		obj[i]=new Student1(); //constructor 3 times
+		
+		obj[i].input(); //3 times input will be called
 		}
 		for(int i=0;i<3;i++)
 		{
 			System.out.println("data of student no"+(i+1));
 			obj[i].display();
-		}
-
-	}
-}
+		}	}}
 ----------------------------------------------------------------------
 package day2;
 import java.util.*;
@@ -615,7 +1086,7 @@ public class Student1
 	}
 }
 
---------------------------------------------Searching of employee------------------------------- 
+--------------------------------------------Searching of employee------------------------- 
 question-2
 wap to enter details of few employees
 empno, name, address, dept, salary
@@ -627,7 +1098,7 @@ accno, name, email, Balance for 20 customers.
 store the data and display it.
 -------------------------------------------------------------------------------
 Inheritance
-----------------------
+-------------------------------------------------------------------------------
 It is one of the oops concept
 Reuse of existing code. and we can add some more features to it.
 example :- iPhone10 to iPhone15 some new features are add to the older version.
@@ -689,6 +1160,75 @@ public static void main(String[] args) {
 }
 }
 --------------------------------------------------------------------------------------------
+Multi-level Inheritance
+--------------------------------------
+package Wednesday;
+
+public class Student {
+
+	int rollno;
+	String name,address;
+	public Student(int rollno, String name, String address) 
+	{
+		this.rollno = rollno;
+		this.name = name;
+		this.address = address;
+	}
+	void display()
+	{
+		System.out.println("the rollno is "+rollno+"The name is "+name+"The address is "+address);
+	}
+	}
+------------------------------------------------------------------------
+package Wednesday;
+public class Marks extends Student
+{
+float phy,chem,maths;
+
+public Marks(int rollno, String name, String address, float phy, float chem, float maths) 
+{
+	super(rollno, name, address);//parent class constructor will execute first then the child 	class constructor
+	this.phy = phy;
+	this.chem = chem;
+	this.maths = maths;
+}
+
+void display()
+{
+	super.display();
+	System.out.println("the physics marks is "+phy+"The chemistry marks is "+chem+"The maths marks is"+maths);
+	float total=phy+chem+maths;
+	float avg=total/3;
+	System.out.println("The total is "+total);
+	System.out.println("the average is "+avg);
+}
+
+}
+-------------------------------------------------------------------------------
+package Wednesday;
+
+public class Fees extends Marks
+{
+int amt;	
+String month;
+public Fees(int rollno, String name, String address, float phy, float chem, float maths, int amt, String month) 
+{
+	super(rollno, name, address, phy, chem, maths);
+	this.amt = amt;
+	this.month = month;
+}
+void display()
+{
+	super.display();
+	System.out.println("The amount is "+amt);
+	System.out.println("The month is "+month);
+}
+public static void main(String[] args) {
+	Fees ob=new Fees(1,"sandip","Bangalore",66,77,88,45000,"July");
+	ob.display();
+}
+}
+-----------------------------------------------------------------------------------------
 Program-11
 ------------------------
 package Tuesday;
@@ -818,7 +1358,7 @@ public static void main(String[] args) {
 	ob.display();
 }
 }
----------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
 How to use constructor during inheritance.
 --------------------------------------------------------------------
 program-12
@@ -1061,14 +1601,14 @@ public static void main(String[] args)
 	ob2.display();
 }
 }
------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 Method Overloading:-
 Method Overriding:-
 Abstract class
 Interface
 static keyword
 final keyword
------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 polymorphism:-
 Method Overloading :- compile time Polymorphism. we need one class.
 The method name is same but the return type and parameter has different data type.
@@ -1150,6 +1690,42 @@ What is the use of abstract class.
 It contains some abstract methods which has to be overridden inside the child class.
 We can have a constructor in the abstract class.
 *abstract windowing toolkit(AWT)
+package Wednesday;
+--------------------------------------------------------
+Example-1
+--------------------------
+abstract class AbstractBank 
+{
+abstract void register();//ABSTRACT METHODS MEANS METHODS WITH OUT BODY
+abstract void loan();
+void bankName()//CONCRET METHOD MEANS METHOD WITH BODY
+{
+	System.out.println("ICICI BANK");
+}
+}
+
+package Wednesday;
+
+public class AbstractChild extends AbstractBank 
+{
+
+	@Override
+	void register() {
+		System.out.println("registation page");
+			}
+
+	@Override
+	void loan() {
+		System.out.println("This is loan page");
+		
+	}
+public static void main(String[] args) {
+	AbstractChild ob=new AbstractChild();
+	ob.register();
+	ob.loan();
+	ob.bankName();
+}
+}
 
 -------------------------------------------------------------------
 package Day4;
@@ -1351,14 +1927,14 @@ void display4();
 		 ob.display1(); ob.display2(); ob.display3();  ob.display4();
 	}
  }
- -----------------------------------------------------------------------------------------------------------------------
+ ------------------------------------------------------------------------------------------------------
  static :- we can declare a variable as static, method as static, we can have static block and we can have static class.
 We can access it without creating an object.
 We can access it with the help of the class name.
 A single copy of the static variable, method, block or class is created in the JVM.
 It is used for memory management.
 If we declare a static block it execute before the main method.
----------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
 progarm-21
 ---------------------------
 package Wednesday;
@@ -1386,6 +1962,7 @@ StaticDemo.display();
  ----------------------------------------------------------------------------------------------
  we cannot access a non-static variables inside a static method.
 we can access static variables inside a non-static method.
+------------------------------------------------------------------------------------------------
 program-22
 ----------------------
 package Wednesday;
@@ -1477,13 +2054,46 @@ public static void main(String[] args) {
 input details(empno,name,address);
 display details();
 -------------------------------------------------
+package Friday;
+interface Employee
+{
+	void input_details(int empno,String name,String address);
+	void display_details();
+}
+
+class Example1 implements Employee
+{
+int empno; //global variable
+String name,address;
+	@Override
+	public void input_details(int empno, String name, String address) //local variable
+	{
+		this.empno=empno;
+		this.name=name;
+		this.address=address;
+	}
+
+	@Override
+	public void display_details() 
+	{
+	System.out.println("the empno is "+empno);	
+	System.out.println("the emp name  is "+name);	
+	System.out.println("the emp address is "+address);	
+		}
+	public static void main(String[] args) {
+		Example1 obj=new Example1();
+		obj.input_details(101,"sandip","Bangalore");
+		obj.display_details();
+	}
+}
+------------------------------------------------------------------
 create an interface dept:-
-input deatils(deptno,name,loc)
-display deatils();
-------------------------------------------------------
+input details(deptno,name,loc)
+display details();
+--------------------------------------------------------------------------------------
 create a child class to take input and display the details
 --------------------------------------------------------------------------------------
-static class:- It is used in the case of inner class.A inner class can be static.
+static class:- It is used in the case of inner class. A inner class can be static.
 syntax:-
 class outer 
 {
@@ -1590,7 +2200,7 @@ First is the class name.
 obj is the reference pointer to the class.
 new is a keyword which creates the memory block for storing the data.
 First() is a default constructor.
--------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
 Exception Handling
 ------------------------------
 There are 3 type of error.
@@ -1643,12 +2253,12 @@ System.out.println("The end of the program");
 }
 -----------------------------------------------------------------
 In this case when there is error means we divide the number by zero.
-The catch will execute and display the error message.Then the rest part of the program will execute.
+The catch will execute and display the error message. Then the rest part of the program will execute.
 -------------------------------------------------------------------------------------------------------
-when there is no error the catch block will not execute.The program will execute normally.
+when there is no error the catch block will not execute. The program will execute normally.
 --------------------------------------------------------------------------------------------------
 There are 3 type of Exception
---------------------------------------------
+-------------------------------------------------------------------
 1)checked exception(we have to handle it first otherwise it will give compile time error.)
 i)IOException
 ii)SQLException
@@ -1660,7 +2270,8 @@ i)Arithmatic exception
 ii)NumberFormat exception
 iii)IndexOutOfBound exception
 iv)NullPointer exception
---------------------------------------------
+v)InputMismatchException
+-----------------------------------------------------------------
 3)error
 i)StackOverFlow error
 ii)OutOfMemory error
@@ -1705,16 +2316,16 @@ System.out.println("The end of the program");
 * we cannot put the catch(Exception ae) above the catch(ArithmeticException ae) or catch(InputMismatchException ae).
 This will show error unreachable code.
 because catch(Exception ae) will handle all type of errors.but catch(ArithmeticException ae) will handle only Arithmatic exception.
---------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------
 We generally don't write so many catch block .It will increase the line of code.
 and the execution time also increases.so it in not adviceable to write multiple catch block.
 --------------------------------------------------------------------
 try-catch :-if try is getting error then the catch with handle the error and catch will display the error.
-try-finally:-In this if try gets a error or not it doesn't matter the finally block will definatelly exceute.
-It handles the error and mainly used for closing of connection,file closing etc.
+try-finally:-In this if try gets a error or not it doesn't matter the finally block will definitely execute.
+It handles the error and mainly used for closing of connection, file closing etc.
 Can we write try block without catch block.
 yes using finally block.
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
  Example-29
 ---------------------------
 //try with finally
@@ -1740,7 +2351,7 @@ System.out.println("The result is "+c);
 	}
 }
 }
-------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 throws Exception:-
 -------------------------------
 we don't require any body for throws exception .we mention it with the method.
@@ -1791,6 +2402,27 @@ public static void main(String[] args) throws Exception
 		throw new Exception("The age should be greater than or equal to 18 to caste your vote");
 }
 }
+--------------------------------------------------------------------------
+package Thursday;
+import java.util.*;
+public class ErrorExample 
+{
+public static void main(String[] args) throws Exception 
+{
+	float Balance=5000.00f; 
+	Scanner ob=new Scanner(System.in);
+	System.out.println("Enter the amount to withdraw");
+	float wd=ob.nextFloat();
+	if(Balance-wd>=1000)
+	{
+		Balance=Balance-wd;
+		System.out.println("You can withdraw the amount");
+		System.out.println("The balance is "+Balance);
+			}
+	else
+		throw new Exception("You cannot withdraw the amount");
+}
+}
 ----------------------------------------------------------------------------
 ArrayIndexOutOfBound Exception(crossing the array limit)
 ----------------------------------------------------------------------
@@ -1823,13 +2455,13 @@ System.out.println(a[i]);
 
 }
 }
-----------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------
 wap to enter am employees data.
 1)empno it should only contain number.
 2)name
 3)age it should be greater than 20 years to do this job.
 4)qualification should be Btech.
-if all the critaria are ok then he/she is eligible to do the job
+if all the criteria are ok then he/she is eligible to do the job
 ----------------------------------------------------------------------------------------------
 program-33
 -------------------
@@ -1863,17 +2495,22 @@ class GFG
     }
     }
 }
+-----------------------------------------------------------------------------------
+To create immutable classes in Java, you need to ensure that the state of an object cannot be modified after it's created. Here are the steps to create an immutable class in Java:
+
+Declare the class as final so it can't be extended.
+Make all fields private and final so they can only be assigned once.
 ----------------------------------------------------------------------------------
 Lambda Expression
 --------------------------------
 It is also known as functional interface.
 In this the interface will only contain one abstract method so it is called functional interface.
-In lambda expression we don't require 2 classes (parent and child).we don't have to override.we don't have to implement the interface.
-There is a anotation @FunctionalInterface.
+In lambda expression we don't require 2 classes (parent and child).we don't have to override.  we don't have to implement the interface.
+There is a annotation @FunctionalInterface.
 It is used to declare an interface as functional interface.(optional)
 ------------------------------------------------------------------------
 @Override :- It was introduced from jdk1.5.It will match the methods of the parent class and the child class.
-both method name and the signatures(return type,parameter) should match.(optional)
+both method name and the signatures(return type, parameter) should match.(optional)
 -------------------------------------------------------------------------
 what is the use of lambda expression
 1)The code is reduced in this.
@@ -1889,7 +2526,7 @@ void applyforCreditCard();
 *by using lambda expression we will make the interface as functional.
 ----------------------------------------------------------------------
 There are 3 new components in it.
-1)Arguument-list:-It can be empty or have parameters.
+1)Argument-list:-It can be empty or have parameters.
 (),->,{body}
 2)Arrow-token:- It is used to link arguments-list and body of the expression.
 3)Body:- It contains the expression and statement .
@@ -2040,8 +2677,93 @@ System.out.println("the sum is "+obj3.sum(400,500));
 wap to enter amount for withdraw or deposite.
 Then display the balance amount.
 Use case and switch and FunctionalInterface.
+-------------------------------------------------------------------------
+package Wednesday;
+
+import java.util.Scanner;
+
+public class Doubledemo 
+{
+public static void main(String[] args) 
+{
+int a[][]=new int[3][3];
+Scanner ob=new Scanner(System.in);
+System.out.println("enter 3*3 matrix");
+for(int i=0;i<3;i++)
+{
+	for(int j=0;j<3;j++)
+	{
+		a[i][j]=ob.nextInt();
+	}
+}
+
+System.out.println("3*3 matrix is");
+for(int i=0;i<3;i++)
+{
+	for(int j=0;j<3;j++)
+	{
+		System.out.print(a[i][j]+"  ");
+	}
+	System.out.println();
+}
+}
+}
+-----------------------------------------------------------------------
+Double dimensional array
+-----------------------------------------------------------------------
+package Wednesday;
+
+import java.util.Scanner;
+
+public class Doubledemo 
+{
+public static void main(String[] args) 
+{
+int a[][]=new int[3][3];
+int b[][]=new int[3][3];
+int c[][]=new int[3][3];
+Scanner ob=new Scanner(System.in);
+System.out.println("enter 3*3 matrix");
+for(int i=0;i<3;i++)
+{
+	for(int j=0;j<3;j++)
+	{
+		a[i][j]=ob.nextInt();
+	}
+}
+
+System.out.println("enter 3*3 matrix");
+for(int i=0;i<3;i++)
+{
+	for(int j=0;j<3;j++)
+	{
+		b[i][j]=ob.nextInt();
+	}
+}
+
+for(int i=0;i<3;i++)
+{
+	for(int j=0;j<3;j++)
+	{
+		c[i][j]=a[i][j]+b[i][j];
+	}
+}
+
+System.out.println("3*3 matrix is");
+for(int i=0;i<3;i++)
+{
+	for(int j=0;j<3;j++)
+	{
+		System.out.print(c[i][j]+"  ");
+	}
+	System.out.println();
+}
+
+}
+}
+
 ---------------------------------------------------------------------
-We have 3 classes String,StringBuffer,StringBuilder
+We have 3 classes String, StringBuffer, StringBuilder
 --------------------------------------------------------------------------
 String :-Immutable(cannot be changed).
 StringBuffer:-mutable(can be changed)
@@ -2139,7 +2861,7 @@ Thread synchronized means one thread complete excecution then the next thread wi
 example :-ATM (one person will do the transaction then the second person will do the transaction).
 ---------------------------------------------------------------------------------------------------------
 Collection Framework
-----------------------------------------
+----------------------------------------------------------------
 int a[]=new int[5]; ---------------array the size is fixed.
 In case of Collection the size will be incrementing dynamically as we enter the data.
 ---------------------------------------------------------------
@@ -2322,7 +3044,8 @@ public class SetDemo
 public static void main(String[] args)
 {
 TreeSet<Integer> ts=new TreeSet<Integer>();
-System.out.println(ts.isEmpty());//to check if the TreeSet is empty or not returns a boolean value
+System.out.println(ts.isEmpty());
+//to check if the TreeSet is empty or not returns a boolean value
 System.out.println(ts.size());
 ts.add(70);
 ts.add(20);
@@ -2533,10 +3256,8 @@ create a bank class and store the data into the LinkedList and display it.
 Bank class
 accno, name, balance
 --------------------------------------------------------------------------------------
---------------------------------------------------------------------------------------
 Interface to iterate the data:-
-------------------------------------------------------------------------------------------------------------
-Iterator:-hasNext(),next();remove();//In this we can move in one direction.
+---------------------------------------------------------------------------------------------------------Iterator:-hasNext(),next();remove();//In this we can move in one direction.
 ListIterator:- In this we can move in both direction.
 forward :- In this we have hasNext(),next().First the pointer with move in forward direction then it will move in backward direction.
 backward:- In this we have hasPrevious(),previous();
@@ -2572,10 +3293,10 @@ while(li.hasPrevious())
 -------------------------------------------------------------------------------------------------------
  java.util.Collections
 ---------------------------------------
-It has lot of static methods which can be implemented ob set,list,map,queue
+It has lot of static methods which can be implemented  set,list,map,queue
 It this we have sort() which can sort a list,map,queue.
 Collections.sort()
----------------------------------------------------
+---------------------------------------------------------------------------------------------------------
 Example-47
 ----------------------
 package monday;
@@ -2595,7 +3316,7 @@ Collections.sort(ls);
 ls.forEach((x)->System.out.println(x));
 }
 }
--------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
 package monday;
 import java.util.*;
 public class ListDemo
@@ -2670,7 +3391,7 @@ ls.forEach((x)->System.out.println(x));
 -------------------------------------------------------------
 java.lang.Comparable :-
 public abstract int compareTo(T);
-it is used to sort our own object data.It checks the String ascii code.
+it is used to sort our own object data. It checks the String ascii code.
 in this if the current object is greater than the specified object it return (+) value.
 in this if the current object is lesser than the specified object it return (-) value.
 in this if the current object is equal than the specified object it return zero value.
@@ -2751,9 +3472,9 @@ Map :-It is an interface.
  In this we enter key and values pair.
 The key should not be duplicate. The value can be duplicate.
 The key and value pair is known as entry.
-Map is useful to search,update or delete elements on the basis of the key.
+Map is useful to search, update or delete elements on the basis of the key.
 -------------------------------------------------------------
-Map --HashMap,  LinkedHashMap, TreeMap(sorting)
+Map --HashMap,  LinkedHashMap, TreeMap(sorting),HashTable
 -----------------------------------------------------------------------------------
 Example-48
 ------------------
@@ -2779,7 +3500,7 @@ System.out.println(hm);
 }
 }
 -------------------------------------------------------------------
-Set set=hm.entrySet();
+Set set=hm.entrySet();//
 Iterator itr=set.iterator();
 while(itr.hasNext())
 {
@@ -2787,7 +3508,7 @@ while(itr.hasNext())
 	System.out.println(en.getKey()+ "  "+en.getValue());
 }
 ---------------------------------------------------------------------------------------------
-HashSet is converted to set because we don't the Interface Iterator in the HashMap.We have it in Set.
+HashSet is converted to set because we don't have the Interface Iterator in the HashMap. We have it in Set.
 entrySet() is used to convert the Map into set.
 Map.Entry is a class contain getKey(),getValue()
 -------------------------------------------------------------------------------------------------------
@@ -2819,7 +3540,7 @@ while(itr.hasNext())
 	Map.Entry en=(Map.Entry<Integer, String>)itr.next();
 	System.out.println(en.getKey()+ "  "+en.getValue());
 }}}
--------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
 package monday;
 import java.util.*;
 public class HashMapDemo
@@ -2859,7 +3580,7 @@ for(Map.Entry<Integer, String> m: hm.entrySet())
 	System.out.println(m.getKey()+ "    "+m.getValue());
 System.out.println("****************************");
 }}
----------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------
 package monday;
 import java.util.*;
 public class HashMapDemo
@@ -2953,31 +3674,30 @@ public static void main(String[] args)
 		System.out.println(m.getKey()+ "    "+m.getValue());
 }
 }
------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------
 HashMap :- It gives high performance in the total data-structure of java collection framework.
 There are 2 factors which effect the performance of hashmap.
 1)Initial Capacity.
 2)Load Factor.
 ------------------------------------------
 1)Initial Capacity is 16 bytes.
-2)It increses automatically when it reaches to the threshold.
- 3)Initailly it is 2 pow 4=16,Then it will 2 pow 5=32,then it will be 2 pow 6=64
+2)It increases automatically when it reaches to the threshold.
+ 3)Initially it is 2 pow 4=16,Then it will 2 pow 5=32,then it will be 2 pow 6=64
 --------------------------------------------------------------------------------------------------------------------------
 Load Factor :- is measured that decides when to increase the HashMap capacity to maintain the get() and put() request.
---------------------------------------------------------------------------------------------------------------------------------
-
+---------------------------------------------------------------------------------------------------------
 wap to create a BookShop where we have some books.(bookid,book name,price)
 enter the book list into a HashMap.
 if the book is sold remove from the list.
 if the price of the book is increased modify the list.
 if a person wants to search for the book he can put the bookid and see the book is available or not.
 finally display the total books available.
---------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
 Queue Interface
 ------------------------------
 It maintains the first-in-first-out order.
 It can be defined as an ordered list that is used to hold elements in the same order.
-The classes are PriorityQueue,Deque and ArrayDeque .
+The classes are PriorityQueue, Deque and ArrayDeque .
 ------------------------------------------------------------------ 
 Example-51
 ---------------------
@@ -3013,7 +3733,7 @@ while(itr1.hasNext())
 System.out.println("the head is "+queue.element());//this will display the head element
 }}
 ----------------------------------------------------------------------------
-ArrayDeque :- It is a class.We can remove and add the elements from both sides.
+ArrayDeque :- It is a class. We can remove and add the elements from both sides.
 It is also called double-ended queue.
 Example-52
 ----------------------
@@ -3084,7 +3804,7 @@ for(Product p:al)
 
 }
 }
---------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------
 Filter Data
 ------------------
 package Collection;
@@ -3115,18 +3835,47 @@ Collections.sort(al,(p1,p2)->{
 for(Product p:al)
 	System.out.println(p.id+"  "+p.name+"  "+p.price);
 
-System.out.println("*****************Less than 5000***************************");
+System.out.println("******Less than 5000***************************");
 //filter the data example :- product less than Rs 5000
 //we have a class --(Stream)
 Stream<Product> fd=al.stream().filter(x -> x.price < 5000);
 fd.forEach(product -> System.out.println(product.id+"  "+product.name+"  "+product.price));
 
-System.out.println("*****************Greater Than 5000***************************");
+System.out.println("*****Greater Than 5000***************************");
 Stream<Product> fd1=al.stream().filter(x -> x.price > 5000);
 fd1.forEach(product -> System.out.println(product.id+"  "+product.name+"  "+product.price));
+----------------------------------------------------------------------------------------------
+Float totalPrice = al.stream().map(product->product.price).reduce(0.0f,(sum, price)->sum+price);    
+System.out.println(totalPrice);
+-----------------------------------------------------------------------------------------------------------
+long count = al.stream().filter(product->product.price<30000).count();  
+System.out.println(count);  
+
 }
 }
 -----------------------------------------------------------------------------------------------------------
+import java.util.*;
+import java.util.stream.Stream;
+public class LambdaExpressionDemo
+{
+public static void main(String[] args)
+{
+ArrayList<Product> al=new ArrayList<Product>();
+al.add(new Product(1,"Laptop",40000.35f));
+al.add(new Product(2,"Desktop",30000.35f));
+al.add(new Product(3,"Keyboard",4000.45f));
+al.add(new Product(4,"Mouse",300.00f));
+Float totalPrice = al.stream().map(product->product.price).reduce(0.0f,(sum, price)->sum+price);    
+System.out.println(totalPrice);  
+}
+}
+
+//This method takes a sequence of input elements and combines them into a single summary //result. example :-finding the sum of numbers, or accumulating elements into a list.
+// we are using reduce() method, which is used to sum of all the product prices.
+-------------------------------------------------------------------------------------
+ long count = productsList.stream().filter(product->product.price<30000).count();  
+        System.out.println(count);  
+---------------------------------------------------------------------------------------------------------------
 Example -55
 ------------------------
 EnumSet :- it sort the data according to the enum list provided.
@@ -3254,9 +4003,9 @@ HashTable
 ---------------------------------------------------------------------------------------------
 AbstractMap and Dictonary difference
 ----------------------------------------------------------
-1)AbstractMap it is the super class of HashMap .we cann't intanceate the AbstractMap so we have to create object of the HashMap.
+1)AbstractMap it is the super class of HashMap .we can't intanceate the AbstractMap so we have to create object of the HashMap.
 -------------------------------------------
-1)Dictionary it is the super class of HashTable .we cann't intanceate the Dictionary so we have to create object of the HashTable.
+1)Dictionary it is the super class of HashTable .we can't intanceate the Dictionary so we have to create object of the HashTable.
 
 ------------------------------------------------------------------------------
 package Collection;
@@ -3301,7 +4050,8 @@ Multi Thread Program:-
 Each thread will do some task.
 We can create object of Thread and assign the task.
 In this we will have run() and we will have start() .the start() will call the run().
-For this we can either extends Thread class or implement runnable interface.
+For this we can either extends 
+ class or implement runnable interface.
 There will be Thread switching .So we will see all the start() exceute at the same time and the output will be a mixture of all the task.
 ------------------------------------------------------------------------------------------------------
 Thread lifecycle
@@ -3352,7 +4102,7 @@ Methods in Thread class
 ----------------------------------------
 1)getName() :- It gets the name of Thread.
 
-2)isAlive() :- It check if the Thread is still running or completed it's execution.It returns boolean value.
+2)isAlive() :- It check if the Thread is still running or completed it's execution. It returns Boolean value.
 
 3)run():- Entry point for the thread.
 
@@ -3371,12 +4121,11 @@ MAX_PRIORITY=RANGE(6 to 10)
 9)Daemon Thread :- It is a low priority thread which runs in the background doing garbage collection operation.
 
 10)wait() :- The thread will go to wait until some other thread doesnot notify.
-
 11)notify():- Wake up a thread which is in waiting state.
-
 12)notifyAll() :- This will wake up all the waiting threads.
-
-----------------------------------------------------------------------------------
+13)join(): When the join() method is invoked, the current thread stops its execution and go into the wait state. The current thread remains in the wait state until the thread on which the join() method is invoked called is dead or the wait for the specified time frame() is over.
+14)yield():-
+-------------------------------------------------------------------------------------------------------------
 Example-59
 ---------------------
 package Thread;
@@ -3485,8 +4234,52 @@ public class Thread5 implements Runnable
 		obj1.start();obj2.start();obj3.start();
 	}
 }
+--------------------------------------------------------------------------------------------------------------------------
+Join Example
+-----------------------
+package Thursday;
+public class Thread4 extends Thread
+{
+public void run()
+{
+	for(int i=1;i<=10;i++)
+	{
+		System.out.println(Thread.currentThread().getName()+" "+i);
+		try {
+			sleep(1000);
+		} catch (InterruptedException e) {
+						e.printStackTrace();
+		}
+	}
+
+}
+public static void main(String[] args) 
+{
+	Thread4 ob1=new Thread4();
+	Thread4 ob2=new Thread4();
+	Thread4 ob3=new Thread4();
+	System.out.println(ob1.isAlive());
+	ob1.start();
+	ob1.setPriority(10);
+	try {
+		ob1.join();//waits for this thread to die then the other thread will start executing.
+	} catch (InterruptedException e) {
+				e.printStackTrace();
+	}
+	System.out.println(ob1.isAlive());
+	ob2.start();
+	ob1.setPriority(MAX_PRIORITY);
+	ob2.setPriority(MIN_PRIORITY);
+	ob3.setPriority(NORM_PRIORITY);
+	ob2.setPriority(1);
+	System.out.println(ob1.getPriority());
+	System.out.println(ob2.getPriority());
+	System.out.println(ob3.getPriority());
+	ob3.start();
+}
+}
 -------------------------------------------------------------------------------------
-wap to find out who gets the tickects out of the 3 friends.
+wap to find out who gets the tickets out of the 3 friends.
 There are only 2 tickets available in the counter.
 ------------------------------------------------------------------------------------------
 Example-62
@@ -3884,20 +4677,20 @@ System.out.println("Finished All Thread");
 }
 --------------------------------------------------------------------------------------------------------
 concurrent :- why this package is created.
-all the threads run concurrently at the same time.This will speed up the exceution and performance is better.
+all the threads run concurrently at the same time. This will speed up the execution and performance is better.
 Multiple threads are running means there will be deadlock.so we generally use syncronized so that one thread will exceute and after the completion of that thread the other thread will execute.
 
 syncronized(ATM) is one of the solution of deadlock.
 
-Concurrent package takes care of Deadlock.It will allow one after the other thread to excute.
+Concurrent package takes care of Deadlock. It will allow one after the other thread to excute.
 It helps multi-tasking,efficent excution and faster excution .
 we have ConcurrentHashMap,ConcurrentHashTable also.
 ------------------------------------------------------------------------------------------------------
 ConcurrentHashMap:-
 It is similar to HashMap but it is threadsafe and concurrent and we have some more methods.we have to import java.util.concurrent
 ----------------------------------------------------------------------------------------
-HashTable :-It is synchronized we don't have ConcurrentHashTable.No deadLock
-HashMap :-It is not  synchronized we have ConcurrentHashMap.Threat of deadLock.
+HashTable :-It is synchronized we don't have ConcurrentHashTable. No deadLock
+HashMap :-It is not  synchronized we have ConcurrentHashMap. Threat of deadLock.
 ConcurrentLinkedQueue 
 ---------------------------------------------------------------------------------------------------
 Example-69
@@ -4431,7 +5224,7 @@ public static void main(String[] args) {
 }
 ------------------------------------------------------------------------------------------------------
 File 
--------------
+------------------------------------------------------------------------------------------------------
 1)It is used to store and manage data.
 2)Reading and writing of data into a file can be done using byte stream or character stream.(flow from source to destination)
 3)The process of reading and writing object into a file is known as serialization and de-serialization.
@@ -4439,12 +5232,12 @@ File
 5)There are 2 types of stream by which we can read and write data into a file.
 a)byte stream
 b)character stream
-Under this byte stream and charcater stream we have different class.
+Under this byte stream and character stream we have different class.
 6)While working with file we have to handle exception because it throws checked Exception.
 Exceptions :- EOFException,FileNotFoundException,InterruptedIOException,IOException.
 ----------------------------------------------------------------------------------
 We have some file class methods
---------------------------------------------------
+---------------------------------------------------------------------------------
 Example-72
 -------------------
 //we have to create a file on the project folder
@@ -4473,7 +5266,7 @@ System.out.println("this is a directory "+f.isDirectory());
 }
 -----------------------------------------------------------------------------------------
 Byte stream(10101001001)
----------------------
+--------------------------------------------
 There are 2 abstract classes.
 --------------------------------------------
 1)InputStream-reading data from the file.
@@ -4639,7 +5432,7 @@ while((x=br.readLine())!=null) //null indicates EOF
 }
 }
 }
----------------------------------------------------
+------------------------------------------------------------
 CharArrayWriter/CharArrayReader
 ------------------------------------------------------------
 CharArrayWriter :- it is used to write common data to multiple files.
@@ -4668,7 +5461,7 @@ public static void main(String[] args)throws Exception
 }
 -----------------------------------------------------------------------------------------------------------
 CharArrayReader:- It reads array of character.
---------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
 package File;
 import java.io.*;
 public class FileExample7 
@@ -4700,7 +5493,7 @@ why we require driver.
 
 1)Thick Driver 
 type1 driver-[java prg---odbc driver----Database]
-ODBC -open database connectivity.It comes with the o/s.
+ODBC -open database connectivity. It comes with the o/s.
 -----------------------------------------------------------------------------------------
 type2 driver-[java prg---driver----database]This is vendor specific.  
 -------------------------------------------------------------------------------------------
@@ -4713,12 +5506,12 @@ type4 driver-[java prg---driver----database].The driver is purely java and inter
 We have to import java.sql package and handle the SQLException.
 
 There are 2 classes and 8 interfaces
-classes :- DriverManager,Types
+classes :- DriverManager, Types
 Interfaces :- Driver,Connection,Statement,PreparedStatement,CallableStatement,ResultSet,ResultSetMetaData,DatabaseMetaData
 -------------------------------------------------------------------------
 When we do static data crud (create,read,update,delete) operartion we  use Statement.
 When we do dynamic data crud (create,read,update,delete) operartion we  use PreparedStatement.
-When we work with function,procedure we use CallableStatement.
+When we work with function, procedure we use CallableStatement.
 ------------------------------------------------------------------------------------------------------
 Example :- 
 import java.sql;
@@ -4734,6 +5527,26 @@ main()throws Exception
 ---------------------------------------------------------------------------------
 Example-1
 ----------------------
+package Friday1;
+import java.sql.*;
+public class JDBC1 
+{
+public static void main(String[] args)throws Exception 
+{
+	Class.forName("com.mysql.cj.jdbc.Driver");//load driver
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mphasis237","root","1234");
+	
+	Statement st=con.createStatement();
+
+	//st.execute("create table jdbcexample(empno int,name varchar(30),address varchar(30))");
+	
+	st.execute("insert into jdbcexample values(102,'Pavan','bangalore')");
+
+	System.out.println("row inserted");
+}
+}
+------------------------------------------------------------------------------------------------------------------
+
 Insert
 ------------------
 package JDBC;
@@ -4770,8 +5583,8 @@ public class Student
 {
 public static void main(String[] args)throws Exception
 {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","1234");
+		Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mphasis237","root","1234");
 		Statement st=con.createStatement();
 		st.execute("update marlabsstud set address='Kolkotta' where empno=101");
 		System.out.println("Row updated");		
@@ -4786,8 +5599,8 @@ public class Student
 {
 public static void main(String[] args)throws Exception
 {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","1234");
+		Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mphasis237","root","1234");
 		Statement st=con.createStatement();
 		st.execute("delete marlabsstud where empno=101");
 		System.out.println("Row deleted");		
@@ -4806,8 +5619,8 @@ public class Student
 {
 public static void main(String[] args)throws Exception
 {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","1234");
+		Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mphasis237","root","1234");
 		Statement st=con.createStatement();
 		ResultSet rs=st.executeQuery("select * from marlabsstud");
 		while(rs.next())
@@ -4824,6 +5637,25 @@ types of execute methods
 2)exceuteUpdate() -----update(returns 0 or 1)
 3)excute() ----insert,update,delete,create (returns true,false);
 ---------------------------------------------------------------------------------------------
+example-1
+---------------------
+package Friday1;
+import java.sql.*;
+public class JDBC1 
+{
+public static void main(String[] args)throws Exception 
+{
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mphasis237","root","1234");
+	Statement st=con.createStatement();
+	//st.execute("create table jdbcexample(empno int,name varchar(30),address varchar(30))");
+st.execute("insert into jdbcexample values(102,'Pavan','bangalore')");
+
+	System.out.println("row inserted");
+}
+}
+----------------------------------------------------------------------------------------------------
+
 
 1)Oracle 10xe 
 2)MySql 
@@ -5246,7 +6078,7 @@ public static void main(String[] args)throws Exception
 }
 }
 ----------------------------------------------------------------------------------------------------------------------------------------------
-create table studentM(studid number not null,name varchar(30) not null,address varchar(30) not null,			primary key(studid));
+create table studentM(studid number not null,name varchar(30) not null,address varchar(30) not null, primary key(studid));
 -----------------------------------------------------------------------------------------------------------------------------------------
 package NewYear2022;
 import java.sql.*;
@@ -5767,5 +6599,584 @@ wap to create and display product details
 
 productid ,product name, quantity and price
 
+--------------------------
+%s%
+_s
+__s
 --------------------------------------------------------------------------------------------------------------------------------------
+The Java Regex or Regular Expression is an API to define a pattern for searching or manipulating strings.
+It is widely used to define the constraint on strings such as password and email validation. 
+We will be able to test your regular expressions by the Java Regex Tester Tool.
+Java Regex API provides 1 interface and 3 classes in java.util.regex package.
+--------------------------------------------------------------
+MatchResult interface
+Matcher class
+Pattern class
+PatternSyntaxException class
+---------------------------------------------------------------------------------------------------------------------
+Example-1
+------------------------------------------------------
+//. represents single character  
+import java.util.regex.*;  
+public class RegexExample1{  
+public static void main(String args[]){  
+Pattern p = Pattern.compile(".s");
+Matcher m = p.matcher("as");  
+boolean b = m.matches();    
+boolean b2=Pattern.compile(".s").matcher("as").matches();    
+boolean b3 = Pattern.matches(".s", "as");  
+System.out.println(b+" "+b2+" "+b3);  
+}}  
+--------------------------------------------------------------------------------------------------------------
+Example-2
+------------------------------------------------------
+import java.util.regex.*;  
+class RegexExample2{  
+public static void main(String args[]){  
+System.out.println(Pattern.matches(".s", "as"));//true (2nd char is s)  
+System.out.println(Pattern.matches(".s", "mk"));//false (2nd char is not s)  
+System.out.println(Pattern.matches(".s", "mst"));//false (has more than 2 char)  
+System.out.println(Pattern.matches(".s", "amms"));//false (has more than 2 char)  
+System.out.println(Pattern.matches("..s", "mas"));//true (3rd char is s)  
+}}  
+-----------------------------------------------------------------------------------------------------------------------
+Method to check if the entire input string "abcd" matches the regular expression pattern [amn].
+This is the regular expression pattern. The square brackets [] define a character class that matches any one of the characters 'a', 'm', or 'n'.
+Example-3
+---------------------------
+import java.util.regex.*;  
+class RegexExample3{  
+public static void main(String args[]){  
+System.out.println(Pattern.matches("[amn]", "abcd"));//false (not a or m or n)  
+System.out.println(Pattern.matches("[amn]", "a"));//true (among a or m or n)  
+System.out.println(Pattern.matches("[amn]", "ammmna"));//false (m and a comes more than once)  
+}}  
+------------------------------------------------------------------------------------
+Example-4
+---------------------------------------------------
+import java.util.regex.*;  
+class RegexExample4{  
+public static void main(String args[]){  
+System.out.println("? quantifier for one time....");  
+System.out.println(Pattern.matches("[amn]?", "a"));//true (a or m or n comes one time)  
+System.out.println(Pattern.matches("[amn]?", "aaa"));//false (a comes more than one time)  
+System.out.println(Pattern.matches("[amn]?", "aammmnn"));//false (a m and n comes more than one time)  
+System.out.println(Pattern.matches("[amn]?", "aazzta"));//false (a comes more than one time)  
+System.out.println(Pattern.matches("[amn]?", "am"));//false (a or m or n must come one time)  
+  
+System.out.println("+ quantifier for one or more....");  
+System.out.println(Pattern.matches("[amn]+", "a"));//true (a or m or n once or more times)  
+System.out.println(Pattern.matches("[amn]+", "aaa"));//true (a comes more than one time)  
+System.out.println(Pattern.matches("[amn]+", "aammmnn"));//true (a or m or n comes more than once)  
+System.out.println(Pattern.matches("[amn]+", "aazzta"));//false (z and t are not matching pattern)  
+  
+System.out.println("* quantifier  for zero or more....");  
+System.out.println(Pattern.matches("[amn]*", "ammmna"));//true (a or m or n may come zero or more times)  
+  
+}}  
+---------------------------------------------------------------------------------------------------------------------------------------------
+example-5
+------------------------------------------
+import java.util.regex.*;  
+class RegexExample5{  
+public static void main(String args[]){  
+System.out.println("metacharacters d....");//d means digit  
+  
+System.out.println(Pattern.matches("\\d", "abc"));//false (non-digit)  
+System.out.println(Pattern.matches("\\d", "1"));//true (digit and comes once)  
+System.out.println(Pattern.matches("\\d", "4443"));//false (digit but comes more than once)  
+System.out.println(Pattern.matches("\\d", "323abc"));//false (digit and char)  
+  
+System.out.println("metacharacters D....");//D means non-digit  
+  
+System.out.println(Pattern.matches("\\D", "abc"));//false (non-digit but comes more than once)  
+System.out.println(Pattern.matches("\\D", "1"));//false (digit)  
+System.out.println(Pattern.matches("\\D", "4443"));//false (digit)  
+System.out.println(Pattern.matches("\\D", "323abc"));//false (digit and char)  
+System.out.println(Pattern.matches("\\D", "m"));//true (non-digit and comes once)  
+  
+System.out.println("metacharacters D with quantifier....");  
+System.out.println(Pattern.matches("\\D*", "mak"));//true (non-digit and may come 0 or more times)  
+  
+}}  
+-------------------------------------------------------------------------------------
+Question-6
+---------------------
+/*Create a regular expression that accepts alphanumeric characters only.  
+Its length must be six characters long only.*/  
+  
+import java.util.regex.*;  
+class RegexExample6{  
+public static void main(String args[]){  
+System.out.println(Pattern.matches("[a-zA-Z0-9]{6}", "arun32"));//true  
+System.out.println(Pattern.matches("[a-zA-Z0-9]{6}", "kkvarun32"));//false (more than 6 char)  
+System.out.println(Pattern.matches("[a-zA-Z0-9]{6}", "JA2Uk2"));//true  
+System.out.println(Pattern.matches("[a-zA-Z0-9]{6}", "arun$2"));//false ($ is not matched)  
+}}  
+----------------------------------------------------------------------------------------------------------
+example-7
+------------------------
+/*Create a regular expression that accepts 10 digit numeric characters 
+ starting with 7, 8 or 9 only.*/  
+  
+import java.util.regex.*;  
+class RegexExample7{  
+public static void main(String args[]){  
+System.out.println("by character classes and quantifiers ...");  
+System.out.println(Pattern.matches("[789]{1}[0-9]{9}", "9953038949"));//true  
+System.out.println(Pattern.matches("[789][0-9]{9}", "9953038949"));//true  
+  
+System.out.println(Pattern.matches("[789][0-9]{9}", "99530389490"));//false (11 characters)  
+System.out.println(Pattern.matches("[789][0-9]{9}", "6953038949"));//false (starts from 6)  
+System.out.println(Pattern.matches("[789][0-9]{9}", "8853038949"));//true  
+  
+System.out.println("by metacharacters ...");  
+System.out.println(Pattern.matches("[789]{1}\\d{9}", "8853038949"));//true  
+System.out.println(Pattern.matches("[789]{1}\\d{9}", "3853038949"));//false (starts from 3)  
+  
+}}  
+------------------------------------------------------------------------------------------------------------
+example-8
+---------------------
+import java.util.regex.Pattern;  
+import java.util.Scanner;  
+import java.util.regex.Matcher;    
+public class RegexExample8{    
+    public static void main(String[] args){    
+        Scanner sc=new Scanner(System.in);  
+        while (true) {    
+            System.out.println("Enter regex pattern:");  
+            Pattern pattern = Pattern.compile(sc.nextLine());    
+            System.out.println("Enter text:");  
+            Matcher matcher = pattern.matcher(sc.nextLine());    
+            boolean found = false;    
+            while (matcher.find()) {    
+                System.out.println("I found the text "+matcher.group()+" starting at index "+    
+                 matcher.start()+" and ending at index "+matcher.end());    
+                found = true;    
+            }    
+            if(!found){    
+                System.out.println("No match found.");    
+            }    
+        }    
+    }    
+}    
+------------------------------------------------------------------------------------------------------------------------------
+generic class
+-------------------------
+public class Employee<T> {
+    // Private fields
+    private T empNo;
+    private String name;
+    private String address;
+
+    // Constructor
+    public Employee(T empNo, String name, String address) {
+        this.empNo = empNo;
+        this.name = name;
+        this.address = address;
+    }
+
+    // Getter for empNo
+    public T getEmpNo() {
+        return empNo;
+    }
+
+    // Setter for empNo
+    public void setEmpNo(T empNo) {
+        this.empNo = empNo;
+    }
+
+    // Getter for name
+    public String getName() {
+        return name;
+    }
+
+    // Setter for name
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // Getter for address
+    public String getAddress() {
+        return address;
+    }
+
+    // Setter for address
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    // Main method to demonstrate usage
+    public static void main(String[] args) {
+        // Create an Employee with an Integer empNo
+        Employee<Integer> emp1 = new Employee<>(101, "Sandip", "123 Main St");
+        System.out.println("Employee 1: " + emp1.getEmpNo() + ", " + emp1.getName() + ", " + emp1.getAddress());
+
+        // Create an Employee with a String empNo
+        Employee<String> emp2 = new Employee<>("A102", "Kiran", "456 Elm St");
+        System.out.println("Employee 2: " + emp2.getEmpNo() + ", " + emp2.getName() + ", " + emp2.getAddress());
+
+        // Change the empNo for emp1
+        emp1.setEmpNo(202);
+        System.out.println("Updated Employee 1: " + emp1.getEmpNo() + ", " + emp1.getName() + ", " + emp1.getAddress());
+    }
+}
+-------------------------------------------------------------------------------------------------------
+example-2
+---------------------------
+public class GenericClass<T> {
+    private T param1;
+    private T param2;
+    private T param3;
+
+    // Constructor with two parameters
+    public GenericClass(T param1, T param2) {
+        this.param1 = param1;
+        this.param2 = param2;
+        this.param3 = null;
+    }
+
+    // Constructor with three parameters
+    public GenericClass(T param1, T param2, T param3) {
+        this.param1 = param1;
+        this.param2 = param2;
+        this.param3 = param3;
+    }
+
+    public void display() {
+        if (param3 != null) {
+            System.out.println("param1: " + param1 + ", param2: " + param2 + ", param3: " + param3);
+        } else {
+            System.out.println("param1: " + param1 + ", param2: " + param2);
+        }
+    }
+
+    public static void main(String[] args) {
+        GenericClass<String> obj1 = new GenericClass<>("value1", "value2");
+        obj1.display(); // Output: param1: value1, param2: value2
+
+        GenericClass<String> obj2 = new GenericClass<>("value1", "value2", "value3");
+        obj2.display(); // Output: param1: value1, param2: value2, param3: value3
+    }
+}
+-------------------------------------------------------------------------------------------------
+import java.util.Random;
+
+public class RandomStringGenerator {
+    private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    private static final int STRING_LENGTH = 8; // Change this to your desired length
+
+    public static void main(String[] args) {
+        String randomString = generateRandomString(STRING_LENGTH);
+        System.out.println("Random String: " + randomString);
+    }
+
+    public static String generateRandomString(int length) {
+        Random random = new Random();
+        StringBuilder stringBuilder = new StringBuilder(length);
+        
+        for (int i = 0; i < length; i++) {
+            int index = random.nextInt(CHARACTERS.length());
+            stringBuilder.append(CHARACTERS.charAt(index));
+        }
+        
+        return stringBuilder.toString();
+    }
+}
+------------------------------------------------------------------------------------------------------------
+DateAPI
+------------------------
+example-1
+-------------------
+package Wednesday1;
+import java.time.LocalDate;    
+public class LocalDateExample1 
+{    
+  public static void main(String[] args)
+ {    
+    LocalDate date = LocalDate.now();    
+    LocalDate yesterday = date.minusDays(1);    
+    LocalDate tomorrow = yesterday.plusDays(2);    
+    System.out.println("Today date: "+date);    
+    System.out.println("Yesterday date: "+yesterday);    
+    System.out.println("Tomorrow date: "+tomorrow);    
+  }    
+}    
+------------------------------------------------------------------------------------------------------
+example-2
+----------------------
+package Wednesday1;
+import java.time.LocalDate;    
+public class LocalDateExample2 
+{    
+  public static void main(String[] args) 
+  {    
+    LocalDate date1 = LocalDate.of(2024, 7, 23);    
+    System.out.println(date1.isLeapYear());    
+    LocalDate date2 = LocalDate.of(2025, 9, 23);    
+    System.out.println(date2.isLeapYear());    
+  }    
+}    
+--------------------------------------------------------------------------------------
+example-3
+-------------------
+package Wednesday1;
+import java.time.*;  
+public class LocalDateExample3 
+{  
+  public static void main(String[] args) 
+  {  
+    LocalDate date = LocalDate.of(2024, 7, 24);  
+    LocalDateTime datetime = date.atTime(3,50,9);      
+    System.out.println(datetime);   
+  }  
+}  
+----------------------------------------------------------------------
+example-4
+--------------------
+package Wednesday1;
+import java.time.LocalDate;  
+import java.time.format.DateTimeFormatter;  
+public class LocalDateExample4  
+{  
+    public static void main(String ar[])  
+    {  
+        // Converting LocalDate to String  
+        // Example 1  
+        LocalDate d1 = LocalDate.now();  
+        String d1Str = d1.format(DateTimeFormatter.ISO_DATE);  
+        System.out.println("Date1 in string :  " + d1Str);  
+        // Example 2  
+        LocalDate d2 = LocalDate.of(2024, 07, 11);  
+        String d2Str = d2.format(DateTimeFormatter.ISO_DATE);  
+        System.out.println("Date2 in string :  " + d2Str);  
+        // Example 3  
+        LocalDate d3 = LocalDate.of(2024, 07, 21);  
+        String d3Str = d3.format(DateTimeFormatter.ISO_DATE);  
+        System.out.println("Date3 in string :  " + d3Str);  
+    }  
+}  
+-----------------------------------------------------------------------------------
+//convert string to date
+example-5
+------------------------------
+package Wednesday1;
+import java.time.LocalDate;  
+// String to LocalDate in java 8  
+public class LocalDateExample5   
+{  
+    public static void main(String ar[])   
+    {  
+        // Example 1  
+        String dInStr = "2024-07-21";  
+        LocalDate d1 = LocalDate.parse(dInStr);  
+        System.out.println("String to LocalDate : " + d1);  
+        // Example 2  
+        String dInStr2 = "2024-07-20";  
+        LocalDate d2 = LocalDate.parse(dInStr2);  
+        System.out.println("String to LocalDate : " + d2);  
+    }  
+}  
+-----------------------------------------------------------------------------------
+Time
+example-6
+-------------------
+import java.time.LocalTime;  
+public class LocalTimeExample1 
+{  
+  public static void main(String[] args) 
+{  
+    LocalTime time = LocalTime.now();  
+    System.out.println(time);  
+  }  
+}  
+--------------------------------------------------------------------------------
+example-7
+-----------------
+package Wednesday1;
+import java.time.LocalTime;  
+public class LocalTimeExample2 {  
+  public static void main(String[] args) {  
+    LocalTime time = LocalTime.of(05,43,12);  
+    System.out.println(time);  
+  }  
+}  
+-------------------------------------------------------------------
+example-8
+--------------------
+import java.time.LocalTime;  
+public class LocalTimeExample3 {  
+  public static void main(String[] args) {  
+    LocalTime time1 = LocalTime.of(10,43,12);  
+    System.out.println(time1);  
+    LocalTime time2=time1.minusHours(2);  
+    LocalTime time3=time2.minusMinutes(34);  
+    System.out.println(time3);  
+  }  
+}  
+--------------------------------------------------------------
+example-9
+---------------------
+import java.time.LocalTime;  
+public class LocalTimeExample4 {  
+  public static void main(String[] args) {  
+    LocalTime time1 = LocalTime.of(10,43,12);  
+    System.out.println(time1);  
+    LocalTime time2=time1.plusHours(4);  
+    LocalTime time3=time2.plusMinutes(18);  
+    System.out.println(time3);  
+  }  
+}  
+---------------------------------------------------------------------------------
+example-10
+-------------------------
+import java.time.LocalDateTime;  
+import java.time.format.DateTimeFormatter;  
+public class LocalDateTimeExample1 {  
+    public static void main(String[] args) {  
+        LocalDateTime now = LocalDateTime.now();  
+        System.out.println("Before Formatting: " + now);  
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");  
+        String formatDateTime = now.format(format);  
+        System.out.println("After Formatting: " + formatDateTime);  
+    }  
+}  
+----------------------------------------------------------
+example-11
+----------------------
+import java.time.LocalDateTime;  
+import java.time.format.DateTimeFormatter;  
+public class LocalDateTimeExample2 
+{  
+  public static void main(String[] args)
+ {  
+    LocalDateTime datetime1 = LocalDateTime.now();  
+    DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");  
+    String formatDateTime = datetime1.format(format);   
+    System.out.println(formatDateTime);    
+  }  
+}  
+---------------------------------------------------------------------------------------
+example-12
+--------------------------------
+import java.time.*;  
+public class MonthDayExample1 
+{  
+  public static void main(String[] args)
+ {  
+    MonthDay month = MonthDay.now();  
+    LocalDate date = month.atYear(2024);  
+    System.out.println(date);  
+  }  
+}  
+
+----------------------------------------------------------------------------------------------------------------
+JDBC Example
+---------------------
+example-1 (Statement)
+package Friday1;
+import java.sql.*;
+public class JDBC1 
+{
+public static void main(String[] args)throws Exception 
+{
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mphasis237","root","1234");
+	//Statement st=con.createStatement();
+	//st.execute("create table jdbcexample(empno int,name varchar(30),address varchar(30))");
+	//st.execute("insert into jdbcexample values(103,'Madhu','bangalore')");
+	//st.execute("update jdbcexample set address='Pune' where empno=103");
+	//st.execute("delete from jdbcexample where empno=103");
+		System.out.println("row inserted");
+}
+}
+--------------------------------------------------------------------------------------------------------------------------
+example-2(PreparedStatement)
+-----------------------------------------------------
+package Friday1;
+import java.sql.*;
+import java.util.*;
+public class JDBC2 
+{
+public static void main(String[] args)throws Exception 
+{
+	Scanner ob=new Scanner(System.in);
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mphasis237","root","1234");
+	System.out.println("enter empno,name and address");
+	int empno=ob.nextInt();
+	String name=ob.next();
+	String address=ob.next();
+	PreparedStatement ps=con.prepareStatement("insert into jdbcexample values(?,?,?)");
+	ps.setInt(1, empno);
+	ps.setString(2,name);
+	ps.setString(3, address);
+	ps.execute();
+		System.out.println("row inserted");
+}
+}
+-------------------------------------------------------------------------------------------------------------------------------------
+package Friday1;
+import java.sql.*;
+import java.util.*;
+public class JDBC2 
+{
+public static void main(String[] args)throws Exception 
+{
+	Scanner ob=new Scanner(System.in);
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mphasis237","root","1234");
+	System.out.println("enter name who's address want to update");
+	String name=ob.next();
+	String address=ob.next();
+	PreparedStatement ps=con.prepareStatement("update jdbcexample set address=? where name=?");
+	ps.setString(1, address);
+	ps.setString(2,name);
+	ps.execute();
+		System.out.println("row updated");
+}
+}
+----------------------------------------------------------------------------------------------------
+package Friday1;
+import java.sql.*;
+import java.util.*;
+public class JDBC2 
+{
+public static void main(String[] args)throws Exception 
+{
+	Scanner ob=new Scanner(System.in);
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mphasis237","root","1234");
+	System.out.println("enter empno which you want to delete");
+	int empno=ob.nextInt();
+	PreparedStatement ps=con.prepareStatement("delete from jdbcexample where empno=?");
+	ps.setInt(1, empno);
+	ps.execute();
+		System.out.println("row delete");
+}
+}
+-----------------------------------------------------------------------------------------------------------
+package Friday1;
+import java.sql.*;
+import java.util.*;
+public class JDBC2 
+{
+public static void main(String[] args)throws Exception 
+{
+	Scanner ob=new Scanner(System.in);
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mphasis237","root","1234");
+	Statement ps=con.createStatement();
+		ResultSet rs=ps.executeQuery("select * from jdbcexample");
+		while(rs.next())
+		{
+		System.out.println(rs.getInt(1)+"   "+rs.getString(2)+"  "+rs.getString(3));
+		}
+}
+}
+---------------------------------------------------------------------------------------------------------
+
+
+
 
