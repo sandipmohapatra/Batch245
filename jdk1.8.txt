@@ -553,6 +553,8 @@ public static void main(String[] args) {
 }
 }
 --------------------------------------------------------------------------------------
+Example-6
+-----------------------------------------------------
 package org.thursday;
 
 public class Employee 
