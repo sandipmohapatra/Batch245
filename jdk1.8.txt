@@ -673,13 +673,13 @@ There are 2 types of constructor
 1)default constructor :- it is without any parameter.
 2)parameterized constructor :- it is with parameter.
 To access a constructor we require an object.
------------------------------------------------------
+--------------------------------------------------------------------------------------------------
 import java.util.*;
 public class Student 
 {
 	int rollno;
 	String name,address;
-	float phy,chem,maths,total,avg;
+	float phy ,chem, maths, total, avg;
 	
 	
 	public Student() {
@@ -824,6 +824,75 @@ Difference between constructor and a method.
 but function has to be called explicitly by the help of an object. 
 4)to execute 5 constructors we have to create 5 objects but to execute 5 functions/methods we require 1 object. 
 ----------------------
+package org.thursday;
+import java.util.*;
+public class Student 
+{
+	int rollno;  //instance or global variable can be accessed through out the class
+	String name,address;
+	float phy,chem,maths,total,avg;
+	
+	
+	public Student() {
+		//default constructor
+		System.out.println("default constructor");
+	}
+	public Student(int rollno, String name, String address, float phy, float chem, float maths, float total,
+			float avg)//local variables scope is only within the method 
+	{
+		this.rollno = rollno;//assigning the local variable to the instance variable
+		//to differenciate between local and instance variable we use this keyword 
+		this.name = name;
+		this.address = address;
+		this.phy = phy;
+		this.chem = chem;
+		this.maths = maths;
+		this.total = total;
+		this.avg = avg;
+		System.out.println(rollno+" "+name+"  "+address+ "  "+total+"  "+avg);
+	}
+	void input()
+	{
+		Scanner ob=new Scanner(System.in);
+		System.out.println("enter rollno,name,address");
+		rollno=ob.nextInt();
+		name=ob.next();
+		address=ob.next();
+		System.out.println("enter physics,chemistry,maths marks");
+		phy=ob.nextFloat();
+		chem=ob.nextFloat();
+		maths=ob.nextFloat();
+		total=phy+chem+maths;
+		avg=total/3;
+	}
+	void display()
+	{
+		System.out.println("rollno is "+rollno+"Name is "+name);
+		System.out.println("the address is "+address);
+		System.out.println("The total is "+total);
+		System.out.println("The average is "+avg);
+	}
+	int sum(int a,int b)
+	{
+		return a+b;
+	}
+	float sum(float a,float b)
+	{
+		return a+b;
+	}
+public static void main(String[] args) 
+{
+	Student ob1=new Student();
+	Student ob2=new Student();
+	Student ob3=new Student(103,"peter","Bangalore",66,77,88,231,77);
+	ob1.input();
+	ob1.display();
+	System.out.println(ob1.total);
+	System.out.println("the sum is "+ob1.sum(5, 6));//method overloading//compile time
+	System.out.println("the sum is "+ob1.sum(5.4f, 6.4f));
+}
+}
+----------------------------------
 program-6
 ---------------------
 package monday;
@@ -1097,6 +1166,7 @@ public class Student1
 	}
 	public static void main(String[] args) {
 
+		//int a[]=new int[5];
 		Student1[] obj=new Student1[3];//array of objects
 
 		for(int i=0;i<3;i++)
@@ -1184,6 +1254,59 @@ There are 5 types of Inheritance.
 we use the keyword extends to inherite the parent class into the child class.
 we use the keyword super to access the parent class variables and methods into the child class.
 -------------------------------------------------------------------------------------
+eample-1
+---------------------
+package org.Wednesday;
+import java.util.*;
+class Student
+{
+int rollno;
+String name,address;
+void input()
+{
+	Scanner ob=new Scanner(System.in);
+	System.out.println("enter rollno,name,address");
+	rollno=ob.nextInt();
+	name=ob.next();
+	address=ob.next();
+}
+
+void display()
+{
+	System.out.println("the rollno is "+rollno+"The name is "+name+"The address is "+address);
+}
+}
+public class Marks extends Student
+{
+	int phy,chem,bio,total,avg;
+	void input()
+	{
+		super.input();
+		Scanner ob=new Scanner(System.in);
+		System.out.println("enter phy,chem,bio marks");
+		phy=ob.nextInt();
+		chem=ob.nextInt();
+		bio=ob.nextInt();
+		total=phy+chem+bio;
+		avg=total/3;
+	}
+	void display()
+	{
+		super.display();
+		System.out.println("physics marks is "+phy);
+		System.out.println("chemistry marks is"+chem);
+		System.out.println("Biology marks is "+bio);
+		System.out.println("total marks is "+total);
+		System.out.println("average marks is "+avg);
+			}
+	public static void main(String[] args) 
+	{
+		Marks ob=new Marks();
+		ob.input();
+		ob.display();
+	}
+}
+---------------------------------------------------------------------------------------------
 package day3;
 
 public class Student 
