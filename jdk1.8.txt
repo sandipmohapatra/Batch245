@@ -552,9 +552,9 @@ public static void main(String[] args) {
 	Book obj1=new Book(102,"Python","Kiran",25.35f);
 }
 }
---------------------------------------------------------------------------------------
+-------------------------------------------------
 Example-6
------------------------------------------------------
+-------------------------------------------------
 package org.thursday;
 
 public class Employee 
@@ -668,7 +668,7 @@ public class Bank
 Constructor
 -----------------------------
 A constructor is a method which has the same name as that of the class name.
-It doesnot return any value.it doesnot have any return type.
+It doesn't return any value.it doesn't have any return type.
 There are 2 types of constructor
 1)default constructor :- it is without any parameter.
 2)parameterized constructor :- it is with parameter.
@@ -721,13 +721,13 @@ package monday;
 import java.util.*;
 class first
 {
-int rollno;//intance variable
+int rollno;//intance variable .it can be accessed through out the class
 String name,address;
 first()
 {
 	System.out.println("this is a default constructor which is without any parameter");
 }
-first(int rollno,String name,String address)//local variable
+first(int rollno,String name,String address)//local variable can be accessed within the method 
 {
 	this.rollno=rollno;//to differenciate between intance variable and local variable we use this
 	this.name=name;//keyword.
@@ -754,6 +754,9 @@ Difference between constructor and a method.
 -----------------------------------------------------------------
 1)a method can have any name but a constructor will have only the class name .
 2)a method returns a value but constructor does not return any value.
+3)A constructor execute automatically when an object is created for a class.
+but function has to be called explicitly by the help of an object. 
+4)to execute 5 constructors we have to create 5 objects but to execute 5 functions/methods we require 1 object. 
 ----------------------
 program-6
 ---------------------
