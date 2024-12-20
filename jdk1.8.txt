@@ -1354,6 +1354,30 @@ public static void main(String[] args) {
 }
 }
 --------------------------------------------------------------------------------------------
+package org.Wednesday;
+import java.util.Scanner;
+public class Example12 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        int num = scanner.nextInt();
+        for (int i = 1; i <= num; i++) 
+        {
+            // Print spaces
+            for (int space = 1; space < i; space++) 
+            {
+                System.out.print(" ");
+            }
+            // Print first set of stars
+            for (int j = 1; j <= num + 1 - i; j++) {
+                System.out.print("* ");
+            }
+            // Move to the next line
+            System.out.println();
+        }
+    }
+}
+--------------------------------------------------------------------------------------------------------------
 Multi-level Inheritance
 --------------------------------------
 package Wednesday;
@@ -1484,6 +1508,95 @@ public static void main(String[] args)
 	ob.display();
 }
 }
+--------------------------------------------------------------------------------
+Multi-level Inheritance
+--------------------------------------------------------
+example-1
+---------------------------
+package org.Wednesday;
+import java.util.*;
+class Student
+{
+int rollno;
+String name,address;
+void input()
+{
+	Scanner ob=new Scanner(System.in);
+	System.out.println("enter rollno,name,address");
+	rollno=ob.nextInt();
+	name=ob.next();
+	address=ob.next();
+}
+
+void display()
+{
+	System.out.println("the rollno is "+rollno+"The name is "+name+"The address is "+address);
+}
+}
+-----------------------------------------------------------------------------------------
+package org.Wednesday;
+import java.util.Scanner;
+public class Marks extends Student
+{
+	int phy,chem,bio,total,avg;
+	void input()
+	{
+		super.input();
+		Scanner ob=new Scanner(System.in);
+		System.out.println("enter phy,chem,bio marks");
+		phy=ob.nextInt();
+		chem=ob.nextInt();
+		bio=ob.nextInt();
+		total=phy+chem+bio;
+		avg=total/3;
+	}
+	void display()
+	{
+		super.display();
+		System.out.println("physics marks is "+phy);
+		System.out.println("chemistry marks is"+chem);
+		System.out.println("Biology marks is "+bio);
+		System.out.println("total marks is "+total);
+		System.out.println("average marks is "+avg);
+			}
+	}
+--------------------------------------------------------------------------------------------------------------------
+package org.Wednesday;
+
+import java.util.Scanner;
+
+public class Personal extends Marks
+{
+String phno,address,email;
+void input()
+{
+	super.input();
+	Scanner ob=new Scanner(System.in);
+	System.out.println("enter phoneno,address and email");
+	phno=ob.nextLine();
+	address=ob.nextLine();
+	email=ob.nextLine();
+}
+	void display()
+	{
+		super.display();
+		System.out.println("the phone no is "+phno);
+		System.out.println("the address no is "+address);
+		System.out.println("the email no is "+email);
+			}
+}
+-----------------------------------------------------------------------------------------------------
+package org.Wednesday;
+
+public class Finalclass 
+{
+public static void main(String[] args) {
+	Personal ob=new Personal();
+	ob.input();
+	ob.display();
+}
+}
+
 --------------------------------------------------------------------------------
 wap to create a multi-level Inheritance
 employee class :-empno,name,address
