@@ -1913,6 +1913,52 @@ public static void main(String[] args)
 	emp.display();
 }
 }
+-------------------------
+super constructor 
+-------------------------------
+package org.saturday;
+class employee
+{
+	int empno;
+	String name,address;
+	public employee(int empno, String name, String address) {
+		super();
+		this.empno = empno;
+		this.name = name;
+		this.address = address;
+	}
+	void display()
+	{
+		System.out.println("The empno is "+empno);
+		System.out.println("The emp name is "+name);
+		System.out.println("The emp eddress is "+address);
+			}
+}
+public class Salary extends employee 
+{
+	float sal,itax,gross;
+
+	public Salary(int empno, String name, String address, float sal, float itax, float gross) 
+	{
+		super(empno, name, address);//first super constructor will execute the child const
+		this.sal = sal;
+		this.itax = itax;
+		this.gross = gross;
+	}
+	void display()
+	{
+		super.display();
+		System.out.println("the salary is "+sal);
+		System.out.println("the itax is "+itax);
+		System.out.println("the gross is "+gross);
+		
+	}
+public static void main(String[] args) {
+	Salary ob=new Salary(101,"sandip","Bangalore",45000,4500,40500);
+	ob.display();
+}
+}
+
 ---------------------------------------------------------------------------------------------------
 wap to enter details of a (HAS-A)
 Bank has-a customer
