@@ -1807,10 +1807,9 @@ Aggregation(HAS-A) relationship.
 example:-
 Employee has-a address
 Bank has-a customer
---------------------------------------
+________________________________________________
 https://www.durgasoft.com/scjp_material.asp
-------------------------------------------------------------------------------
--------
+________________________________________________
 Example-13
 -----------------------------
 package org.saturday;
@@ -1923,7 +1922,6 @@ Customer :- custid,name,address
 Answer
 --------------------------
 package day3;
-
 public class Bank
 {
 int accno;
@@ -1967,6 +1965,47 @@ public static void main(String[] args)
 	ob2.display();
 }
 }
+-----------------------------
+public enum Day {
+    MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY;
+}
+
+public class EnumExample 
+{
+    public static void main(String[] args) 
+{
+        Day today = Day.FRIDAY;
+        System.out.println("Today is: " + today);
+        switch (today) 
+{
+            case MONDAY:
+                System.out.println("Start of the work week!");
+                break;
+            case FRIDAY:
+                System.out.println("Last working Day");
+                break;
+            case SATURDAY:
+            case SUNDAY:
+                System.out.println("Weekend vibes!");
+                break;
+            default:
+                System.out.println("Another workday.");
+        }
+
+        System.out.println("\nAll days of the week:");
+        for (Day day : Day.values()) {
+            System.out.println(day);
+        }
+    }
+}
+-------------------------------------------------------------
+Enum Declaration: The Day enum defines constants for each day of the week.
+--------------------------------------------------------------------
+Accessing Enum Values: You can assign an enum value (Day.WEDNESDAY) to a variable.
+--------------------------------------------------------------------
+Switch Statement: Enums work well with switch statements for clean code.
+---------------------------------------------------------
+Loop Through Enum Values: The values() method returns an array of all constants in the enum, allowing iteration.
 ---------------------------------------------------------------------------------------------------
 Method Overloading:-
 Method Overriding:-
@@ -2013,9 +2052,9 @@ public static void main(String[] args) {
 		}
 }
 
-------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 Method Overriding:- runtime Polymorphism.(abstract class, Interface).we need two or more class.
-------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
 program-16
 ---------------------
 package Wednesday;
