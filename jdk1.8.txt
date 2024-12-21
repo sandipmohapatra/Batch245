@@ -1809,7 +1809,64 @@ Employee has-a address
 Bank has-a customer
 --------------------------------------
 https://www.durgasoft.com/scjp_material.asp
--------------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+-------
+Example-13
+-----------------------------
+package org.saturday;
+
+public class First 
+{
+int empno;
+String name,address;
+Bank bk;
+public First(int empno, String name, String address, Bank bk) 
+{
+		this.empno = empno;
+	this.name = name;
+	this.address = address;
+	this.bk = bk;
+}
+void show()
+{
+	System.out.println("empno is "+empno);
+	System.out.println("name is "+name);
+	System.out.println("address is "+address);
+	System.out.println("Bank details is "+bk);
+	}
+}
+---------------------------------------------------------------------
+package org.saturday;
+
+public class Bank 
+{
+String accno,bname;
+float balance;
+public Bank(String accno, String bname, float balance) {
+	this.accno = accno;
+	this.bname = bname;
+	this.balance = balance;
+}
+@Override
+public String toString() {
+	return "Bank [accno=" + accno + ", bname=" + bname + ", balance=" + balance + "]";
+}
+}
+--------------------------------------------------------------
+package org.saturday;
+
+public class Second 
+{
+public static void main(String[] args) {
+
+	Bank obj=new Bank("SBI-101","SBI",66000.00f);
+First obj1=new First(1001,"sandip","Bangalore",obj);
+obj1.show();
+}
+}
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
 program-14
 ---------------------
 package Wednesday;
