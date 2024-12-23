@@ -1913,52 +1913,6 @@ public static void main(String[] args)
 	emp.display();
 }
 }
--------------------------
-super constructor 
--------------------------------
-package org.saturday;
-class employee
-{
-	int empno;
-	String name,address;
-	public employee(int empno, String name, String address) {
-		super();
-		this.empno = empno;
-		this.name = name;
-		this.address = address;
-	}
-	void display()
-	{
-		System.out.println("The empno is "+empno);
-		System.out.println("The emp name is "+name);
-		System.out.println("The emp eddress is "+address);
-			}
-}
-public class Salary extends employee 
-{
-	float sal,itax,gross;
-
-	public Salary(int empno, String name, String address, float sal, float itax, float gross) 
-	{
-		super(empno, name, address);//first super constructor will execute the child const
-		this.sal = sal;
-		this.itax = itax;
-		this.gross = gross;
-	}
-	void display()
-	{
-		super.display();
-		System.out.println("the salary is "+sal);
-		System.out.println("the itax is "+itax);
-		System.out.println("the gross is "+gross);
-		
-	}
-public static void main(String[] args) {
-	Salary ob=new Salary(101,"sandip","Bangalore",45000,4500,40500);
-	ob.display();
-}
-}
-
 ---------------------------------------------------------------------------------------------------
 wap to enter details of a (HAS-A)
 Bank has-a customer
@@ -2016,14 +1970,12 @@ public enum Day {
     MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY;
 }
 
-public class EnumExample 
-{
-    public static void main(String[] args) 
-{
+public class EnumExample {
+    public static void main(String[] args) {
         Day today = Day.FRIDAY;
         System.out.println("Today is: " + today);
-        switch (today) 
-{
+
+        switch (today) {
             case MONDAY:
                 System.out.println("Start of the work week!");
                 break;
@@ -2038,6 +1990,7 @@ public class EnumExample
                 System.out.println("Another workday.");
         }
 
+        // Loop through all enum values
         System.out.println("\nAll days of the week:");
         for (Day day : Day.values()) {
             System.out.println(day);
@@ -2378,14 +2331,14 @@ void display4();
 		 ob.display1(); ob.display2(); ob.display3();  ob.display4();
 	}
  }
- ------------------------------------------------------------------------------------------------------
+ --------------------------------------------------------------------------------------------------
  static :- we can declare a variable as static, method as static, we can have static block and we can have static class.
 We can access it without creating an object.
 We can access it with the help of the class name.
 A single copy of the static variable, method, block or class is created in the JVM.
 It is used for memory management.
 If we declare a static block it execute before the main method.
-------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
 progarm-21
 ---------------------------
 package Wednesday;
@@ -2411,7 +2364,7 @@ display();
 StaticDemo.display();
 }}
  ----------------------------------------------------------------------------------------------
- we cannot access a non-static variables inside a static method.
+we cannot access a non-static variables inside a static method.
 we can access static variables inside a non-static method.
 ------------------------------------------------------------------------------------------------
 program-22
@@ -2475,7 +2428,7 @@ counter();
 counter();
 counter();
 }}
-----------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
  final keyword
 -------------------------
 This is a done to protect the data.
@@ -2640,7 +2593,7 @@ System.out.println("the sum is "+sum);
 public static void main(String h[]) 
 
 public is a access specifier so that JVM can access the main method which is outside the package.
-static is used so that we can access static variables and methods inside it.and we need not create object of the main()
+static is used so that we can access static variables and methods inside it. and we need not create object of the main()
 void is the return type.
 main is the keyword for making the method as main.
 (String h[]) -- we can pass string arguments inside it.
@@ -2651,6 +2604,33 @@ First is the class name.
 obj is the reference pointer to the class.
 new is a keyword which creates the memory block for storing the data.
 First() is a default constructor.
+--------------------------------------------------------------------------------------------------
+Example:-nextLine()
+---------------------------------------------
+package org.monday;
+import java.util.Scanner;
+public class InputExample 
+{
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        // Read an integer
+        System.out.print("Enter an integer: ");
+        int number = scanner.nextInt();
+        // Consume the leftover newline
+        scanner.nextLine();  <------------------------------------Important
+        // Read a string
+        System.out.print("Enter a string: ");
+        String text = scanner.nextLine();
+     // Read a string
+        System.out.print("Enter a string: ");
+        String text1 = scanner.nextLine();
+        // Display the input
+        System.out.println("You entered the integer: " + number);
+        System.out.println("You entered the string: " + text);
+        System.out.println("You entered the string: " + text1);
+        scanner.close();
+    }
+}
 --------------------------------------------------------------------------------------------------
 Exception Handling
 ------------------------------
@@ -2678,7 +2658,7 @@ program-27
 ----------------------
 //The main purpose is to run the program till the end
 //java.lang.ArithmeticException the program is terminated we have to handle the error.
-//we have to put into a try ,catch block.where we suspect that error may occur.
+//we have to put into a try ,catch block. where we suspect that error may occur.
 
 package Thrusday;
 import java.util.*;
@@ -2807,7 +2787,7 @@ throws Exception:-
 -------------------------------
 we don't require any body for throws exception .we mention it with the method.
 This is mostly used with checked exception.
-when we work with IOException,SQLException,Interrupted Exception etc.
+when we work with IOException, SQLException, Interrupted Exception etc.
 ------------------------------------------------------------------
 program-30
 -----------------------
