@@ -6090,6 +6090,52 @@ public static void main(String[] args)throws Exception
 	}
 }
 ------------------------------------------------------------------------------------------------
+package org.Friday;
+import java.sql.*;
+import java.util.*;
+public class JDBC1 
+{
+public static void main(String[] args)throws Exception 
+{
+	Scanner ob=new Scanner(System.in);
+	System.out.println("enter name,address and rollno which you want to update");
+	String name=ob.next();
+	String address=ob.next();
+	int rollno=ob.nextInt();
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection
+			("jdbc:mysql://localhost:3306/batch245","root","1234");
+	PreparedStatement st=con.prepareStatement
+			("update student set name=?,address=? where rollno=?");
+	st.setString(1,name);
+	st.setString(2,address);
+	st.setInt(3,rollno);
+	st.execute();
+	System.out.println("row updated");
+	}
+}
+---------------------------------------------------------------------------------------------------
+package org.Friday;
+import java.sql.*;
+import java.util.*;
+public class JDBC1 
+{
+public static void main(String[] args)throws Exception 
+{
+	Scanner ob=new Scanner(System.in);
+	System.out.println("enter rollno which you want to delete");
+	int rollno=ob.nextInt();
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection
+			("jdbc:mysql://localhost:3306/batch245","root","1234");
+	PreparedStatement st=con.prepareStatement
+			("delete from student where rollno=?");
+	st.setInt(1,rollno);
+	st.execute();
+	System.out.println("row deleted");
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------
 
 package JDBC;
 import java.sql.*;
