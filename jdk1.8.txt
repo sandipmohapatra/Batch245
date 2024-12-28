@@ -1,3 +1,5 @@
+java programs by ashok it
+---------------------------------
 Java 1.8 features
 --------------------------
 1)Java is Object Oriented programming Language.
@@ -940,9 +942,9 @@ public static void main(String[] args) {
 }
 -----------------------------------------------------------------------
 Question-2
-wap to create a parameterized constractor .pass the values and display it.
-employee :- empno,name,designation,salary.
--------------------------------------------------------------------------------------------------------------
+wap to create a parameterized constructor .pass the values and display it.
+employee :- empno, name, designation, salary.
+----------------------------------------------------------------------
 program-7
 ---------------------
 package monday;
@@ -2539,7 +2541,7 @@ Because the class has to be accessed by the JVM which is out side the class.
 JVM can access default or public access specifier.
 -------------------------------------------------------------------------
 Wrapper class
-----------------------
+-------------------------------------------------------------------------
 All datatypes in java are also class known as wrapper class.
 1)byte -Byte
 2)short - Short
@@ -3188,24 +3190,21 @@ for(int i=0;i<3;i++)
 		System.out.print(c[i][j]+"  ");
 	}
 	System.out.println();
-}
-
-}
-}
-
----------------------------------------------------------------------
+}}}
+--------------------------------------------------------------------------
 We have 3 classes String, StringBuffer, StringBuilder
 --------------------------------------------------------------------------
 String :-Immutable(cannot be changed).
-StringBuffer:-mutable(can be changed)
-StringBuilder:-mutable(can be changed)
+String Buffer:-mutable(can be changed).
+StringBuilder:-mutable(can be changed).
 ---------------------------------------------------------------------------
 Progarm-36
 ----------------
 package Friday;
 public class StringDemo
 {
-public static void main(String[] args) {
+public static void main(String[] args) 
+{
 	String s1="apple";
 	String s2="apple";
 	String s3=new String("apple"); //new memory block is created
@@ -3404,15 +3403,15 @@ System.out.println(ts);
 }
 --------------------------------------------------------------------------------------------------
 Assignment-2
--------------------------------
+-----------------------------------------------------------------------------------------------------
 wap to enter data of few employees into a LinkedHashSet and display it.
-empno,name,salary.
+empno, name, salary.
 ------------------------------------------------------------------------------------------------------
 AutoBoxing and Unboxing
-------------------------------------------
+-----------------------------------------------------------------------------------------------------
 The autoboxing convert the primative data types into it equivalent Wrapper type.
 The unboxing convert the wrapper type to primative datatype.
----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------
 Example
 -------------------
 package Friday;
@@ -3444,7 +3443,8 @@ public class SetDemo
 public static void main(String[] args)
 {
 TreeSet<Integer> ts=new TreeSet<Integer>();
-System.out.println(ts.isEmpty());//to check if the TreeSet is empty or not returns a boolean value
+//to check if the TreeSet is empty and  returns a boolean value
+System.out.println(ts.isEmpty());
 System.out.println(ts.size());
 ts.add(70);
 ts.add(20);
@@ -3476,7 +3476,7 @@ public static void main(String[] args)
 {
 TreeSet<Integer> ts=new TreeSet<Integer>();
 System.out.println(ts.isEmpty());
-//to check if the TreeSet is empty or not returns a boolean value
+//to check if the TreeSet is empty or not returns a Boolean value
 System.out.println(ts.size());
 ts.add(70);
 ts.add(20);
@@ -3531,7 +3531,7 @@ while(itr.hasNext())
 List :-It is an Interface.
 It allows duplicate records.
 We have classes 1)Stack 2)ArrayList 3)Linkedlist 4)Vector
-stack :FILO .The last element will be index 0.
+stack :FILO .The last element will be index 1.
 List display in the same order.
 ---------------------------------------------------------------
 example-43
@@ -3684,11 +3684,11 @@ ls.forEach((x)->System.out.println(x));
 }
 -----------------------------------------------Assignment-3------------------------------------
 create a bank class and store the data into the LinkedList and display it.
-Bank class
-accno, name, balance
+Bank class having accno, name, balance
 --------------------------------------------------------------------------------------
 Interface to iterate the data:-
----------------------------------------------------------------------------------------------------------Iterator:-hasNext(),next();remove();//In this we can move in one direction.
+---------------------------------------------------------------------------------------------------------
+Iterator:-hasNext(),next();remove();//In this we can move in one direction.
 ListIterator:- In this we can move in both direction.
 forward :- In this we have hasNext(),next().First the pointer with move in forward direction then it will move in backward direction.
 backward:- In this we have hasPrevious(),previous();
@@ -3904,11 +3904,11 @@ Map :-It is an interface.
 The key should not be duplicate. The value can be duplicate.
 The key and value pair is known as entry.
 Map is useful to search, update or delete elements on the basis of the key.
--------------------------------------------------------------
+-----------------------------------------------------------------------------------
 Map --HashMap,  LinkedHashMap, TreeMap(sorting),HashTable
 -----------------------------------------------------------------------------------
 Example-48
-------------------
+----------------------------------------------------------
 package monday;
 import java.util.*;
 public class HashMapDemo
@@ -3930,7 +3930,7 @@ hm.put(rollno, name);
 System.out.println(hm);
 }
 }
--------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 Set set=hm.entrySet();//
 Iterator itr=set.iterator();
 while(itr.hasNext())
@@ -3939,10 +3939,10 @@ while(itr.hasNext())
 	System.out.println(en.getKey()+ "  "+en.getValue());
 }
 ---------------------------------------------------------------------------------------------
-HashSet is converted to set because we don't have the Interface Iterator in the HashMap. We have it in Set.
+HashMap is converted to set because we don't have the Interface Iterator in the HashMap. We have it in Set.
 entrySet() is used to convert the Map into set.
 Map.Entry is a class contain getKey(),getValue()
--------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 Example-49
 --------------------
 package monday;
@@ -3971,7 +3971,7 @@ while(itr.hasNext())
 	Map.Entry en=(Map.Entry<Integer, String>)itr.next();
 	System.out.println(en.getKey()+ "  "+en.getValue());
 }}}
------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------
 package monday;
 import java.util.*;
 public class HashMapDemo
@@ -4011,7 +4011,7 @@ for(Map.Entry<Integer, String> m: hm.entrySet())
 	System.out.println(m.getKey()+ "    "+m.getValue());
 System.out.println("****************************");
 }}
--------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
 package monday;
 import java.util.*;
 public class HashMapDemo
@@ -4117,19 +4117,19 @@ There are 2 factors which effect the performance of hashmap.
 --------------------------------------------------------------------------------------------------------------------------
 Load Factor :- is measured that decides when to increase the HashMap capacity to maintain the get() and put() request.
 ---------------------------------------------------------------------------------------------------------
-wap to create a BookShop where we have some books.(bookid,book name,price)
+wap to create a BookShop where we have some books.(bookid, book name, price)
 enter the book list into a HashMap.
 if the book is sold remove from the list.
 if the price of the book is increased modify the list.
 if a person wants to search for the book he can put the bookid and see the book is available or not.
 finally display the total books available.
---------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
 Queue Interface
 ------------------------------
 It maintains the first-in-first-out order.
 It can be defined as an ordered list that is used to hold elements in the same order.
 The classes are PriorityQueue, Deque and ArrayDeque .
------------------------------------------------------------------- 
+----------------------------------------------------------------------------------- 
 Example-51
 ---------------------
 package HashMapDemo;
@@ -4187,7 +4187,7 @@ public static void main(String[] args) {
 		System.out.println(abc);
 }
 }
------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
 Example-54
 -------------------------
 CompareTo
@@ -4205,7 +4205,7 @@ public Product(int id, String name, Float price) {
 	this.name = name;
 	this.price = price;
 }}
-----------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
 package Collection;
 import java.util.*;
 public class LambdaExpressionDemo
@@ -4235,7 +4235,7 @@ for(Product p:al)
 
 }
 }
----------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
 Filter Data
 ------------------
 package Collection;
@@ -4483,7 +4483,7 @@ We can create object of Thread and assign the task.
 In this we will have run() and we will have start() .the start() will call the run().
 For this we can either extends 
  class or implement runnable interface.
-There will be Thread switching .So we will see all the start() exceute at the same time and the output will be a mixture of all the task.
+There will be Thread switching .So we will see all the start() execute at the same time and the output will be a mixture of all the task.
 ------------------------------------------------------------------------------------------------------
 Thread lifecycle
 --------------------------
@@ -5915,7 +5915,7 @@ while((y=red.read())!=-1)
 JDBC :- Java database connectivity
 Oracle 10xe/MySql--structured Data(rows and columns)
 MongoDB --unstructured Data(facebook,paytm)
--------------------------
+-------------------------------------------------------------------------------------------------------------------
 JDBC we have 2 types of driver:-
 1)Thick Driver
 2)Thin Driver
@@ -5976,36 +5976,7 @@ public static void main(String[] args)throws Exception
 	System.out.println("row inserted");
 }
 }
-------------------------------------------------------------------------------------------------------------------
-
-Insert
-------------------
-package JDBC;
-import java.sql.*;
-public class Student 
-{
-public static void main(String[] args)throws Exception
-{
-	//to load the driver
-	Class.forName("oracle.jdbc.driver.OracleDriver");
-	//to get connection from DriverManager
-	Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","1234");
-	//jdbc--protocal ,
-	//oracle is ---database,
-	//thin--type 4 driver,
-	//localhost--both server and client reside in the same machine
-	//localhost (IP address of the server :123.12.34.4),default port no :1521,
-	//xe is the database name,
-	//system--username
-	//1234 is the password.
-	//Statement()/preparedStatement(pass the sql query)
-	Statement st=con.createStatement();
-	//execute(pass the sql query)/execute();
-	st.execute("insert into marlabsstud values(101,'Shubam','Bangalore')");//static query
-	System.out.println("Row Inserted");		
-}
-}
------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
 update data
 -------------------
 package JDBC;
@@ -6040,8 +6011,8 @@ public static void main(String[] args)throws Exception
 --------------------------------------------------------------------------------------------------------
 ResultSet rs=st.executeQuery("select * from marlabsstud");
 All the data from the marlabsstud table will be stored in the ResultSet variable rs.
-we will use a while loop to eterate the data.The pointer will move from the first row till the last row.
------------------
+we will use a while loop to eterate the data. The pointer will move from the first row till the last row.
+-------------------------
 select
 ------------------------
 package JDBC;
@@ -6086,8 +6057,6 @@ st.execute("insert into jdbcexample values(102,'Pavan','bangalore')");
 }
 }
 ----------------------------------------------------------------------------------------------------
-
-
 1)Oracle 10xe 
 2)MySql 
 3)MongoDB
@@ -6096,6 +6065,32 @@ Path where you can find the ojdbc14.jar (driver)
 
 C:\oraclexe\app\oracle\product\10.2.0\server\jdbc\lib
 -----------------------------------------------------------------------------
+MySQL
+------------------------
+package org.Friday;
+import java.sql.*;
+import java.util.*;
+public class JDBC1 
+{
+public static void main(String[] args)throws Exception 
+{
+	Scanner ob=new Scanner(System.in);
+	System.out.println("enter rollno,name,address");
+	int rollno=ob.nextInt();
+	String name=ob.next();
+	String address=ob.next();
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/batch245","root","1234");
+	PreparedStatement st=con.prepareStatement("insert into student values(?,?,?)");
+	st.setInt(1, rollno);
+	st.setString(2, name);
+	st.setString(3,address);
+	st.execute();
+	System.out.println("row inserted");
+	}
+}
+------------------------------------------------------------------------------------------------
+
 package JDBC;
 import java.sql.*;
 import java.util.*;
@@ -6103,8 +6098,8 @@ public class Student
 {
 public static void main(String[] args)throws Exception
 {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","1234");
+		Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mphasis237","root","1234");
 		Scanner ob=new Scanner(System.in);
 		System.out.println("enter empno,name,address");
 		int empno=ob.nextInt();
