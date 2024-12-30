@@ -4472,20 +4472,18 @@ for(Map.Entry ab:d.entrySet())
 }
 }
 }
-----------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
 Thread:-It is a sort of execution of instruction.
-
 single Thread Program:- Till now we were doing single threaded programing the program start execution from the main() till the end.
 ------------------------------------------------------------------------------------------------
 Multi Thread Program:-
 Each thread will do some task.
 We can create object of Thread and assign the task.
 In this we will have run() and we will have start() .the start() will call the run().
-For this we can either extends 
- class or implement runnable interface.
+For this we can either extends Thread class or implement runnable interface.
 There will be Thread switching .So we will see all the start() execute at the same time and the output will be a mixture of all the task.
 ------------------------------------------------------------------------------------------------------
-Thread lifecycle
+Thread life cycle
 --------------------------
 new born thread
 start
@@ -4530,7 +4528,7 @@ public static void main(String[] args)
 }
 ----------------------------------------------------------------------------
 Methods in Thread class
-----------------------------------------
+---------------------------------------------------------------------------
 1)getName() :- It gets the name of Thread.
 
 2)isAlive() :- It check if the Thread is still running or completed it's execution. It returns Boolean value.
@@ -4556,7 +4554,7 @@ MAX_PRIORITY=RANGE(6 to 10)
 12)notifyAll() :- This will wake up all the waiting threads.
 13)join(): When the join() method is invoked, the current thread stops its execution and go into the wait state. The current thread remains in the wait state until the thread on which the join() method is invoked called is dead or the wait for the specified time frame() is over.
 14)yield():-
--------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 Example-59
 ---------------------
 package Thread;
@@ -4590,7 +4588,7 @@ public static void main(String[] args)
 }
 -----------------------------------------------------------------
 Example-60
-----------------------
+----------------------------------------------------------------
 package Thread;
 public class Thread5 implements Runnable
 {
@@ -4665,7 +4663,7 @@ public class Thread5 implements Runnable
 		obj1.start();obj2.start();obj3.start();
 	}
 }
---------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------
 Join Example
 -----------------------
 package Thursday;
@@ -4713,6 +4711,48 @@ public static void main(String[] args)
 wap to find out who gets the tickets out of the 3 friends.
 There are only 2 tickets available in the counter.
 ------------------------------------------------------------------------------------------
+package org.monday;
+class First1 implements Runnable
+{
+int available=2;
+
+synchronized public void run()
+	{
+
+	try
+	{
+	Thread t=Thread.currentThread();
+	String name=t.getName();
+	if(available > 0)
+	{
+	System.out.println(name+"  got the ticket");
+	System.out.println("ticket printing.......");
+	Thread.sleep(2000);
+	available=available-1;
+	}
+	else
+	{
+	System.out.println(name+"   sorry no ticket....");
+	}
+	
+	}catch(Exception e){}
+	}
+}
+
+class dd8
+{
+    public static void main(String args[]) throws Exception
+{ 
+First1 obj=new First1();
+ Thread t1=new Thread(obj,"raj");
+ Thread t2=new Thread(obj,"seeta");
+ Thread t3=new Thread(obj,"reeta");
+        t1.start();
+       t2.start();
+       t3.start();
+}
+}
+---------------------------------------------------------------------------------------
 Example-62
 -----------------------
 package Thread;
@@ -4862,7 +4902,7 @@ tgc1.list();
 }
 }
 --------------------------------------------------------------------------------------
-destroy():- This will destroy the thread group and the subgroups.First we have to destroy the child group then the parent.
+destroy():- This will destroy the thread group and the subgroups. First we have to destroy the child group then the parent.
 
 Example-65
 ---------------------
