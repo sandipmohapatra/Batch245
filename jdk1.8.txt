@@ -4472,7 +4472,114 @@ for(Map.Entry ab:d.entrySet())
 }
 }
 }
-------------------------------------------------------------------------------------------------
+-------------------------------------Type Casting----------------------------------------------------
+What is Upcasting?
+Upcasting is when a subclass object (Dog) is assigned to a reference variable of its superclass (Animal).
+It happens automatically (implicit casting).
+Example:
+Animal animal = new Dog();  // Implicit upcasting
+_____________________________________________________________________
+
+What About Downcasting?
+Downcasting is when a superclass reference is cast to a subclass reference.
+Downcasting requires explicit casting.
+
+Animal animal = new Dog();  // Upcasting
+Dog dog = (Dog) animal;     // Explicit downcasting
+dog.fetch();                // Accessing subclass-specific method
+--------------------------------------------------------------------------------------------------
+implicit casting
+---------------------------
+public class CastDemo 
+{
+public static void main(String[] args) 
+{
+byte a=10;//-128 to 127-------------1 byte
+int b=a;//4 bytes
+System.out.println(b);
+}
+}
+---------------------------------------------------------------------
+explicit casting
+----------------------------------------
+public class CastDemo 
+{
+public static void main(String[] args) 
+{
+int a=120;
+byte b=(byte)a;
+System.out.println(b);
+}
+}
+------------------------------------------------------------------------------------
+Example-1
+-----------------------------
+The instanceof operator is commonly used in object-oriented programming languages to check whether an object is an instance of a specific class.
+----------------------------------------------------------------------------------------------------------
+package org.monday;
+class Animal {}
+class Dog extends Animal {}
+class Cat extends Animal {}
+
+public class InstanceOfExample {
+    public static void main(String[] args) 
+    {
+        Animal animal = new Dog(); //upcasting
+        System.out.println(animal instanceof Dog);  // true
+        System.out.println(animal instanceof Cat);  // false
+        System.out.println(animal instanceof Animal);  // true
+        System.out.println(animal instanceof Object);  // true
+    }
+}
+-----------------------------------------------------------------------------------
+Example-2
+--------------------------------
+package org.Friday;
+
+class Animal 
+{
+    void makeSound()
+ {
+        System.out.println("Animal sound");
+    }
+}
+
+class Dog extends Animal 
+{
+    @Override
+    void makeSound() 
+{
+        System.out.println("Bark");
+    }
+
+    void fetch() 
+{
+        System.out.println("Dog fetches the ball");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal animal = new Dog();  // Parent reference, child object
+        
+        // Calls the overridden method in Dog
+        animal.makeSound();  // Output: Bark
+
+        // animal.fetch();  // Compile-time error: fetch() is not in Animal
+
+        // Cast to Dog to access Dog-specific methods
+        if (animal instanceof Dog) {
+            Dog dog = (Dog) animal;
+            dog.fetch();  // Output: Dog fetches the ball
+        }
+    }
+}
+-------------------------------------------------------------------------------------------------
+if (animal instanceof Dog) {
+    Dog dog = (Dog) animal;  // Safe downcasting
+    dog.fetch();
+}
+----------------------------------------------------------------------------------------------------------------------------------
 Thread:-It is a sort of execution of instruction.
 single Thread Program:- Till now we were doing single threaded programing the program start execution from the main() till the end.
 ------------------------------------------------------------------------------------------------
