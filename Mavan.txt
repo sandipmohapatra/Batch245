@@ -26,7 +26,7 @@ Reporting
 Releases
 Distribution
 
-----------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------
 What is Build Tool
 A build tool takes care of everything for building a process. It does following:
 
@@ -35,7 +35,7 @@ Generates documentation from source code
 Compiles source code
 Packages compiled code into JAR of ZIP file
 Installs the packaged code in local repository, server repository, or central repository
---------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------
 A maven repository is a directory of packaged JAR file with pom.xml file. Maven searches for dependencies in the repositories. There are 3 types of maven repository:
 
 Local Repository
@@ -77,4 +77,19 @@ pom.xml
     </plugins>
 </build>
 
-------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+Local repositorty stores --- 
+	(${Local.home}/m2/repository))
+------------------------------------------------------------------
+which elements are used to identify a dependent artifact in a pom.xml file? 
+	(version, groupid, artifactid)
+------------------------------------------------------------------------
+what is true about mvn clean? 
+	(It cleans up artifacts created by prior builds)
+---------------------------------------------------------------------
+which of the following scope is used only when the dependency is of pom type? 
+	(import)
+-------------------------------------------------------------------------
+which plugin uses the information in the pom to determine the proper location for the artifact within the local repository? 
+	(maven-install-plugin)
+------------------------------------------
