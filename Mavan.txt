@@ -1,0 +1,80 @@
+Maven is a powerful project management tool that is based on POM (project object model). It is used for projects build, dependency and documentation.
+
+It simplifies the build process like ANT. But it is too much advanced than ANT.
+
+Current version of Maven is 3.
+
+There are many problems that we face during the project development. They are discussed below:
+
+1) Adding set of Jars in each project: In case of struts, spring, hibernate frameworks, we need to add set of jar files in each project. It must include all the dependencies of jars also.
+
+2) Creating the right project structure: We must create the right project structure in servlet, struts etc, otherwise it will not be executed.
+
+3) Building and Deploying the project: We must have to build and deploy the project so that it may work.
+
+Maven simplifies the above mentioned problems. It does mainly following tasks.
+
+It makes a project easy to build
+It provides uniform build process (maven project can be shared by all the maven projects)
+It provides project information (log document, cross referenced sources, mailing list, dependency list, unit test reports etc.)
+It is easy to migrate for new features of Maven
+Apache Maven helps to manage
+
+Builds
+Documentation
+Reporting
+Releases
+Distribution
+
+----------------------------------------------------------------------------------------------------------------------
+What is Build Tool
+A build tool takes care of everything for building a process. It does following:
+
+Generates source code (if auto-generated code is used)
+Generates documentation from source code
+Compiles source code
+Packages compiled code into JAR of ZIP file
+Installs the packaged code in local repository, server repository, or central repository
+--------------------------------------------------------------------------------------------------------------------------------------------------
+A maven repository is a directory of packaged JAR file with pom.xml file. Maven searches for dependencies in the repositories. There are 3 types of maven repository:
+
+Local Repository
+Central Repository
+Remote Repository
+---------------------------------------------------------------------------------------------
+Step-1
+Right click on project -----run as---maven clean
+------------------------------------------------------------------
+Step-2
+Right click on project -----run as---maven install
+------------------------------------------------------------------
+Step-3
+Refresh the project
+------------------------------------------------------------------
+Step-4
+on project----Right click----properties ----location----cmd
+------------------------------------------------------------------
+Step-5
+java -jar <jar file name>.jar
+--------------------------------------------------------------------
+pom.xml
+-------------------
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.1.0</version>
+            <configuration>
+                <archive>
+                    <manifest>
+                        <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        <mainClass>BubbleSort</mainClass> <!-- Replace with your main class -->
+                    </manifest>
+                </archive>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+
+------------------------------------------------------------------------------------------------------------------------
