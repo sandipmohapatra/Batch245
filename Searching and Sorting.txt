@@ -117,8 +117,7 @@ public class LinearSearch
             System.out.println("Element found at index " + result);
     }
 }
-----------------------------------------------------------------------------------------------------------------------
-
+---------------------------------------------------------------------------------------------------
 Loop through each element of the array:
 The loop runs from the first element (index 0) to the last element (index array.length - 1).
 Check each element:
@@ -127,7 +126,7 @@ If the element is not found, return -1:
 If the loop completes without finding the key, return -1 indicating the element is not present in the array.
 Usage
 The example in the main method demonstrates how to use the linear Search method. It searches for the key 10 in the array {2, 3, 4, 10, 40} and prints the result.
----------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 Bubble Sort
 ---------------------
 public class BubbleSort {
