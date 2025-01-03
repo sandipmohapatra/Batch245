@@ -4472,7 +4472,7 @@ for(Map.Entry ab:d.entrySet())
 }
 }
 }
--------------------------------------Type Casting----------------------------------------------------
+------------------------------Type Casting----------------------------------------------------
 What is Upcasting?
 Upcasting is when a subclass object (Dog) is assigned to a reference variable of its superclass (Animal).
 It happens automatically (implicit casting).
@@ -5812,7 +5812,7 @@ a)byte stream
 b)character stream
 Under this byte stream and character stream we have different class.
 6)While working with file we have to handle exception because it throws checked Exception.
-Exceptions :- EOFException,FileNotFoundException,InterruptedIOException,IOException.
+Exceptions :- EOFException, FileNotFoundException, InterruptedIOException, IOException.
 ----------------------------------------------------------------------------------
 We have some file class methods
 ---------------------------------------------------------------------------------
@@ -5927,7 +5927,7 @@ The process of reading and writing object into a file is known as serialization 
 -----------------------------------------------------------------------
 ObjectInputStream/ObjectOutputStream ----serialization and de-serialization.
 -------------------------------------------------------------------------------
-Serializable -it is a marker interface.There will be no abstract method in it.
+Serializable -it is a marker interface. There will be no abstract method in it.
 ---------------------------
 example-
 package File;
@@ -5975,7 +5975,7 @@ System.out.println("the address is :"+s1.address);
 }}
 ---------------------------------------------------------------------------------------
 transient :- it is a keyword .this will not be Serialized.
-------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------
 o/p:-int
 the rollno is :0
 the name is :sandip
@@ -5986,8 +5986,8 @@ the rollno is :101
 the name is :null
 the address is :bangalore
 ------------------------------------------------------
-wap to store data of few employees into a files and retrive it using serialization and de-serialization.
-employee class (empno,name,salary,designation)
+wap to store data of few employees into a files and retrieve it using serialization and de-serialization.
+employee class (empno, name, salary, designation)
 ----------------------------------------------------------------------------------
 character stream
 ------------------------------
@@ -6058,7 +6058,40 @@ while((y=red.read())!=-1)
 }
 }
 }
-----------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+Generic 
+------------------
+class Box<T> 
+{
+	private T content;
+
+	public T getContent() {
+		return content;
+	}
+
+	public void setContent(T content) {
+		this.content = content;
+	}
+}
+-------------------------------------------------------------------------------
+public class Snippet 
+{
+	public static void main(String[] args) {
+		
+	Box<String> stringBox = new Box<>();
+	stringBox.setContent("Hello");
+	System.out.println(stringBox.getContent());  // Output: Hello
+	
+	Box<Integer> integerBox = new Box<>();
+	integerBox.setContent(123);
+	System.out.println(integerBox.getContent());  // Output: 123
+	
+	Box<Float> floatBox = new Box<>();
+	floatBox.setContent(123.54f);
+	System.out.println(floatBox.getContent());  // Output: 123
+	}
+}
+-----------------------------------------------------------------------------
 JDBC :- Java database connectivity
 Oracle 10xe/MySql--structured Data(rows and columns)
 MongoDB --unstructured Data(facebook,paytm)
