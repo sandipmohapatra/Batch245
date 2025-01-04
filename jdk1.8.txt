@@ -7828,6 +7828,516 @@ public static void main(String[] args)throws Exception
 }
 }
 ---------------------------------------------------------------------------------------------------------
+(A/An) ____________ is a contract in the form of a collection of method and constant declarations. When a class implements (a/an) ____________, it promises to implement all of the methods declared in that ____________.  Select the best word to complete this sentence. 
+
+---------------------------------------------------------------------------------------------------------------
+The phrase “is a” refers to the object-oriented concept of ____________, and the phrase “has a” refers to the object-oriented concept of ____________
+----------------------------------------------------------------------------------------
+RunTime Polymorphism is achieved by ______ 
+-----------------------------------------------------------------------------------------
+What makes a class abstract?
+--------------------------------------------------------------------------------------------
+The class at the top of exception class hierarchy is .................
+-------------------------------------------------------------------------------------------
+public class Test
+{
+public static void main(String args[])
+{               
+try
+{ 
+int i; 
+return;
+}catch(Exception e)
+{                     
+  System.out.print("inCatchBlock");
+}
+finally
+{
+System.out.println("inFinallyBlock");
+ }}}
+--------------------------------------------------------------------------------------------------------------
+ What is the output of this program?             
+ class output 
+{ 
+public static void main(String args[])
+{
+String c = "Hello i love java";
+boolean var;
+var =c.startsWith("hello");
+System.out.println(var); 
+}}
+------------------------------------------------------------------------------
+public class Test
+{public static void main(String args[])
+{
+int i;
+try
+{
+i = calculate();
+System.out.println(i);
+}
+catch(Exception e)
+{System.out.println("Error occured");
+} } 
+static int calculate()
+{
+ return (7/2);
+ }}
+---------------------------------------------------------------------------
+try
+{
+File f = new File("a.txt");}
+catch(Exception e){}
+catch(IOException io)
+{}
+-------------------------------------------------------------------------------------------
+public class Test
+{
+public static void main(String args[])
+{
+try
+{
+int a = Integer.parseInt("four");
+}}}
+-------------------------------------------------------------------------------------
+A property which is not true for classes is that they 
+-------------------------------------------------------------------------------
+The process of building new classes from existing one is called 
+-----------------------------------------------------------------------------------
+Data members which are static
+------------------------------------------------------------
+Exception handling is targeted at
+------------------------------------------------------------- 
+Which of the following is NOT a key component of object oriented programming?
+-------------------------------------------------------------------------------
+Which of these is TRUE of the relationship between objects and classes?
+----------------------------------------------------------
+The Java compiler translates source code into
+-----------------------------------------------------------------
+Which of the following is NOT a valid ‘type’ in Java?
+---------------------------------------------------------------------------
+Which of the following statements is NOT correct?
+-----------------------------------------------------------------------------
+What is the different forms of Polymorphism.
+--------------------------------------------------------------------
+What is true about method overloading.
+---------------------------------------------------------
+What is true about method overriding?
+-------------------------------------------------------
+What is true about an Interface
+----------------------------------------------------------
+Which statement is true for constructor
+-----------------------------------------------------------
+public class Test { }What is the prototype of the default constructor?
+-------------------------------------------------------------------------------------
+The return data type of void means?  
+-----------------------------------------------------------
+ Which statements are not correct about Objects?  
+-----------------------------------------------------------------------------
+ If an attribute is private, which methods have access to it? 
+----------------------------------------------------------------------------
+What is an aggregate object? 
+--------------------------------------------------------
+ A class can have many methods with the same name, as long as the number of parameters is different.  This is known as:  
+------------------------------------------------------------------------------------------
+  The process of building new classes from existing one is called ______. 
+---------------------------------------------------------------------------------
+If an array is declared as int a[4] = {3, 0, 1, 2}, then values assigned to a[0] & a[4] will be ________ 
+------------------------------------------------------------------------
+Mechanism of deriving a class from another derived class is known as____ 
+-------------------------------------------------------------------------
+RunTime Polymorphism is achieved by ______ 
+-------------------------------------------------------------------------------
+A property which is not true for classes is that they 
+-------------------------------------------------------------------------------------
+The process of building new classes from existing one is called 
+---------------------------------------------------------------------------------
+Data members which are static
+------------------------------------------------------------------------------
+Exception handling is targeted at 
+-----------------------------------------------------------------------------------------
+Which of the following is NOT a key component of object oriented programming?
+------------------------------------------------------------------------------------------------------
+Which of these is TRUE of the relationship between objects and classes?
+-----------------------------Answer-----------------------
+Interface
+Inheritance : Composition
+function Overriding 
+The class must not have method definitions.
+Throwable
+inFinallyBlock
+FALSE
+3
+Compilation Error
+NumberFormatException
+bring together all aspects of an entity in one place. 
+Inheritance.
+can only be used in static functions 
+Run-time error 
+Parallelism
+An object is an instance of a class.
+Byte code
+static
+We can use the new operator on int to create an "int" object.
+-------------------------------------------------------------
+Method overloading 
+Method overriding through inheritance 	
+Method overriding through the Java interface 
+--------------------------------------------------------------------
+Overloaded methods MUST change the argument list 	
+Overloaded methods CAN change the return type 	
+Overloaded methods CAN change the access modifier 
+------------------------------------------------------------------------------
+You can’t override a method marked public and make it protected. 
+You cannot override a method marked final 	
+You cannot override a method marked static 
+--------------------------------------------------------------------------
+You can’t mark an interface as final.
+Interface variables must be static. 	
+An Interface cannot extend anything but another interfaces
+----------------------------------------------------------------------------------
+A constructor has the same name as the class name	
+A constructor should not have a return type	
+A class can contain more than one constructor, So it can be overloaded
+---------------------------------------------------------------------------------------------
+
+Test( )
+No data type is returned.
+ Objects do not permit encapsulation
+Only those defined in the same class.
+An object instance that contains other objects.
+ Method Overloading
+Inheritance
+3, 0 
+Multilevel Inheritance 
+function Overriding 
+bring together all aspects of an entity in one place. 
+Inheritance.
+can only be used in static functions 
+Run-time error 
+Parallelism
+An object is an instance of a class.
+-------------------------------------------------------------------------------
+1)to which class wait(),notify(),notifyAll() belongs to -
+
+ans:- java.lang.Object
+-------------------------------------------------------------------------------
+2)public class test1 
+{
+public static void main(String[] args) {
+int b=Integer.parseInt("123a");
+System.out.println("the value is "+b);
+}
+}
+
+ans:- NumberFormatException
+-----------------------------------------------------------------------------------
+3)
+
+public class foo 
+{
+int a=10;
+public static void main(String[] args) 
+{
+System.out.println("the value is "+a);
+}
+}
+
+ans:- compilation error
+--------------------------------------------------------------------------------
+4)no duplicate entry is allowed.
+ans :- set
+-----------------------------------------------------------------------
+5)sorted order  :- TreeMap
+------------------------------------------------------------------------
+6)user defined Exception :- throw
+-----------------------------------------------------------------------------
+7)arbitry thread move from wait pool to lock pool 
+
+ans :-notify
+-----------------------------------------------------------------------------------
+8)read(),close() will throw ans:- IOException
+------------------------------------------------------------------------------------
+9)create new file method throw which exception :-
+ans :- IOException
+--------------------------------------------------------------------------------
+10)primative data enter in file :- DataInputStream
+-----------------------------------------------------------------------------------
+11)
+int total=0;
+for(int i=0, j=10;total > 30;++i,--j)
+{
+total+=i+j;
+System.out.println(i+"   "+j);
+}
+System.out.println(total);
+}
+
+ans:- 0
+-------------------------------------------------------------------------------------
+12)transient  :- 
+
+int empno;
+String name,address;
+transient int phoneno;
+
+when you convert to object  by using serialization phone no will not be serialized.
+ans :- not be serialized.
+-----------------------------------------------------------------------------------
+13)runnable interface 
+
+public class abc implements runnable
+{
+public void run()
+{}
+}
+------------------------------------------------------------------
+14)interface can be nested
+----------------------------------------------------------------------------------
+15)int a[5] ;
+system.in.read(a[1])
+
+ans:- Compilation error
+-------------------------------------------------------------------------------------
+16)to execute thread one by one we use:-
+ans :- synchronized.
+------------------------------------------------------------------------------
+17)function to copy an array :- ans :- System.arraycopy
+----------------------------------------------------------------------------------------
+18)stack operation :-ans push and pop
+--------------------------------------------------------------------------------
+19)which collection is used to shrink the data :- 
+ans :- Java.Util.ArrayList
+------------------------------------------------------------------------------
+20)StringBuffer and StringBuilder 
+
+ans :-1)String Builder is not synchronized  and faster than StringBuffer.
+-------------------------------------------------------------------
+21)exception with FileDataWriting 
+ans :-FileNotFoundException
+
+----------------------------------------------------------
+22) 
+public class Test implements runnable
+{
+public void run()
+{
+System.out.println("Wipro call run()");
+}
+public static void main(String args[])
+{
+new Thread(new Test()).start();
+}}
+
+ans:-Wipro call run()
+
+--------------------------------------------------------
+23)
+HashSet ar=new HashSet();
+System.out.println(ar.add("abce"));
+System.out.println(ar.add("abcf"));
+System.out.println(ar.add("abcg"));
+System.out.println(ar.add("abce"));
+
+ans:- 
+true
+true
+true
+false
+------------------------------------
+24)
+setLoc= new HashSet();
+ setLoc.put("a",Integer(1));
+ setLoc.put("b",Integer(2));
+ setLoc.put("c",Integer(3));
+System.out.println(b);
+
+ans:- complile time error
+-----------------------------------------------
+25) interface methods can be declare as final, public and static
+--------------------------------------------------------------------------
+26)a class can implements more than one interface
+-----------------------------------------------------------------------------
+27)comparator is present int java.util   package
+-------------------------------------------------------------------
+28)
+public class Test implements runnable
+{
+public void run()
+{
+sop("foo");
+}
+public void run(String s)
+{
+sop("bar");
+}}
+ public static void main(String args())
+{
+Thread ob=new Thread(new Test())
+ob.start();
+}
+------------------
+ans:-foo
+----------------------------------------------------------------------------------
+29)what does replace do ?
+It will replace all the occurace by invoking the string with another character 
+-----------------------------------------------------------------------------------------
+30)
+FileInputStream fin;
+int c=0;
+while(c=fin.eof()!= -1)
+{
+fin=new FileInputStream(args[0]);
+((char)c));
+}
+
+ans:- TypeCast Error
+-----------------------------------------------------------
+1)User-defined exceptions in Java are typically unchecked exceptions.
+-----------------------------------------------------------------------------------------------------------------------------
+2)Q: 31Given:
+ interface Jumper { public void jump(); }
+...
+ class Animal {}
+...
+ class Dog extends Animal {
+ Tail tail;
+ }
+...
+ class Beagle extends Dog implements Jumper{
+ public void jump() {}  }
+...
+ class Cat implements Jumper{
+ public void jump() {}
+ }
+Which three are true? (Choose three.)
+
+A. Cat is-a Animal
+B. Cat is-a Jumper
+C. Dog is-a Animal
+D. Dog is-a Jumper
+E. Cat has-a Animal
+F. Beagle has-a Tail
+G. Beagle has-a Jumper
+
+Answer: B, C, F
+---------------------------------------------------------------------------------------------------
+3)public class Program1 
+{
+public static void main(String[] args) 
+{
+Runnable r1=new Runnable()
+{
+@Override
+public void run() {
+System.out.println("This is a run method");
+}
+};
+Thread t1=new Thread(r1);
+t1.start();
+Runnable r2=()->
+{
+System.out.println("My name is Sandip");
+};
+Thread t2=new Thread(r2);
+t2.start();
+}
+}
+--------------------------------------------------------------------------
+1)byte range---
+	(-128 to 127)
+2) user defined exceptions that extends exception class----
+	(unchecked exception)
+3)which of the following is not checked exception---
+	(ArthimaticException)
+4) Binary Search Time Complexity---
+	(Ologn)
+5) which of the following keywords are not used for exception handling---
+	(Access, exception)
+6) printer question----
+	(Mathews,Suzanne,John Queue)
+7) public class Fisherman if(f is instance of p)--- 
+	(f-p,w-f)
+8) Local repositorty stores --- 
+	(${Local.home}/m2/repository))
+9) which sorting will has two sub lists---
+	(selection sort)
+10) which concept will hide some info and only show essential info----
+	(Abstraction)
+11) which access modifier is used when u do not inherit the class by other and which keyword is used to create interface---
+	(final, interface)
+12) which of the following method is used for instantiating objects of a class----
+	(constructor)
+13) which of the following methods can be accesed using method reference----
+	(static methods, instance methods)
+14) which of the following is relevant to transient ---- 
+	(serialization)
+15) by which of the following we can achieve synchronization---
+	(Synchronized methods, synchronized block)
+16) Thread(isAlive()) ---- 
+	(false)
+17) Bank question ---- 
+	thread synchronization
+18) in which line the code has error for counting the no.of ele in linkedlist---
+	(int count=1)
+19) meth() function question --- 
+	(42, 3, 12)
+20) Exception handling code---
+	(Exception for parent class exception is caught before the child class)
+21) Files Question of "Hello world"
+	 ----(H)
+22) which interface is not allowed duplicates values and should be print natural order---
+	(Set)
+23) which is the function works on map---
+	(put())
+24) which elements are used to identify a dependent artifact in a pom.xml file? 
+	(version, groupid, artifactid)
+25) what is true about mvn clean? 
+	(It cleans up artifacts created by prior builds)
+26) which of the following scope is used only when the dependency is of pom type? 
+	(import)
+27) which plugin uses the information in the pom to determine the proper location for the artifact within the local repository? 
+	(maven-install-plugin)
+28) JVM is not able to to allocate memory to create object Question? 
+	(Jvm will throw error and program abort as this situation cannot be handled by programming)
+29) Boxing----
+	Integer.valueOf(10)
+30) List.add("paper") ---- 
+	(A Runtime Exception is thrown )
+31) vanilla, chocolate ?
+	An arrayOutofboundsException
+32) Interface Jumper---
+	cat is a jumper, dog is a animal, Beagle has a tail
+33) List.set(0, "Data Structures")
+	Compilation Error: cannot convert from Object to boolean in line 2
+34) public class score  implements Comparable() ----
+	public int compareTo(Score other){/more code here/}
+35) One question regarding date?
+	LocalDate currentdate = new LocalDate.now()
+36) thread t = new Thread() System.out.println(t.isAlive())	
+	false
+37) what are the eligible metods for interfaces? (search for answer)
+	boolean getAmount(boolean[] args) 
+	public static void main(String[]) args
+	public void main(String[] args)
+	protected void getAmount();
+	private double getAmout()
+ 
+38) public static threads extends Thread{
+	public static void main(String[] args){
+	Thread t = Thread.currentThread();
+	System.out.println(t);
+	}
+	}
+	ans: Thread[main, 5, main]
+39) which method is required for loading a database driver in jdbc?
+	class.forName() or registerDriver()
+40) which of the following is used to limit the number of rows returned?
+	setMaxRows(int i)
+41) what is the return type of the hashCode()?
+	int
+------------------------------------------------------------------------------------------------------------------------------------------
+
 
 
 
