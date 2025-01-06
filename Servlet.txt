@@ -1,0 +1,2312 @@
+Servlet is a server side programming language.
+There are 2 types of servlet
+1)Generic Servlet(Protocol Independent)
+2)HttpServlet(Protocol dependent)
+----------------------------------------------------------------------------------------------
+In the servlet we don't have the main()
+
+we have the lifecycle method for Generic Servlet.
+init():- This execute for one time .It is used to create the memory block.
+service() :- This execute for 'n' no of times .It accepts request and gives the response. 
+destroy():-This execute for one time .It is used to delete the  memory block. 
+----------------------------------------------------------------------------------------------------------------
+we have the lifecycle method for Http Servlet.
+init():- This execute for one time .It is used to create the memory block.
+service()/doGet()/doPost() :- This execute for 'n' no of times .It accepts request and gives the response. 
+destroy():-This execute for one time .It is used to delete the  memory block. 
+
+----------------------------------------------------------------------------------------------------------------------
+In servlets, GET and POST are two HTTP request methods used to interact with web servers. 
+GET: Used to request data from the server. It retrieves information from the server and doesn't alter any data on the server.
+POST: Used to send data to the server, typically to create or update resources. It's often used when submitting form data or uploading a file.
+--------------------------------------------------------------------------------------------------
+GET:
+Data is sent as part of the URL, appended as query parameters.
+Example: http://example.com/resource?name=value.
+Limited amount of data can be sent (browser-dependent, typically around 2048 characters).
+POST:
+Data is sent in the body of the HTTP request.
+Allows for a larger amount of data to be sent.
+Suitable for sending sensitive data as it is not exposed in the URL.
+---------------------------------------------------------------------
+GET: Can be cached by browsers and intermediate caches since the request URL is static.
+POST: Generally not cached as it changes the server state.
+-----------------------------------------------------------------------------------
+GET: Can be bookmarked since the parameters are in the URL.
+POST: Cannot be bookmarked as the data is in the request body and not visible in the URL.
+---------------------------------------------------------------------------------------------------
+GET:
+In a servlet, the doGet() method is called to handle GET requests.
+Typically used to fetch and display data.
+POST:
+In a servlet, the doPost() method is called to handle POST requests.
+Typically used to submit form data, handle file uploads, or perform server-side processing that modifies data.
+-----------------------------------------------------------------------------------------
+public class MyServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Handle GET request
+    }
+----------------------------------------------------------------------------------
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Handle POST request
+    }
+}
+----------------------------------------------------------------------------------------------
+Summary:
+GET: Use when you need to retrieve and display data without modifying the server state.
+POST: Use when you need to send data to the server, especially when the data is complex or sensitive, and when it results in a change on the server.
+--------------------------------------------------------------------------------------------------------------
+<html>
+<body bgcolor=cyan>
+<h1>Employee Registration Page</h1><hr>
+<form action=EmployeeRegister>
+<table>
+<tr><td>Enter EmpID<td><input type=text name=t1 size=20 required></tr>
+<tr><td>Enter Name<td><input type=text name=t2 size=20 required></tr>
+<tr><td>Enter Address<td><input type=text name=t3 size=20 required></tr>
+<tr><td><td><input type=submit value=submit></tr>
+</table>
+</form>
+</body>
+</html>
+-------------------------------------------------------------------
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+
+
+@WebServlet("/EmployeeRegister")
+public class EmployeeRegister extends GenericServlet 
+{
+public void init()
+{
+	System.out.println("init");
+	}
+
+
+@Override
+public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException 
+{
+res.setContentType("text/html");
+PrintWriter pw=res.getWriter();
+String a=req.getParameter("t1");
+String b=req.getParameter("t2");
+String c=req.getParameter("t3");
+pw.println("The Employee ID is :"+a);
+pw.println("<br>");
+pw.println("The Name is :"+b);
+pw.println("<br>");
+pw.println("The Address is :"+c);
+}
+public void destroy()
+{
+	System.out.println("Destroy");
+	}
+}
+-------------------------------------------------------------------------------------------
+import java.io.*;
+import java.sql.*;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+
+
+@WebServlet("/EmployeeRegister")
+public class EmployeeRegister extends GenericServlet 
+{
+public void init()
+{
+	System.out.println("init");
+	}
+
+
+@Override
+public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException 
+{
+res.setContentType("text/html");
+PrintWriter pw=res.getWriter();
+String a=req.getParameter("t1");
+String b=req.getParameter("t2");
+String c=req.getParameter("t3");
+pw.println("The Employee ID is :"+a);
+pw.println("<br>");
+pw.println("The Name is :"+b);
+pw.println("<br>");
+pw.println("The Address is :"+c);
+try
+{
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mphasis237","root","1234");
+	PreparedStatement ps=con.prepareStatement("insert into jdbcexample values(?,?,?)");
+	ps.setInt(1,Integer.parseInt(a));
+	ps.setString(2,b);
+	ps.setString(3,c);
+	ps.execute();
+	pw.println("row inserted");
+}
+catch(Exception ae)
+{
+	ae.printStackTrace();
+}
+}
+public void destroy()
+{
+	System.out.println("Destroy");
+	}
+}
+-------------------------------------------------------------------------------------------
+example-2
+-------------------
+<html>
+<body bgcolor=cyan>
+<h1>Employee Registration Page</h1><hr>
+<form action=EmployeeRegister>
+<table>
+<tr><td>Enter EmpID<td><input type=text name=t1 size=20></tr>
+<tr><td>Enter Name<td><input type=text name=t2 size=20></tr>
+<tr><td>Enter Address<td><input type=text name=t3 size=20></tr>
+<tr><td><td>
+<input type=submit value=insert name=b1>
+<input type=submit value=update name=b1>
+<input type=submit value=delete name=b1>
+<input type=submit value=select name=b1>
+</tr>
+</table>
+</form>
+</body>
+</html>
+------------------------------------------------------------------------------------------------
+import java.io.*;
+import java.sql.*;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+
+
+@WebServlet("/EmployeeRegister")
+public class EmployeeRegister extends GenericServlet 
+{
+public void init()
+{
+	System.out.println("init");
+	}
+
+
+@Override
+public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException 
+{
+	Connection con=null;
+res.setContentType("text/html");
+PrintWriter pw=res.getWriter();
+String a=req.getParameter("t1");
+String b=req.getParameter("t2");
+String c=req.getParameter("t3");
+String d=req.getParameter("b1");
+
+try
+{
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	 con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mphasis237","root","1234");
+}
+catch(Exception ae)
+{
+	ae.printStackTrace();
+}
+if(d.equals("insert"))
+{
+	PreparedStatement ps;
+	try {
+		ps = con.prepareStatement("insert into jdbcexample values(?,?,?)");
+		ps.setInt(1,Integer.parseInt(a));
+		ps.setString(2,b);
+		ps.setString(3,c);
+		ps.execute();
+		pw.println("row inserted");
+	}
+	catch (SQLException e) 
+	{
+				e.printStackTrace();
+	}
+}
+		else if(d.equals("update"))
+	{
+			PreparedStatement ps;
+			try {
+				ps = con.prepareStatement("update jdbcexample set name=?, address=? where empno=?");
+				
+				ps.setString(1,b);
+				ps.setString(2,c);
+				ps.setInt(3,Integer.parseInt(a));
+				ps.execute();
+				pw.println("row updated");
+			}
+			catch (SQLException e) 
+			{
+						e.printStackTrace();
+			}
+	}
+	else if(d.equals("delete"))
+	{
+		PreparedStatement ps;
+		try {
+			ps = con.prepareStatement("delete from jdbcexample where empno=?");
+			ps.setInt(1,Integer.parseInt(a));
+			ps.execute();
+			pw.println("row deleted");
+		}
+		catch (SQLException e) 
+		{
+					e.printStackTrace();
+		}
+	}
+	else if(d.equals("select"))
+	{
+		Statement ps;
+		try {
+			ps = con.createStatement();
+			ResultSet rs=ps.executeQuery("select * from jdbcexample");
+			pw.println("<table border=1><tr><td><b>Empno<td><b>Name<td><b>Address</tr>");
+		while(rs.next())
+		{
+			pw.println("<tr><td>"+rs.getInt(1)+"<td>"+rs.getString(2)+"<td>"+rs.getString(3)+"</tr>");
+		}
+		pw.println("</table>");
+		}
+		catch (SQLException e) 
+		{
+					e.printStackTrace();
+		}
+}
+	else
+	{
+		pw.println("wrong input");
+	}
+
+}
+public void destroy()
+{
+	System.out.println("Destroy");
+	}
+}
+------------------------------------------------------------------------
+JSP :-
+<html>
+<body bgcolor=cyan>
+<h1>Employee Registration Page</h1><hr>
+<form action=EmployeeRegister.jsp>
+<table>
+<tr><td>Enter EmpID<td><input type=text name=t1 size=20></tr>
+<tr><td>Enter Name<td><input type=text name=t2 size=20></tr>
+<tr><td>Enter Address<td><input type=text name=t3 size=20></tr>
+<tr><td><td><input type=submit value=insert name=b1>
+<input type=submit value=update name=b1>
+<input type=submit value=delete name=b1>
+<input type=submit value=select name=b1>
+<input type=submit value=search name=b1>
+</tr>
+</table>
+</form>
+</body>
+</html>
+--------------------------------------------------------------------------------
+<%@ page import="java.sql.*" %>
+
+<%String a=request.getParameter("t1");
+String b=request.getParameter("t2");
+String c=request.getParameter("t3");
+String d=request.getParameter("b1");%>
+
+<%out.println("Empno is "+a);
+out.println("Name is "+b);
+out.println("Address is "+c);
+out.println("Button pressed is "+d);
+%>
+<%
+Connection con=null;
+try
+{
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	 con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mphasis237","root","1234");
+}
+catch(Exception ae)
+{
+	ae.printStackTrace();
+}
+if(d.equals("insert"))
+{
+	PreparedStatement ps;
+	try {
+		ps = con.prepareStatement("insert into jdbcexample values(?,?,?)");
+		ps.setInt(1,Integer.parseInt(a));
+		ps.setString(2,b);
+		ps.setString(3,c);
+		ps.execute();
+		out.println("row inserted");
+	}
+	catch (SQLException e) 
+	{
+				e.printStackTrace();
+	}
+}
+		else if(d.equals("update"))
+	{
+			PreparedStatement ps;
+			try {
+				ps = con.prepareStatement("update jdbcexample set name=?, address=? where empno=?");
+				
+				ps.setString(1,b);
+				ps.setString(2,c);
+				ps.setInt(3,Integer.parseInt(a));
+				ps.execute();
+				out.println("row updated");
+			}
+			catch (SQLException e) 
+			{
+						e.printStackTrace();
+			}
+	}
+	else if(d.equals("delete"))
+	{
+		PreparedStatement ps;
+		try {
+			ps = con.prepareStatement("delete from jdbcexample where empno=?");
+			ps.setInt(1,Integer.parseInt(a));
+			ps.execute();
+			out.println("row deleted");
+		}
+		catch (SQLException e) 
+		{
+					e.printStackTrace();
+		}
+	}
+	else if(d.equals("select"))
+	{
+		Statement ps;
+		try {
+			ps = con.createStatement();
+			ResultSet rs=ps.executeQuery("select * from jdbcexample");
+			out.println("<table border=1><tr><td><b>Empno<td><b>Name<td><b>Address</tr>");
+		while(rs.next())
+		{
+			out.println("<tr><td>"+rs.getInt(1)+"<td>"+rs.getString(2)+"<td>"+rs.getString(3)+"</tr>");
+		}
+		out.println("</table>");
+		}
+		catch (SQLException e) 
+		{
+					e.printStackTrace();
+		}
+}
+	else
+	{
+		PreparedStatement ps;
+		try {
+			ps = con.prepareStatement("select * from jdbcexample where empno=?");
+			ps.setInt(1,Integer.parseInt(a));
+			ResultSet rs=ps.executeQuery();
+			out.println("<table border=1><tr><td><b>Empno<td><b>Name<td><b>Address</tr>");
+		while(rs.next())
+		{
+			out.println("<tr><td>"+rs.getInt(1)+"<td>"+rs.getString(2)+"<td>"+rs.getString(3)+"</tr>");
+		}
+		out.println("</table>");
+		}
+		catch (SQLException e) 
+		{
+					e.printStackTrace();
+		}
+	}
+%>
+
+-------------------------------------------------------------------------------------------------------------------------------
+Example-1
+Servlet
+-----------------
+It is a server side program.
+There are 2 type servlet
+1)GenericServlet
+2)HttpServlet
+In servlet we don't have the main method.
+we have lifecycle method.
+1)init():- Memory block created.(1 time during starting of program.)
+2)service():- It works for n no of times.It takes the request form the client and give response.
+3)destroy() :- Memory block released.(1 time during closing the program)
+-------------------------------------------------------------------------------------------------------
+Example-1
+--------------------
+<html>
+<body bgcolor=cyan>
+<form action=Second>
+<h1><center>Employee Registration Page</center></h1><hr>
+<table>
+<tr><td>Enter your name<td><input type=text name=t1 size=20></tr>
+<tr><td>Enter your phoneno<td><input type=text name=t2 size=20></tr>
+<tr><td>Enter your email<td><input type=text name=t3 size=20></tr>
+<tr><td>Enter your address<td><input type=text name=t4 size=20></tr>
+<tr><td>Enter your age<td><input type=text name=t5 size=20></tr>
+<tr><td><td><input type=submit value=submit></tr>
+</table>
+</form>
+</body>
+</html>
+-------------------------------------------------------------------
+import javax.servlet.*;
+import java.io.*;
+import javax.servlet.annotation.WebServlet;
+@WebServlet("/Second")
+public class Second extends GenericServlet
+{
+	@Override
+	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException 
+	{
+	PrintWriter pw=res.getWriter();
+	res.setContentType("text/html");
+	String a=req.getParameter("t1");
+	String b=req.getParameter("t2");
+	String c=req.getParameter("t3");
+	String d=req.getParameter("t4");
+	String e=req.getParameter("t5");
+	pw.println("the name is "+a);
+	pw.println("the phone no is "+b);
+	pw.println("the email is "+c);
+	pw.println("the address is "+d);
+	pw.println("the age is "+e);
+	}
+}
+------------------------------------------------------------------------------------------------------
+wap in servlet to create  a calculator.
+---------------------------------------------------------------------------------------------------
+Example-2
+----------------------
+<html>
+<body bgcolor=cyan>
+<h1><center>Calculator</center></h1><hr>
+<table>
+<tr><td>Enter a number<td><input type=text name=t1 size=20></tr>
+<tr><td>Enter a number<td><input type=text name=t2 size=20></tr>
+<tr><td><td>
+<input type=submit value="ADD" name=b1>
+<input type=submit value="SUB" name=b1>
+<input type=submit value="MUL" name=b1>
+<input type=submit value="DIV" name=b1></tr>
+</table></body></html>
+------------------------------------------------
+import javax.servlet.*;
+import java.io.*;
+import javax.servlet.annotation.WebServlet;
+@WebServlet("/Second")
+public class Second extends GenericServlet {
+            @Override
+    public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException
+    {
+        PrintWriter pw=res.getWriter();
+        res.setContentType("text/html");
+        String a=req.getParameter("t1");
+        String b=req.getParameter("t2");
+        String c=req.getParameter("b1");
+        pw.println("<h1><center>Calculator Result</center><h1><hr>");
+        pw.print("the no is "+a);
+        pw.println("<br><br>");
+        pw.print("the no is "+b);
+        pw.println("<br><br>");
+        pw.print("the button is "+c);
+        pw.println("<br><br>");
+        if(c.equals("ADD"))
+        {
+            pw.println("The Result is "+(Integer.parseInt(a)+Integer.parseInt(b)));
+        }
+        else if(c.equals("SUB"))
+        {
+            pw.println("The Result is "+(Integer.parseInt(a) - Integer.parseInt(b)));
+            
+        }
+        else if(c.equals("MUL"))
+{
+            pw.println("The Result is "+(Integer.parseInt(a)*Integer.parseInt(b)));
+            
+        }
+        else 
+        {
+            pw.println("The Result is "+(Integer.parseInt(a)/Integer.parseInt(b)));
+            
+        }            }            }
+------------------------------------------------------------------
+Example-3
+-------------------------
+<html>
+<body bgcolor=cyan>
+<form action="Second">
+<h1><center>Employee Registration Page</center></h1><hr>
+<table>
+<tr><td>Enter  empid<td><input type=text name=t1 size=20></tr>
+<tr><td>Enter  name<td><input type=text name=t2 size=20></tr>
+<tr><td>Enter salary<td><input type=text name=t3 size=20></tr>
+<tr><td>Enter deptno<td><input type=text name=t4 size=20></tr>
+
+<tr><td><td>
+<input type=submit value="Insert" name=b1>
+<input type=submit value="Update" name=b1>
+<input type=submit value="Delete" name=b1>
+<input type=submit value="Select" name=b1></tr>
+</table></form></body></html>
+-------------------------------------------------------
+import javax.servlet.*;
+import java.io.*;
+import java.sql.*;
+import javax.servlet.annotation.WebServlet;
+@WebServlet("/Second")
+public class Second extends GenericServlet {
+			@Override
+	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException
+	{
+		PrintWriter pw=res.getWriter();
+		res.setContentType("text/html");
+		String a=req.getParameter("t1");
+		String b=req.getParameter("t2");
+		String c=req.getParameter("t3");
+		String d=req.getParameter("t4");
+		
+		String but=req.getParameter("b1");
+		pw.println("<h1><center>Employee Data</center><h1><hr>");
+		pw.print("Empid  is "+a);
+		pw.println("<br><br>");
+		pw.print("Name is "+b);
+		pw.println("<br><br>");
+		pw.print("Salary is "+c);
+		pw.println("<br><br>");
+		pw.print("Dept no is "+d);
+		pw.println("<br><br>");
+		
+		pw.print("the button is "+but);
+		pw.println("<br><br>");
+		try
+		{
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","1234");
+		if(but.equals("Insert"))
+		{
+			 PreparedStatement ps=con.prepareStatement("insert into employee201 values(?,?,?,?)");
+			ps.setInt(1,Integer.parseInt(a));
+			ps.setString(2,b);
+			ps.setInt(3,Integer.parseInt(c));
+			ps.setInt(4,Integer.parseInt(d));
+			ps.execute();
+			pw.print("row inserted");
+		}
+		else if(but.equals("Update"))
+		{
+			PreparedStatement ps=con.prepareStatement("update employee201 set name=?,salary=?,deptno=? where empid=?");
+			ps.setString(1,b);
+			ps.setInt(2,Integer.parseInt(c));
+			ps.setInt(3,Integer.parseInt(d));
+			ps.setInt(4,Integer.parseInt(a));
+			ps.execute();
+			pw.print("row updated");
+			
+		}
+		else if(but.equals("Delete"))
+		{
+			 
+			PreparedStatement ps=con.prepareStatement("delete employee201 where empid=?");
+			ps.setInt(1,Integer.parseInt(a));
+			ps.execute();
+			pw.print("row deleted");
+		}
+		else 
+		{
+		Statement st1=con.createStatement();
+			ResultSet rs=st1.executeQuery("select * from employee201 order by empid");               
+            
+            pw.println("<html><body><h2>The Select query has following results : </h2>");
+            pw.println("<hr></br><table cellspacing='0' cellpadding='5' border='1'>");
+            pw.println("<tr>");
+            pw.println("<td><b>Employee ID</b></td>");
+            
+            pw.println("<td><b>Employee Name</b></td>");
+            pw.println("<td><b>Employee Salary</b></td>");
+            pw.println("<td><b>Employee Designation</b></td>");
+            pw.println("</tr>");
+            while(rs.next()) 
+            {
+             pw.println("<tr>");
+             pw.println("<td>"+rs.getString(1) + "</td>");
+             pw.println("<td>"+rs.getString(2) + "</td>");
+             pw.println("<td>"+rs.getString(3) + "</td>");
+             pw.println("<td>"+rs.getString(4) + "</td>");
+             
+             pw.println("</tr>");
+            }
+            pw.println("</table></br><hr></body></html>");
+				 
+			
+		}		
+		}
+		catch(Exception ae)
+		{
+			ae.printStackTrace();
+		}		}			}
+-----------------------------------------------------------------------------------------------------------------------------------------
+Servlet API
+------------------------
+The javax.servlet and javax.servlet.http packages represent interfaces and classes for servlet api.
+Interfaces in javax.servlet package
+Servlet
+ServletRequest
+ServletResponse
+RequestDispatcher
+ServletConfig
+ServletContext
+SingleThreadModel
+Filter
+FilterConfig
+FilterChain
+ServletRequestListener
+ServletRequestAttributeListener
+ServletContextListener
+ServletContextAttributeListener
+------------------------------------------------------------------------------------------
+Classes in javax.servlet package
+There are many classes in javax.servlet package. They are as follows:
+GenericServlet
+ServletInputStream
+ServletOutputStream
+ServletRequestWrapper
+ServletResponseWrapper
+ServletRequestEvent
+ServletContextEvent
+ServletRequestAttributeEvent
+ServletContextAttributeEvent
+ServletException
+
+--------------------------------------------------------------------------------
+There are many interfaces in javax.servlet.http package. They are as follows:
+
+HttpServletRequest
+HttpServletResponse
+HttpSession
+HttpSessionListener
+HttpSessionAttributeListener
+HttpSessionBindingListener
+HttpSessionActivationListener
+
+Classes in javax.servlet.http package
+---------------------------------------------------------------------------------
+
+There are many classes in javax.servlet.http package. They are as follows:
+
+HttpServlet
+Cookie
+HttpServletRequestWrapper
+HttpServletResponseWrapper
+HttpSessionEvent
+
+--------------------------------------------------------------------------
+
+SERVLET
+-----------------
+1)A servlet is a server side component. A servlet is a java programming language class used to extend the capabilities of servers that host application accessed via a request-response programming model.
+2)servlet are durable object they remain in memory and specially instructed to be destroyed .servlet will be loaded on the address space of webserver.
+
+What is servlet Container?
+The servlet container is a part of webserver or application server that provide the network service over which request and response. A servlet container also contains and manages servlet through their life cycle.
+A servlet container can also be built into a host web server and installed as an add-on component to webserver.
+
+Types of servlets:-
+----------------------------------
+1)generic servlet are protocol independent.
+2)Http servlet are protocol specific they can be invoke only with the http protocol.
+
+when implementing a generic service we must extend GenericServlet class which provides the java servlet api.
+
+when implementing a http service we must extends HttpServlet class which provides methods such as doGet and doPost.
+
+two packages required to build servlet
+1)javax.servlet
+2)javax.servlet.http
+
+Life cycle of servlet:-
+----------------------------------------------
+1)init():-server invokes init() when servlet is first loaded into the webserver memory.
+This method is used to initialize new servlet instance. Return type is void.
+
+2)getServletConfig():- Return type is servlet config.
+
+3)service():-To activate the servlet instance to handle the client request.
+
+4)getServletInfo():-Return String.
+
+5)destroy():-It is called by the webserver to destroy the existing servlet instance, or clean up any resource the servlet is consuming.
+
+-----------------------------------------------------------------------------------------------
+What is servletContext?
+Servlet context is a part of javax.servlet.*;
+Servlet context is also called as application object.
+Servlet context is used to obtain the information about environment on which servlet is running.
+For every web-application the web-container needs the deployment descriptor .if there is no error the web Container will create servletContext object for the application. There may be multiple servlet context object inside a web Container.
+
+Servlet context is one per one web application .To communicate with servlet Container we use ServletContext object.
+
+Methods inside ServletContext interface are
+1)String getInitParameter(String name)
+2)void setAttribute(String name)
+3)Object getAttribute()
+
+In servlet application setAttribute() method is used to create java object. If any object previously present it overrides that object.
+To get the object stored in the request object we use request.getAttribute();
+Request.removeAttribute() is use to remove attribute from request Object.
+---------------------------
+HTTP Servlet:-
+---------------------------
+1)SendRedirect() :-we can redirect the browser to a resource part of the same application.
+we can redirect another web application running through the same web container.
+
+2)RequestDispatcher :-
+it is an interface inside javax.servlet.*;
+it contains two methods :-
+1)forward(ServletRequest req,ServletResponse res)
+2)include(ServletRequest req,ServletResponse res)
+RequestDispatcher is to forward the request to other servlet or include the output of another servlet as a part of the response.
+
+To build a web application to be stateful that can remember the state of the client we use 
+1)hidden field 2)cookies 3)session object 4)url rewritting
+
+Cookies :-
+cookies is a small amount of information set by the server on the client machine.
+
+It is useful for session tracking for each client request a cookies can provide client session id.
+
+getSession(true) :-It creates a new session and set the value from request object.
+getSession(false):-The web container search for the old session object.
+
+servlets are multithreaded for each client request a separate thread will start.
+
+Difference between GET and POST?
+get and post are used to process the request of a client .get method is a part of url.so we can send less amount of data through get. The amount of information limited is 2048 character.
+But using post we can post larger amount of data through hidden field.
+ 
+Session are more secure and fast because they are stored at server side.
+Session has to be used internally with cookies or urlrewritting to maintain session id.
+
+
+Servlet Filters:-
+--------------------
+1)init() :-calls the filter into service and sets the filter's configuration object.
+2)doFilter():- performs the filtering task.
+3)getFilterConfig():- Return the filter's configuration object.
+4)destroy():-Removes a filter from service.
+
+use of filter:-
+---------------
+1)securing application
+2)help to safe guard the data.
+
+Servlet Listener :-
+--------------------------
+It is a interface
+There are 2 types :-
+1)ServletContextListener
+It is executed once the application is deployed in the application server.
+If you want to perform some action at the time of deploying the web application such as creating database connection, creating all the tables of the project etc, you need to implement ServletContextListener interface and provide the implementation of its methods.
+
+Methods of ServletContextListener interface :-
+
+public void contextInitialized(ServletContextEvent e): is invoked when application is deployed on the server.
+
+------------------------------------------------------------------------------
+public void contextDestroyed(ServletContextEvent e): is invoked when application is undeployed from the server.
+
+------------------------------------------------------------------------------
+
+2)HttpSessionListener
+It is very useful in maintaining data available throughout the life cycle of web application until it is invalid or closed.
+Uses:-
+-------------------
+1)to keep the track of no of concurrent clients using a web application.
+2)database need to be loaded on startup and saved while shut down.
+--------------------------------------------------------------------------------------------------------
+Event and Listener in Servlet
+Events are basically occurrence of something. Changing the state of an object is known as an event.
+
+We can perform some important tasks at the occurrence of these exceptions, such as counting total and current logged-in users, creating tables of the database at time of deploying the project, creating database connection object etc.
+
+There are many Event classes and Listener interfaces in the javax.servlet and javax.servlet.http packages.
+
+Event classes
+The event classes are as follows:
+ServletRequestEvent
+ServletContextEvent
+ServletRequestAttributeEvent
+ServletContextAttributeEvent
+HttpSessionEvent
+HttpSessionBindingEvent
+
+------------------------------------------------------------------------------------------------------
+Event interfaces
+The event interfaces are as follows:
+
+ServletRequestListener
+ServletRequestAttributeListener
+ServletContextListener
+ServletContextAttributeListener
+HttpSessionListener
+HttpSessionAttributeListener
+HttpSessionBindingListener
+HttpSessionActivationListener
+
+----------------------------------------------------------------------------------------------------------------
+
+
+
+-------------------------------------------------------------------------------------------------------------
+example-4
+----------------------
+<html>
+<body bgcolor=cyan>
+<form action="Second" method=post>
+<h1><center>Employee Login Page</center></h1><hr>
+<table>
+<tr><td>Enter  Username<td><input type=text name=t1 size=20></tr>
+<tr><td>Enter  password<td><input type=password name=t2 size=20></tr>
+<tr><td><td>
+<input type=submit value="Login" ></tr>
+</table></form></body></html>
+----------------------------------------------
+import javax.servlet.*;
+import java.io.*;
+import java.sql.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+@WebServlet("/Second")
+public class Second extends HttpServlet {
+			@Override
+	public void doPost(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException
+	{
+		PrintWriter pw=res.getWriter();
+		res.setContentType("text/html");
+		String a=req.getParameter("t1");
+		String b=req.getParameter("t2");
+		if(a.equals("sandip")&& b.equals("1234"))
+	res.sendRedirect("success.html");
+		else
+			res.sendRedirect("Login.html");
+	}			}
+-------------------------------------------------success.html--------------------------------
+<h1>Successfully login</h1>
+-----------------------------------------------------------
+GenericServlet /vs HttpServlet
+----------------------------------------------
+genericServlet is protocal independent.
+It can handle any type of protocal.
+------------------------------------------------------
+HttpServlet is protocal dependent.
+Our Internet works with Http Protocal.
+we have variour methods within HttpProtocal.
+1)SendRedirect()
+2)RequestDispatcher() ---include(),forward()
+classes :- session,cookies etc.
+------------------------------------------------------------------------
+JSP :- Java server pages .It will automatically convert the JSP page into servlet.
+Code will be less compared to servlet.
+-----------------------
+example-1
+------------------
+<html>
+<body bgcolor=cyan>
+<form action="Second.jsp" method=get>
+<h1><center>Employee Registration Page</center></h1><hr>
+<table>
+<tr><td>Enter  name<td><input type=text name=t1 size=20></tr>
+<tr><td>Enter  password<td><input type=password name=t2 size=20></tr>
+<tr><td>Enter  Address<td><input type=text name=t3 size=20></tr>
+<tr><td>Enter  Email<td><input type=text name=t4 size=20></tr>
+<tr><td>Enter  Phoneno<td><input type=text name=t5 size=20></tr>
+<tr><td>Enter  Age<td><input type=text name=t6 size=20></tr>
+<tr><td><td><input type=submit value="Register" ></tr>
+</table>
+</form>
+</body>
+</html>
+------------------------------------------------------------------------------------
+Second.jsp
+----------------------
+<%String a=request.getParameter("t1");
+String b=request.getParameter("t2");
+String c=request.getParameter("t3");
+String d=request.getParameter("t4");
+String e=request.getParameter("t5");
+String f=request.getParameter("t6");%>
+<h1><center>Employee Registration Page</center></h1><hr>
+<body bgcolor=cyan>
+<%out.println("Name is "+a);
+out.println("<br>");
+out.println("Password is "+b);
+out.println("<br>");
+out.println("Address is "+c);
+out.println("<br>");
+out.println("Email is "+d);
+out.println("<br>");
+out.println("Phoneno is "+e);
+out.println("<br>");
+out.println("Age is "+f);%>
+</body>
+---------------------------------------------------------------------
+Example-2
+----------------------
+<html>
+<body bgcolor=cyan>
+<form action="Second.jsp" method=get>
+<h1><center>Employee Registration Page</center></h1><hr>
+<table>
+<tr><td>Enter  empid<td><input type=text name=t1 size=20></tr>
+<tr><td>Enter  name<td><input type=text name=t2 size=20></tr>
+<tr><td>Enter  salary<td><input type=text name=t3 size=20></tr>
+<tr><td>Enter  deptno<td><input type=text name=t4 size=20></tr>
+<tr><td><td><input type=submit value="Register" ></tr>
+</table>
+</form>
+</body>
+</html>
+----------------------------------------------------------
+<%@page import="java.sql.*" %>
+<%String a=request.getParameter("t1");
+String b=request.getParameter("t2");
+String c=request.getParameter("t3");
+String d=request.getParameter("t4");
+%>
+<h1><center>Employee Registration Page</center></h1><hr>
+<body bgcolor=cyan>
+<%
+out.println("Empid is "+a);
+out.println("<br>");
+out.println("Name is "+b);
+out.println("<br>");
+out.println("Salary is "+c);
+out.println("<br>");
+out.println("Deptno is "+d);
+out.println("<br>");%>
+</body>
+<%
+try
+{
+	Class.forName("oracle.jdbc.driver.OracleDriver");
+	Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","1234");
+	 PreparedStatement ps=con.prepareStatement("insert into employee201 values(?,?,?,?)");
+		ps.setInt(1,Integer.parseInt(a));
+		ps.setString(2,b);
+		ps.setInt(3,Integer.parseInt(c));
+		ps.setInt(4,Integer.parseInt(d));
+		ps.execute();
+		out.print("row inserted");
+}
+catch(Exception ae)
+{
+	out.println("the error is "+ae);
+}
+%>
+------------------------------------------------------------------------------
+
+
+Create a HTML page and JSP page and create insert,update,delete,select
+
+employee201
+empid,name,salary,dept.
+-----------------------------------Assignment-1-----------------------------
+create your project indivisually.
+using html,css,bootstrap,javascript as frontend
+servlet as the middle ware.
+backend using oracle.
+
+--------------------------------JSP------------------------------------------------
+1)The code for JSP is small as compared to servlet.
+2)In jsp the html code will be separate and the JSP code will be separate.
+3)The jsp code is converted to servlet when it runs internally.
+4)In jsp we have jsp action tags and implicit objects.
+5)jsp will take more time than servlet.
+6)there are 4 scopes:- 1)request 2)session 3)page 4)Application
+
+jsp life cycle :-
+------------------------
+1)jspInit()---Initialization
+2)_jspService()--execution
+3)jspDestroy()--clean up
+in this jsp is 1)compilation 2)Initialization 3)execution 4)clean up
+
+---------------------------------------------- 
+JAVA SERVER PAGES
+----------------------------------------------
+it is classified into 
+1)directives
+2)scripting elements
+3)standard action
+4)declaration tag<%!int a=10%>
+5)expression tag <%=sum%>
+6)comment tag <!-- -->
+
+Directives:-
+---------------
+Jsp directives are messages for jsp engine.they donot produce output.they tell the engine what to do with rest of the jsp page.it is enclosed with <%@-------%> tag
+the three primary directives are:-
+1)page 
+2)include
+3)custom tag libraries
+
+1)page directive:-
+Found at the top of the jsp page.there are 11 attributes in this directive.
+
+1)info :-<%@ page info="this is a welcome page"%>
+to add summary about the page.
+
+2)language:-<%@ page language="java"%>
+to specify scripting langauge used in the page
+
+3)content type:-<%@ page contentType="text/html"%>
+this is used to indicate MIME type
+
+4)Import :-<%@ page import ="java.util.Date"%>
+it is used to extend java classes.
+
+5)Session :-<%@ page session="false"%>
+It is used to indicate JSP page participates in session management.
+
+6)Buffer :-<%@ page buffer="12kb"%>
+to control buffered output for a jsp page.
+
+7)AutoFlush :-<%@ page autoFlush="true"%>
+It means the output will automatically flush.
+
+8)isThreadSafe :-<%@ page isThreadSafe="false"%>
+it is capable to responding multiple requests.
+
+9)Error Page :-<%@ page errorPage="error.jsp"%>
+It is used to display an alternate page if error occurs.
+
+10)isErrorPage :-<%@page isErrorPage="true"%>
+It is a common jsp page for error.
+
+11)extends :-<%@page extends="com.student.result"%>
+it is used for super class used by jsp container used mainly for custom tag libraries.
+
+Include Directives:-
+-----------------------------
+It lets us to include files at the time the jsp page is translated into servlet.
+it treats the contents of the file to be included as if it were part of the original page. It include resources at runtime.
+<%@ include file="include.jsp"%>
+
+Custom tag libraries :-
+---------------------------------
+it is also called jsp tag extensions.It provides a way of encapsulating reusable functionality on jsp page.It has ability to generate dynamic content by using java code.
+
+Scripting element:-
+------------------------
+1)declaration :-to declare variable and method <% int i=0;%>
+2)scriptlets :-It contain the java code.
+3)expression tag:-It is used to retrive value <%=user%>
+4)comment tag:-used for comments.<!-- this is jsp comments--%>
+
+Action Tag:-
+-----------------
+1)<jsp :plugins>
+2)<jsp :include>
+3)<jsp :forward>
+4)<jsp :param>
+5)<jsp :useBean>
+6)<jsp :getProperty>
+7)<jsp :setProperty>
+
+
+Implicit object:-
+-----------------------
+1)out-- PrintWriter
+2)response-- HttpServletResponse
+3)request-- HttpServletRequest
+4)page-- this a jsp page scope
+5)config-- ServletConfig
+6)session-- HttpSession
+7)application-- ServletContext
+8)execption-- Exception
+9)pageContext - JspWriter
+--------------------------------------------------------------------------------------
+create a emplyee class and do crud operation.
+empno,name,salary,address
+add,update,delete,getemployeebyID,
+----------------------------------------------------------------
+1)Which of the following statement is not correct about HTTP method ?
+ans)A POST request append data to the end of the URL.
+
+2)Servlet runs each request in a __________
+ans)Separate thread
+
+3)GenericServlet class is encapsulated inside __________ package ?
+ans)javax.servlet
+
+4)Which class provide implementation for service() method ?
+ans)HttpServlet
+
+5)_________ is responsible for managing execution of servlet?
+ans)Web Container
+
+6)When using HTML forms which of the following is true for POST method ?
+ans)POST method sends data in the body of the request.
+
+7)Deployment Descriptor(DD) is a _________ ?
+ans)XML document that is used by Web Container to run servlets and JSPs.
+
+
+8)Which method is called only once in Servlet life cycle ?
+ans)init()
+
+
+9) Which of these classes define the getWriter() method that returns an object of type PrintWriter ?
+ans)HttpServletResponse
+
+
+10)Which method defined in the HttpServletResponse may be used to set the content type ?
+ans)setContentType()
+
+
+11)Which method of HttpServletResponse is used to redirect an HTTP request to another URL 
+ans)sendRedirect()
+
+
+12)Which method defined in the HttpServletRequest returns the object of RequestDispatcher ?
+ans)getRequestDispatcher()
+
+
+13Which statement is true about include() method of RequestDispatcher interface ?
+ans)includes the content of any resource inside the current servlet.
+
+
+14)Which method of HttpServletRequest returns the name of the HTTP method with which the request was made
+ans)getMethod()
+
+
+15)When the Web Container initializes a servlet, it creates a ___________ object for the servlet ?
+ans)ServletConfig
+
+
+16)____________ object is available to any servlet or JSPs that are part of the web app and provides communication between servlets and JSPs.
+ans)ServletContext
+
+
+17)Which types of objects can store attributes ?
+ans)HttpServletRequest
+
+
+18)Given request is an HttpServletRequest, which code snippets will creates a session if one doesn't exist?
+ans)request.getSession();
+
+
+19)Which method is used access the cookies that are added to response object?
+ans)getCookies()
+
+
+20)Which method is used to get the parameter value from request object?
+ans)getParameter()
+
+
+21)Which method returns a string containing the unique session id?
+ans)getId()
+
+
+22)Cookies are stored on _______ side
+ans)Client
+
+
+23)Which method is used to delete a session?
+ans) invalidate()
+
+
+24)Which method returns the time when the session was created?
+ans)getCreationTime()
+
+
+25)Which of the following is an implicit object?
+ans)pageContext
+
+
+26)Which of the following attributes are mandatory in <jsp:getProperty /> tag?
+ans) name, property
+
+
+27)Which of the following method can be used to read a form parameter in JSP?
+ans)request.getParameter()
+
+
+28)If a jsp is to generate a xml page, what attribute of page directive it should use?
+ans)contentType
+
+
+29)Which of the following step is taken by JSP container during Compilation phase?
+ans)Compiling the servlet.
+
+<------------------------------------------------------------------------------->
+1)usebean  :-attributes
+ans) id,class
+
+2)jsp int !a=10,a=20,b=30
+(a*b)
+ans)300
+
+3)Which method is used to delete a session?
+ans) public void invalidate()
+
+4)The welcome-file-list element of 
+ans)web-app
+
+5)import date in jsp 
+The current date is <%= new java.util.Date() %>
+ans)date will be shown
+
+6)setProperty attributes are
+ans)name,property
+
+7)getAttribute are required by
+ans)non of the above
+
+8)form elements are read by 
+ans)req.getParameter();
+
+9)maximum session utilization 
+ans)getMaxInactiveInterval()
+
+10)processing request in jsp
+ans)_jspService()
+
+11)servlet lifecycle instance are managed by 
+ans)WebContainer
+
+12)ans)charli chaplin chaplin
+
+13)state of the user that are managed on server side
+ans)session
+
+14)response and request in a webapplication is controlled by 
+ans)WebContainer
+
+15)ServletConfig reads data from?
+ans)web.xml
+
+16)getProperty attributes are
+ans)name,property
+
+17)Iteration 
+ans)<c:forEach>
+
+18)HttpSession session=req.getSession("");
+
+19)GenericServlet 
+
+20)tomcat error
+
+21)5 6 7 8 9 10 
+begin="5" and end="10"
+
+22)start="0" stop="0"
+abc
+ans)2
+
+23)<%=request.getContentType() %>
+ans)null
+
+or
+
+<%=getContentType() %>
+ans)compile error
+
+
+24)<jsp:setProperty name="bean" property="username" value="sandip"/>  
+ 
+25)<%@ page info="this is a welcome page"%>
+
+26)jsp comment
+
+<%--    --%>
+
+27)RequestDispatcher rd=req.getRequestDispatcher("/customer/showcar");
+	rd.forward(req, res);
+
+
+28)which method is used to get cookies added to reponse object.
+ans)getCookies();
+-------------------------------------------------------------------------------
+
+1)Which of the following is not a component/class of JDBC API?	
+DriverManager	
+Driver	
+Connection	
+Transaction			
+choice 4
+ 
+2)In which of the following type of ResultSet, the cursor can only move forward in the result set?	
+ResultSet.TYPE_FORWARD_ONLY	
+ResultSet.TYPE_SCROLL_INSENSITIVE	ResultSet.TYPE_SCROLL_SENSITIVE	
+None of the above.			
+choice 1
+
+3)Which of the following type of JDBC driver, is also called Type 4 JDBC driver?	
+JDBC-ODBC Bridge plus ODBC driver	
+Native-API, partly Java driver	
+JDBC-Net, pure Java driver	
+Native-protocol, pure Java driver			
+choice 4
+
+4)Which of the following is used to call stored procedures on the database?	
+Statement	
+PreparedStatement	
+CallableStatement	
+None of the above			
+choice 3
+
+5)Which of the following consists of methods for contacting a database?	
+DriverManager	
+JDBC driver	
+Connection	
+Statement			
+choice 3
+
+6)Which of the following is a Metadata interfaces of JDBC?	
+DatabaseMetaData	
+ResultSetMetaData	
+Both of the above.	
+None of the above			
+choice 3
+
+7)Which of the following is not interfaces?	
+DriverManager	
+Connection	
+Statement
+ResultSet			
+choice 1
+
+8)Database meta data are retrieved through ____________.	
+ResultSet Object	
+PreparedStatement object	
+Connection object	
+Statement object			
+choice 3
+
+9)SQL ________ statements may not change the contents of a database	
+DELETE	
+UPDATE	
+SELECT	
+INSERT			
+choice 3
+
+10)Result set meta data are retrieved through ____________	
+PreparedStatement object	
+ResultSet Object	
+Connection object	
+Statement object			
+
+choice 2
+
+11)Invoking Class.forName method may throw ___________	
+ClassNotFoundException	
+RuntimeException	
+SQLException	
+IOException			
+choice 1
+
+
+12)What information may be obtained from a ResultSetMetaData object?	
+number of columns in the result set	
+number of rows in the result set	database URL and product name	
+JDBC driver name and version			
+choice 1
+
+13)RowSet is an extension of _______	
+Statement	
+CLOB	
+ResultSet	
+Connection			
+choice 3
+
+14)You can store images in a database using data type _______	
+BLOB	
+varchar2	
+CLOB	
+varchar			
+choice 1
+
+15)In a scrollable and updateable resultset, you can use ___________ methods on a result set	
+updateRow()	
+first()	
+deleteRow()	
+insertRow()	
+all of the above 		
+choice 5
+
+16)________ is an attribute or a set of attributes that uniquely identifies the relation.	
+A key	
+A superkey	
+A primary key	
+A candidate key			
+choice 2
+
+17)What are the JDBC statements	
+Statement	
+PreparedStatement	
+CallableStatement	
+All of the above			
+choice 4
+
+18)What is JDBC Driver	
+JDBC-ODBC bridge driver	
+Native-API driver	
+Network Protocol driver	
+Thin driver	
+all of the above 		
+choice 5
+
+19)What are the steps to connect to the database in java	
+Registering the driver class	
+Creating connection	
+Creating statement	
+Executing queries	
+all of the above 		
+choice 5
+
+20)What are the JDBC API components	
+Connection	
+Statement	
+PreparedStatement	
+ResultSet	
+all of the above 		
+choice 5
+
+21)What are the classes in JDBC API	
+Blob	
+Clob	
+Types	
+all of the above 		
+choice 3
+
+22)IBM DB2,oracle sybas,informax.....
+ans :- native api 
+
+23)DDL (alter,create,drop)
+ans:- exceuteUpdate(),execute()
+
+24)which driver is not vendor specific
+ans:- type 1 and type 3
+
+25)ascii and unicode character 
+ans:- getCharacterStream() 
+
+27)which driver has 3 tier architecture
+ans :- type 3
+
+28)seven digit mantissa
+ans:- real
+
+29)isSearchable(int column) returns -----------------
+ans :- binary values
+
+30)ResultSet object can be moved in forward direction and can be updatable 
+ans :- false
+
+31)data like table,view and,procedure,function are stored in 
+ans :- DataBaseMetadata 
+ 
+32)date and time
+java.util.date
+java.sql.timestamp
+
+33)How many ResultSet avilable in JDBC
+
+ans:- 3
+
+1)ScrollInsensitive
+2)Scrollsensitive
+3)FORWARD_only
+
+34)which model do the jdbc api support fro database access.
+ans:-2 and 3 tier
+
+35)How can we get which field is primary key .
+
+ans:- database metadata object.
+
+-----------------------------------------------------------------------------------------
+1)getPrimarykey() belongs to DataBaseMetaData
+2)which type of driver is 3 tier Architecture ---Type 3
+3)which type of driver is not vendor specific-----Type 1,3
+4)
+Connection con;
+PreparedStatement ps=con.prepareStatement("create table abc(empno int)");
+ps.executeUpdate();
+ps.close();
+
+ans:- sqlException 
+
+5)
+Connection con;
+PreparedStatement ps=con.prepareStatement("select * from abc");
+ResultSet rs=ps.executeQuery();
+ps.close();
+
+ans:- error in :-ResultSet rs=ps.executeQuery();
+
+6)what happens when setAutocommit(true)  ?
+ans:- all indivisual sql statements are treated as transactions.
+and will be commited after execution.
+
+7)when the resultset cursor goto the last record
+ans:- -1
+
+8)executeUpdate(),execute(),exceuteQuery() which is suitable for DDL (create,drop,alter)
+ans:- execute(),executeUpdate()
+
+DML (insert,update,delete):-execute(),executeUpdate()   
+
+9)for out we will use RegisterOutParameter();
+
+10)we cannot have table with same column names.
+----------------------------------Assignment-2---------------------------------------
+
+Add 3 columns
+Name
+Password
+email
+country
+Age
+Department
+Salary
+---------------------------------------------------------------------------------------------------
+
+Send Redirect Example
+---------------------------------------
+Register.html
+----------------------------
+<html>
+<body bgcolor=cyan>
+<form action="First" method=post>
+<h1><center>Employee Registration Page</center></h1><hr>
+<table>
+<tr><td>Enter  name<td><input type=text name=t1 size=20></tr>
+<tr><td>Enter  password<td><input type=password name=t2 size=20></tr>
+<tr><td>Enter  Address<td><input type=text name=t3 size=20></tr>
+<tr><td>Enter  Email<td><input type=text name=t4 size=20></tr>
+<tr><td>Enter  Phoneno<td><input type=number name=t5 size=20></tr>
+<tr><td>Enter  Age<td><input type=number name=t6 size=20></tr>
+<tr><td><td><input type=submit value="Register" ></tr>
+</table>
+</form>
+</body>
+</html>
+-----------------------------------------------------------------------------------
+First.java
+---------------------
+import javax.servlet.*;
+import java.io.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+@WebServlet("/First")
+public class First extends HttpServlet {
+			@Override
+	public void doPost(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException
+	{
+		PrintWriter pw=res.getWriter();
+		res.setContentType("text/html");
+		String a=req.getParameter("t1");
+		String b=req.getParameter("t2");
+		String c=req.getParameter("t3");
+		String d=req.getParameter("t4");
+		String e=req.getParameter("t5");
+		String f=req.getParameter("t6");
+		res.sendRedirect("Login.html");
+	}
+}
+--------------------------------------------------------------------------------------
+Login.html
+-------------------
+<html>
+<body bgcolor=cyan>
+<form action="Second" method=get>
+<h1><center>Employee Login Page</center></h1><hr>
+<table>
+<tr><td>Enter  Username<td><input type=text name=t1 size=20></tr>
+<tr><td>Enter  password<td><input type=password name=t2 size=20></tr>
+<tr><td><td>
+<input type=submit value="Login" ></tr>
+</table></form></body></html>
+
+------------------------------------------------------------------------------
+Second.java
+-------------------------------
+import javax.servlet.*;
+import java.io.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+@WebServlet("/Second")
+public class Second extends HttpServlet {
+			@Override
+	public void service(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException
+	{
+		PrintWriter pw=res.getWriter();
+		res.setContentType("text/html");
+		String a=req.getParameter("t1");
+		String b=req.getParameter("t2");
+		if(a.equals("sandip")&& b.equals("1234"))
+	res.sendRedirect("success.html");
+		else
+			res.sendRedirect("Login.html");
+	}			}
+------------------------------------------------------------------------------------------------
+success.html
+---------------------
+<body>
+<h1>Login Success</h1>
+</body>
+
+------------------------------------------------------------------------
+Session Example
+---------------------------------------------
+login.html
+---------------------------------------------
+<html>
+<body bgcolor=yellow>
+<form action=firstservlet method=post>
+<center><h1>LOGIN FORM</h1><hr><br><br>
+Enter user name<input type=text name=t1 size=20><br>
+Enter password<input type=text name=t2 size=20><br>
+<input type=submit value=login>
+</form>
+</body>
+</html>
+-------------------------------------------------------------------------------
+firstservlet.java
+--------------------------
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+import java.io.*;
+@WebServlet("/firstservlet")
+public class firstservlet extends HttpServlet
+{
+public void service(HttpServletRequest req,HttpServletResponse res)
+{
+try
+{
+res.setContentType("text/html");
+PrintWriter pw=res.getWriter();
+String a=req.getParameter("t1");
+String b=req.getParameter("t2");
+HttpSession ses=req.getSession(true);//create a new session
+ses.setAttribute("x",a); //storing the value in the session
+ses.setAttribute("y",b);
+pw.println("<html>");
+pw.println("<form action=secondServlet method=post>");
+pw.println("enter address:");
+pw.println("<input type=text name=t3 size=20><br>");
+pw.println("enter phone no:");
+pw.println("<input type=text name=t4 size=20><br>");
+pw.println("<input type=submit value=submit><br>");
+pw.println("</form></html>");
+pw.close();
+}
+catch(Exception ae)
+{}}}
+--------------------------------------------------------------------------------------
+secondServlet.java
+------------------------------------------
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+import java.io.*;
+@WebServlet("/secondServlet")
+public class secondServlet extends HttpServlet
+{
+public void service(HttpServletRequest req,HttpServletResponse res)
+{
+try
+{
+res.setContentType("text/html");
+PrintWriter pw=res.getWriter();
+String c=req.getParameter("t3");
+String d=req.getParameter("t4");
+HttpSession ses=req.getSession(false);//same session
+ses.setAttribute("g",c);
+ses.setAttribute("h",d);
+pw.println("<html>");
+pw.println("<form action=third method=post>");
+pw.println("enter hobby:");
+pw.println("<input type=text name=t5 size=20><br>");
+pw.println("enter email:");
+pw.println("<input type=text name=t6 size=20><br>");
+pw.println("<input type=submit value=submit><br>");
+pw.println("</form></html>");
+pw.close();
+}
+catch(Exception ae)
+{}
+}}
+-------------------------------------------------------------------------------------------------
+third.java
+---------------------------
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+import java.io.*;
+@WebServlet("/third")
+public class third extends HttpServlet
+{
+public void service(HttpServletRequest req,HttpServletResponse res)
+{
+try
+{
+res.setContentType("text/html");
+PrintWriter pw=res.getWriter();
+String e=req.getParameter("t5");
+String f=req.getParameter("t6");
+HttpSession ses=req.getSession(false);//no new session is created it mentain the same session id
+ses.setAttribute("i",e);
+ses.setAttribute("j",f);
+String a=(String)ses.getAttribute("x");
+String b=(String)ses.getAttribute("y");
+String c=(String)ses.getAttribute("g");
+String d=(String)ses.getAttribute("h");
+
+pw.println("the name is :"+a);
+pw.println("the password is :"+b);
+pw.println("the address is :"+c);
+pw.println("the phone no is :"+d);
+pw.println("the hobby is :"+e);
+pw.println("the email is :"+f);
+pw.close();
+}
+catch(Exception ae)
+{}}}
+---------------------------------------------------------------------------------
+Cookies Example
+--------------------------------
+addcookies.html
+-----------------------------
+<html>
+     <head>
+     </head>
+      <body bgcolor="orange">
+          <h1>store the data into cookies</h1>
+          <form action="addcookies">
+          <b> Enter the name of  cookie</b>
+          <input type="text" name="n1" size="6"><br><br>
+          <b> Enter the value of  cookie </b>
+          <input type="text" name="n2" size="6"><br><br>
+          <input type="submit" value="submit">
+          </form>
+    </body>
+</html>
+------------------------------------------------------------------------------------
+addcookies.java
+-------------------------------
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+@WebServlet("/addcookies")
+public class addcookies extends HttpServlet
+ {
+     protected void service(HttpServletRequest request, HttpServletResponse response)
+             throws ServletException, IOException {
+          response.setContentType("text/html");
+          PrintWriter out = response.getWriter();
+           try {
+            String name1=request.getParameter("n1");
+            String value1=request.getParameter("n2");
+            Cookie cc=new Cookie(name1, value1);
+            response.addCookie(cc);
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet addcookies</title>");            
+            out.println("</head>");
+            out.println("<body bgcolor='blue'>");
+            out.println("Name of first cookie = ");
+            out.println(name1);
+            out.println("<br>value of first cookie = ");
+            out.println(value1);
+            out.println("</body>");
+            out.println("</html>");
+        } finally {               
+               out.close();
+          }     }}
+------------------------------------------------------------------------------------------------------
+getcookies.html
+-----------------------------
+<html>
+     <body bgcolor="orange">
+            <h1>To retrieve the data from cookies</h1>
+             <form action="getcookies">
+         
+              <B> CLICK THE BUTTON TO FIRE THE COOKIE</B><br>
+              <input type="submit" value="submit"/>
+             </form>
+    </body>
+</html>
+--------------------------------------------------------------------------------
+getcookies.java
+-----------------------------------
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+@WebServlet("/getcookies")
+public class getcookies extends HttpServlet 
+{
+    public void service(HttpServletRequest request, HttpServletResponse response)
+             throws ServletException, IOException
+ {
+          response.setContentType("text/html");
+          PrintWriter out = response.getWriter();
+         try {   
+            out.println("<html>"); 
+             out.println("<head>");
+            out.println("<title>Servlet getcookies</title>");            
+            out.println("</head>");
+            out.println("<body bgcolor='blue'>");
+            Cookie cookies[]=request.getCookies();
+            for(int i=0;i<cookies.length;i++)
+            {
+                String name=cookies[i].getName();
+                String value=cookies[i].getValue();
+                out.println("<br> cookie name="+name+"<br>");
+                out.println("<br> cookie value="+value);
+            }
+            out.println("</body>");
+           out.println("</html>");
+                  } finally {               
+               out.close();   
+    }     }}
+--------------------------------------------------------------------------
+Difference between session and cookies
+----------------------------------------------------------------------------
+Sessions and cookies are both mechanisms for maintaining state in web applications, but they operate differently and serve different purposes.
+
+Cookies
+Storage Location:
+1)Stored on the client's browser.
+Sent with every HTTP request to the server within the domain scope.
+2)Data Size:
+Typically limited to around 4KB of data per cookie.
+3)Lifetime:
+Can be persistent (saved on disk) or temporary (session cookies that are deleted when the browser is closed).
+4)Security:
+Less secure as they reside on the client-side and can be manipulated or stolen.
+--------------------------------------------------------------------------------------------------
+Sessions
+1)Storage Location:
+Stored on the server.
+The session ID is stored on the client as a cookie .
+2)Data Size:
+Can store larger amounts of data since the data is stored on the server.
+3)Lifetime:
+Typically lasts until the user logs out or the session expires (timeout).
+4)Security:
+More secure as the actual data is stored on the server.
+Only the session ID is sent back and forth, reducing the risk of data exposure.
+-------------------------------------------------------------------------------------------------------
+Cookies are small pieces of data stored on the client side, suitable for lightweight data and preferences.
+---------------------------------------------------------------------------------------
+Sessions store data on the server, suitable for more sensitive or larger pieces of data that need to be kept secure and accessible across different pages during a user's visit.
+-------------------------------------------------------------------------------------------------------
+Hidden Fields
+--------------------------------
+urlhidden.html
+--------------------------------
+<html>
+     </head>
+     <body>
+      <form action="urlhidden" method='post'>
+       
+          ID:<input type="text" name="id">
+          <input type="hidden" name="frm" value="1">
+          <input type="submit" value="submit">
+     </form>
+    </body>
+</html>
+-----------------------------------------------------------------------------------------------
+urlhidden.java
+-----------------------------------
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+@WebServlet("/urlhidden")
+
+public class urlhidden extends HttpServlet 
+{
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException 
+	{
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		String x=request.getParameter("id");
+		String formid=request.getParameter("frm");
+		if(formid.equals("1"))
+		{
+			out.println("The value is "+formid);
+			out.println("The value of ID is "+x);
+			out.println("This is an example of Hidden Field<br>");
+		}
+		else
+		{
+			out.println("This is not an example of Hidden Field<br>");
+		}
+
+	}
+}
+-------------------------------------------------------------------------------------------------------------------
+URL Re-written
+---------------------------------------
+urlrewriting.html
+-----------------------------------
+<html>
+     </head>
+ <body bgcolor="orange">
+      <form action="urlrewriting">
+          name<input type="text" name="user"><br><br>
+          <input type="submit" value="submit">
+      </form>
+  </body>
+</html>
+--------------------------------------------------------------------------------
+urlrewriting.java
+---------------------------------------------
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+@WebServlet("/urlrewriting")
+public class urlrewriting extends HttpServlet {
+
+     protected void service(HttpServletRequest request, HttpServletResponse response)
+             throws ServletException, IOException {
+          response.setContentType("text/html");
+          PrintWriter out = response.getWriter();
+          String name=request.getParameter("user");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>url rewriting</title>");  
+            out.println("</head>");
+            out.println("<body bgcolor='orange'>");
+             
+            out.println("This is first servlet class<br>");
+            out.println("The username="+name+"<br>");
+            out.println("<a href='urlrewrite1?name="+name+"'>click1</a>");
+            out.println("<a href='urlrewrite1?name="+name+"&a2=Bangalore&salary=12000'> click2</a>");
+            out.println("</form>");
+            out.println("</body>");
+            out.println("</html>");
+          
+       
+          }
+     }
+----------------------------------------------------------------------------------------------------------------------
+urlrewrite1.java
+---------------------------------------
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+@WebServlet("/urlrewrite1")
+
+public class urlrewrite1 extends HttpServlet 
+{
+     protected void service(HttpServletRequest request, HttpServletResponse response)
+             throws ServletException, IOException {
+          response.setContentType("text/html");
+          PrintWriter out = response.getWriter();
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet login</title>");  
+            out.println("</head>");
+            out.println("<body bgcolor='orange'>");
+            out.println("<h1>Login page</h1>");
+            out.println("Second servlet class<br>");
+            String name1=request.getParameter("name");
+            out.println("The name is="+name1);
+            String address=request.getParameter("a2");
+            out.println("The address is="+address);
+            String salary=request.getParameter("salary");
+            out.println("The salary is="+salary);
+            out.println("</body>");
+            out.println("</html>");
+     }       
+     }
+------------------------------------------------------------------------------------------------------------------
+JSP EXAMPLE-1
+---------------------------------------------
+<html>
+    <head>
+          <title>JSP Page</title>
+    </head>
+    <body>
+
+        <%  out.println("Scripting tag"); %>
+
+        <h1>Welcome to jsp</h1>
+
+        <% out.println("welcome to jsp page"); %>
+        
+        
+    </body>
+</html>
+--------------------------------------------------------------------------------
+JSP EXAMPLE-2 (DECLARATION TAG)
+----------------------------------------------------------------------
+
+<html>
+    <head>
+         <title>JSP Page</title>
+    </head>
+
+    <body>
+         <%
+        int a!=10,b=20,sum;
+        sum=a+b;
+        out.println("the sum of two numbers is"+sum);
+        %>
+          
+        <h1>Hello World!</h1>
+       
+
+    </body>
+</html>
+
+-------------------------------------------------------------------------------------------------------------
+JSP EXAMPLE-3 (EXPRESSION TAG)
+-----------------------------------------------------------------
+<body>
+        <h1>Hello World!</h1>
+//expression tag
+       
+ <%
+        out.print("expression=");
+        %>
+
+        <%= 5+4 %>
+
+
+//declarative
+
+        <%int sum, a, b;%>
+        <%
+              a=10;
+              b=20;
+
+        sum=a+b;
+        out.println("the sum of numbers is"+sum);
+
+        %>
+
+     <%=5+4 %>
+      
+        <font color="red" size="4">
+            the sum of <%=a%> and <%=b%> is <%=sum%>
+
+        </font>
+                     
+
+    </body>
+------------------------------------------------------------------------------------------------------------------
+JSP EXAMPLE-4
+---------------------------------
+<body>
+        <h1>Hello World!</h1>
+        <form action="second.jsp">
+            username:<input type="text" name="user">
+            <input type="submit" value="submit">
+       </form>
+    </body>
+</html>
+-------------------------------------------------------------------------
+second.jsp
+<body>
+      <%!String user;%>
+      <%
+      user=request.getParameter("user");
+      out.println("the value of user is="+user);
+      %>
+   
+      <br>
+      the username is=<%=user%>
+    </body>
+
+---------------------------------------------------------------------------------------------------
+JSP EXAMPLE-5
+-------------------------------
+<%@page language="java"%>
+<%@page buffer="16kb"%>
+<%@page buffer="16kb" autoFlush="true"%>
+<%@page session="true" %>
+<%@page import="java.util.*"%>
+<%
+Date d=new Date();
+out.println(d);
+
+out.println(d.getMonth());
+
+%>
+-------------------------------------------------------------------------------------------------------------
+JSP EXAMPLE-6
+--------------------------------
+<h1>Hello World!</h1>
+        <select name="number">
+            <%
+            for(int i=0;i<100;i++)
+                {
+            %>
+            <option value="<%=i%>"><%=i%></option>
+            <%
+            }
+            %>
+        </select>
+    </body>
+---------------------------------------------------------------------------------------------------------------------------
+JSP EXAMPLE-7
+--------------------------------
+Test1.jsp
+-----------------
+<body>
+        <form action="test2.jsp">
+            age=<input type="text" name="n1">
+            <input type="submit" value="submit">
+        </form>
+    </body>
+-------------------------------------------
+test2.jsp
+------------------------------------------
+<%@page errorPage="error.jsp"%>
+
+<%!String name;
+    int age;
+    %>
+          
+    <% name=request.getParameter("n1");
+    age=Integer.parseInt(name);
+    out.println("the age is"+age);%>
+--------------------------------------------------------------------------------------
+error.jsp
+----------------------------------
+<%@page isErrorPage="true" %>
+<%
+
+out.println("enter only the number");
+out.println("<a href='Test1.jsp'>form</a>");
+
+%>
+------------------------------------------------------------------------------------------
+JSP EXAMPLE-8
+---------------------------------------------------------------------------
+test4.jsp
+-------------------------
+<body>
+        <form action="test5.jsp">
+            age:<input type="text" name="n1">
+            <input type="submit" value="submit">
+
+
+        </form>
+    </body>
+
+-----------------------------------------------------------------------------------------------------------
+test5.jsp
+-----------------------------------------------
+<%!String age;
+int age1;
+%>
+<%
+try{
+age=request.getParameter("n1");
+age1=Integer.parseInt(age);
+out.println("the age is "+age1);
+}catch(Exception e)
+        {
+    out.println("plz enter only numbers");
+    %>
+
+   <%@include file="test4.jsp"%>
+
+   <%
+    }
+    %>
+
+---------------------------------------------------------------------------------------------------------------
+Servlet without Annotation
+-------------------------------------------------
+example-1
+---------------------
+<html>
+<form action=Third method=get>
+<table>
+<tr><td>Enter your name<td><input type=text name=t1 size=20></tr>
+<tr><td>Enter your address<td><input type=text name=t2 size=20></tr>
+<tr><td>Enter your phone no<td><input type=text name=t3 size=20></tr>
+<tr><td><td><input type=submit value=submit></tr>
+</table>
+</form>
+</html>
+----------------------------------------------------------------------------------------------------------
+web.xml
+------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>FirstServletDemo</display-name>
+  <servlet>
+        <servlet-name>Second</servlet-name>
+        <servlet-class>Second</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Second</servlet-name>
+        <url-pattern>/Second/*</url-pattern>
+    </servlet-mapping>
+  
+  <servlet>
+        <servlet-name>Third</servlet-name>
+        <servlet-class>Third</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Third</servlet-name>
+        <url-pattern>/Third/*</url-pattern>
+    </servlet-mapping>
+  
+  
+  <welcome-file-list>
+    <welcome-file>Pawan.html</welcome-file>
+     </welcome-file-list>
+</web-app>
+-------------------------------------------------------------------------------------------------------------------
+Second.java
+---------------------------------------
+import javax.servlet.*;
+import java.io.*;
+public class Second extends GenericServlet
+{
+            @Override
+    public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException
+    {
+        PrintWriter pw=res.getWriter();
+        res.setContentType("text/html");
+        String a=req.getParameter("t1");
+        String b=req.getParameter("t2");
+        String c=req.getParameter("t3");
+        pw.println("The name is "+a);
+        pw.println("The address is "+b);
+        pw.println("The Phoneno is "+c);
+        
+}
+}
+--------------------------------------------------------------------------------------------------------------
+step 1:spring initializer
+step 2:Make the change 
+step 3:add dependencies
+step 4:generate
+step 5:open STS ---->open project from file system
+step 6:Directory --->browse for the create folder.
+-------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
