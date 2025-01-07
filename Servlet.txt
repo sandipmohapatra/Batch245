@@ -8,6 +8,7 @@ In the servlet we don't have the main()
 we have the lifecycle method for Generic Servlet.
 init():- This execute for one time .It is used to create the memory block.
 service() :- This execute for 'n' no of times .It accepts request and gives the response. 
+
 destroy():-This execute for one time .It is used to delete the  memory block. 
 ----------------------------------------------------------------------------------------------------------------
 we have the lifecycle method for Http Servlet.
@@ -70,11 +71,9 @@ POST: Use when you need to send data to the server, especially when the data is 
 </body>
 </html>
 -------------------------------------------------------------------
+import jakarta.servlet.*;
 import java.io.*;
-import javax.servlet.*;
-import javax.servlet.annotation.WebServlet;
-
-
+import jakarta.servlet.annotation.WebServlet;
 @WebServlet("/EmployeeRegister")
 public class EmployeeRegister extends GenericServlet 
 {
@@ -2301,9 +2300,112 @@ step 4:generate
 step 5:open STS ---->open project from file system
 step 6:Directory --->browse for the create folder.
 -------------------------------------------------------------------------------
+First Servlet
+--------------------------
 
+<html>
+<body bgcolor=cyan>
+<h1>Employee Registration Page</h1><hr>
+<form action=EmployeeRegister>
+<table>
+<tr><td>Enter EmpID<td><input type=text name=t1 size=20 required></tr>
+<tr><td>Enter Name<td><input type=text name=t2 size=20 required></tr>
+<tr><td>Enter Address<td><input type=text name=t3 size=20 required></tr>
+<tr><td><td>
+<input type="submit" value=insert name=b1 >
+<input type="submit" value=update name=b1>
+<input type="submit" value=delete name=b1 >
+<input type="submit" value=select name=b1 >
+</table>
+</form>
+</body>
+</html>
 
+------------------------------------------------------------------------------------------
+import jakarta.servlet.*;
+import java.io.*;
+import java.sql.*;
+import jakarta.servlet.annotation.WebServlet;
+@WebServlet("/EmployeeRegister")
+public class EmployeeRegister extends GenericServlet 
+{
+public void init()
+{	System.out.println("init");	}
+@Override
+public void service(ServletRequest req, ServletResponse res) 
+		throws ServletException, IOException 
+{
+	res.setContentType("text/html");
+	PrintWriter pw=res.getWriter();
+String a=req.getParameter("t1");
+String b=req.getParameter("t2");
+String c=req.getParameter("t3");
+String d=req.getParameter("b1");
+pw.println("the button pressed is "+d);
+pw.println("the empid is "+a);
+pw.println("<br>");
+pw.println("the emp name is "+b);
+pw.println("<br>");
+pw.println("the emp address is "+c);
+try
+{
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection
+			("jdbc:mysql://localhost:3306/mphasis245","root","1234");
+	if(d.equals("insert"))
+	{
+PreparedStatement ps=con.prepareStatement("insert into employee values(?,?,?)");
+ps.setString(1, a);
+ps.setString(2, b);
+ps.setString(3, c);
+ps.execute();
+pw.println("row inserted");
+	}
+	else if(d.equals("update"))
+	{
+		PreparedStatement ps=con.prepareStatement
+				("update employee set name=?,address=? where empid=?");
+		ps.setString(1, b);
+		ps.setString(2, c);
+		ps.setString(3, a);
+		ps.execute();
+		pw.println("row updated");
+	}
+	else if(d.equals("delete"))
+	{
+		PreparedStatement ps=con.prepareStatement
+				("delete from employee where empid=?");
+		ps.setString(1, a);
+		ps.execute();
+		pw.println("row deleted");
+	}
+	else
+	{
+		Statement st=con.createStatement();
+		pw.println("<table border=1>");
+		pw.println("<br>");
+		pw.println("<tr><td>empid"+" <td>  "  +" emp name "+" <td> "+" emp address</tr>");
+		ResultSet rs=st.executeQuery("select * from employee");
+		while(rs.next())
+		{
+			pw.println("<tr><td>"+rs.getString(1)+"<td> "+rs.getString(2)+"<td>"+rs.getString(3)+"</tr>");
+			
+		}
+		pw.println("</table>");
+	}
+}
+catch(Exception ae)
+{
+	ae.printStackTrace();
+}
+}
+public void destroy()
+{
+	System.out.println("Destroy");
+	}
 
+}
+-------------------------------------------------------------------
 
 
 
