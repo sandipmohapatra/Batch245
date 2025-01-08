@@ -2311,6 +2311,7 @@ First Servlet
 <tr><td>Enter EmpID<td><input type=text name=t1 size=20 required></tr>
 <tr><td>Enter Name<td><input type=text name=t2 size=20 required></tr>
 <tr><td>Enter Address<td><input type=text name=t3 size=20 required></tr>
+<tr><td>Enter Phoneno<td><input type=number name=t4 size=20 required></tr>
 <tr><td><td>
 <input type="submit" value=insert name=b1 >
 <input type="submit" value=update name=b1>
@@ -2322,6 +2323,8 @@ First Servlet
 </html>
 
 ------------------------------------------------------------------------------------------
+EmployeeRegister.java
+-------------------------------------------------
 import jakarta.servlet.*;
 import java.io.*;
 import java.sql.*;
@@ -2406,9 +2409,215 @@ public void destroy()
 
 }
 -------------------------------------------------------------------
+Wednesday
+------------------------
+<html>
+<body bgcolor=cyan>
+<h1>Employee Registration Page</h1><hr>
+<form action=EmployeeRegister>
+<table>
+<tr><td>Enter EmpID<td><input type=text name=t1 size=20 required></tr>
+<tr><td>Enter Name<td><input type=text name=t2 size=20 required></tr>
+<tr><td>Enter Address<td><input type=text name=t3 size=20 required></tr>
+<tr><td>Enter Phoneno<td><input type=text name=t4 size=20 required></tr>
+<tr><td><td>
+<input type="submit" value=insert name=b1 >
+<input type="submit" value=update name=b1>
+<input type="submit" value=delete name=b1 >
+<input type="submit" value=select name=b1 >
+</table>
+</form>
+</body>
+</html>
+------------------------------------------------------------------------------
+import jakarta.servlet.*;
+import java.io.*;
+import java.sql.*;
+import jakarta.servlet.annotation.WebServlet;
+@WebServlet("/EmployeeRegister")
+public class EmployeeRegister extends GenericServlet 
+{
+public void init()
+{	System.out.println("init");	}
+@Override
+public void service(ServletRequest req, ServletResponse res) 
+		throws ServletException, IOException 
+{
+	res.setContentType("text/html");
+	PrintWriter pw=res.getWriter();
+String a=req.getParameter("t1");
+String b=req.getParameter("t2");
+String c=req.getParameter("t3");
+String p=req.getParameter("t4");
+String d=req.getParameter("b1");
+pw.println("the button pressed is "+d);
+pw.println("the empid is "+a);
+pw.println("<br>");
+pw.println("the emp name is "+b);
+pw.println("<br>");
+pw.println("the emp address is "+c);
+pw.println("<br>");
+pw.println("the emp phoneno is "+p);
+try
+{
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection
+			("jdbc:mysql://localhost:3306/mphasis245","root","1234");
+	if(d.equals("insert"))
+	{
+PreparedStatement ps=con.prepareStatement("insert into employee values(?,?,?,?)");
+ps.setString(1, a);
+ps.setString(2, b);
+ps.setString(3, c);
+ps.setString(4, p);
+ps.execute();
+pw.println("row inserted");
+	}
+	else if(d.equals("update"))
+	{
+		PreparedStatement ps=con.prepareStatement
+				("update employee set name=?,address=?,phoneno=? where empid=?");
+		ps.setString(1, b);
+		ps.setString(2, c);
+		ps.setString(3, p);
+		ps.setString(4, a);
+		ps.execute();
+		pw.println("row updated");
+	}
+	else if(d.equals("delete"))
+	{
+		PreparedStatement ps=con.prepareStatement
+				("delete from employee where empid=?");
+		ps.setString(1, a);
+		ps.execute();
+		pw.println("row deleted");
+	}
+	else
+	{
+		Statement st=con.createStatement();
+		pw.println("<table border=1>");
+		pw.println("<br>");
+		pw.println("<tr><td>empid"+" <td>  "  +" emp name "+" <td> "+" emp address"+"<td>"+" emp phone no </tr>");
+		ResultSet rs=st.executeQuery("select * from employee");
+		while(rs.next())
+		{
+			pw.println("<tr><td>"+rs.getString(1)+"<td> "+rs.getString(2)+"<td>"+rs.getString(3)+"<td>"+rs.getString(4)+"</tr>");
+			
+		}
+		pw.println("</table>");
+	}
+}
+catch(Exception ae)
+{
+	ae.printStackTrace();
+}
+}
+public void destroy()
+{
+	System.out.println("Destroy");
+	}
 
+}
 
+--------------------------------------------------------------
+JSP
+--------------
+<html>
+<body bgcolor=cyan>
+<h1>Employee Registration Page</h1><hr>
+<form action=Second.jsp>
+<table>
+<tr><td>Enter EmpID<td><input type=text name=t1 size=20 required></tr>
+<tr><td>Enter Name<td><input type=text name=t2 size=20 required></tr>
+<tr><td>Enter Address<td><input type=text name=t3 size=20 required></tr>
+<tr><td>Enter Phoneno<td><input type=text name=t4 size=20 required></tr>
+<tr><td><td>
+<input type="submit" value=insert name=b1 >
+<input type="submit" value=update name=b1>
+<input type="submit" value=delete name=b1 >
+<input type="submit" value=select name=b1 >
+</table>
+</form>
+</body>
+</html>
+--------------------------------------------------------------------
+Second.jsp
+----------------------------------------------------
+<%@ page import="java.sql.*" %>
+<%String a=request.getParameter("t1");
+String b=request.getParameter("t2");
+String c=request.getParameter("t3");
+String p=request.getParameter("t4");
+String d=request.getParameter("b1");%>
 
+<%
+out.println("the button pressed is "+d);
+out.println("the empid is "+a);
+out.println("<br>");
+out.println("the emp name is "+b);
+out.println("<br>");
+out.println("the emp address is "+c);
+out.println("<br>");
+out.println("the emp phoneno is "+p);
+ %>
+ 
+ <%
+ try
+ {
+ 	Class.forName("com.mysql.cj.jdbc.Driver");
+ 	Connection con=DriverManager.getConnection
+ 			("jdbc:mysql://localhost:3306/mphasis245","root","1234");
+ 	if(d.equals("insert"))
+ 	{
+ PreparedStatement ps=con.prepareStatement("insert into employee values(?,?,?,?)");
+ ps.setString(1, a);
+ ps.setString(2, b);
+ ps.setString(3, c);
+ ps.setString(4, p);
+ ps.execute();
+ out.println("row inserted");
+ 	}
+ 	else if(d.equals("update"))
+ 	{
+ 		PreparedStatement ps=con.prepareStatement
+ 				("update employee set name=?,address=?,phoneno=? where empid=?");
+ 		ps.setString(1, b);
+ 		ps.setString(2, c);
+ 		ps.setString(3, p);
+ 		ps.setString(4, a);
+ 		ps.execute();
+ 		out.println("row updated");
+ 	}
+ 	else if(d.equals("delete"))
+ 	{
+ 		PreparedStatement ps=con.prepareStatement
+ 				("delete from employee where empid=?");
+ 		ps.setString(1, a);
+ 		ps.execute();
+ 		out.println("row deleted");
+ 	}
+ 	else
+ 	{
+ 		Statement st=con.createStatement();
+ 		out.println("<table border=1>");
+ 		out.println("<br>");
+ 		out.println("<tr><td>empid"+" <td>  "  +" emp name "+" <td> "+" emp address"+"<td>"+" emp phone no </tr>");
+ 		ResultSet rs=st.executeQuery("select * from employee");
+ 		while(rs.next())
+ 		{
+ 			out.println("<tr><td>"+rs.getString(1)+"<td> "+rs.getString(2)+"<td>"+rs.getString(3)+"<td>"+rs.getString(4)+"</tr>");
+ 			
+ 		}
+ 		out.println("</table>");
+ 	}
+ }
+ catch(Exception ae)
+ {
+ 	ae.printStackTrace();
+ }
+
+ %>
+--------------------------------------------------------------------------------
 
 
 
