@@ -873,11 +873,10 @@ example-4
 <input type=submit value="Login" ></tr>
 </table></form></body></html>
 ----------------------------------------------
-import javax.servlet.*;
+import jakarta.servlet.*;
 import java.io.*;
-import java.sql.*;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.*;
 @WebServlet("/Second")
 public class Second extends HttpServlet {
 			@Override
