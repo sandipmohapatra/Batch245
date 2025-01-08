@@ -477,6 +477,7 @@ Example-2
 ----------------------
 <html>
 <body bgcolor=cyan>
+<form action=Second>
 <h1><center>Calculator</center></h1><hr>
 <table>
 <tr><td>Enter a number<td><input type=text name=t1 size=20></tr>
@@ -486,11 +487,15 @@ Example-2
 <input type=submit value="SUB" name=b1>
 <input type=submit value="MUL" name=b1>
 <input type=submit value="DIV" name=b1></tr>
-</table></body></html>
+</table>
+</form>
+</body>
+</html>
+
 ------------------------------------------------
-import javax.servlet.*;
+import jakarta.servlet.*;
 import java.io.*;
-import javax.servlet.annotation.WebServlet;
+import jakarta.servlet.annotation.WebServlet;
 @WebServlet("/Second")
 public class Second extends GenericServlet {
             @Override
@@ -1120,7 +1125,7 @@ Implicit object:-
 5)config-- ServletConfig
 6)session-- HttpSession
 7)application-- ServletContext
-8)execption-- Exception
+8)exception-- Exception
 9)pageContext - JspWriter
 --------------------------------------------------------------------------------------
 create a emplyee class and do crud operation.
