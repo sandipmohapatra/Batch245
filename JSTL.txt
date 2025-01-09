@@ -1,0 +1,259 @@
+Core tags	The JSTL core tag provide variable support, URL management, flow control, etc.
+ The URL for the core tag is http://java.sun.com/jsp/jstl/core. 
+The prefix of core tag is c.
+______________________________________________________________________________________________
+Function tags	The functions tags provide support for string manipulation and string length. 
+The URL for the functions tags is http://java.sun.com/jsp/jstl/functions and prefix is fn.
+____________________________________________________________________________________________
+Formatting tags	
+The Formatting tags provide support for message formatting, number and date formatting, etc. 
+The URL for the Formatting tags is http://java.sun.com/jsp/jstl/fmt and prefix is fmt.
+________________________________________________________________________________________
+XML tags	
+The XML tags provide flow control, transformation, etc. 
+The URL for the XML tags is http://java.sun.com/jsp/jstl/xml and prefix is x.
+_______________________________________________________________________________________
+SQL tags
+The JSTL SQL tags provide SQL support. 
+The URL for the SQL tags is http://java.sun.com/jsp/jstl/sql and prefix is sql.
+_______________________________________________________________________________________________
+Example-1
+-----------------------
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+     <head>
+          <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+          <title>JSP Page</title>
+     </head>
+     <body>
+          <h1>Hello World!</h1> 
+          <form action="jstl1.jsp">
+          <table>
+              <tr><td>username</td>
+                  <td><input type="text" name="n1"></td>
+              <tr>
+                  <td>Password</td>
+                  <td><input type="password" name="n2"><br>
+              <tr><td><input type="submit" value="submit">
+                  <td><input type="reset" value="Reset"></td>
+           </table></form>
+     </body>
+</html>
+----------------------------------------------------------------------------------------------------------------
+<%@taglib  uri="http://java.sun.com/jstl/core" prefix="core" %>
+<html>
+     <body>
+          The username=${param.n1}<br>
+          The Password=${param.n2}
+     </body>
+</html>
+------------------------------------------------------------------------------------------------------------------------
+example-2
+-----------------------------
+<%@taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="core"%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+     <head>
+          <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+          <title>JSP Page</title>
+     </head>
+     <body>
+          <h1>Hello World!</h1>
+       5+4=>   ${5+4};<br>
+       5-4=>   ${5-4};<br>
+       5*4=>   ${5*4};<br>
+       5 div 4 =>  ${5 div 4};<br>
+       5 mod 4 =>   ${5 mod 4};<br>
+       5 == 4 => ${5 == 4};<br>
+       5 eq 4 =>   ${5 eq 4};<br>
+       5 gt 4 =>   ${5 gt 4};<br>
+          
+       10>5  =>
+<core:if test="$(10>5)"></core:if>
+     <core:out value="yes"></core:out>
+     <br><br>
+10<15 =>
+<core:if test="${10<15}" var="a" scope="session"></core:if>
+<core:out value="${sessionScope.a}"></core:out>
+     </body>
+</html>
+----------------------------------------------------------------------------------------------------------
+example-3
+------------------------
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+     <head>
+          <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+          <title>JSP Page</title>
+     </head>
+     <body>
+          <form action="jstl3.jsp">
+          <table>
+              <tr><td>Enter any number</td>
+                  <td><input type="text" name="n1"></td>
+            
+              <tr><td><input type="submit" value="submit">
+                  <td><input type="reset" value="Reset"></td>
+           </table></form>
+     </body>
+</html>
+------------------------------------------------------------------------------------------------------------------
+<%@taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="core"%>
+
+<core:choose>
+  
+        <core:when test="${param.n1=='1'}">
+          <core:out value="one"></core:out></core:when>
+        <core:when test="${param.n1=='2'}">
+          <core:out value="two"></core:out></core:when>
+        <core:when test="${param.n1=='3'}">
+          <core:out value="three"></core:out></core:when>
+        <core:otherwise>
+             <core:out value="wrong"></core:out>
+        </core:otherwise>
+</core:choose>
+------------------------------------------------------------------------------------------------------------------
+example-4
+-------------------------------
+<%@taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="core"%>
+
+<core:set var="a" scope="session" value="raj"></core:set>
+<core:out value="${sessionScope.a}"></core:out>
+
+<%
+String name[]={"amit","Kiran","sandip","dipak","Arun"};
+session.setAttribute("obj",name);
+
+%>
+<core:forEach items="${sessionScope.obj}" var="abc" begin="0" end="4" >
+<core:out value="${abc}"></core:out></core:forEach>
+--------------------------------------------------------------------------------------------------------------
+example-5
+-----------------------------
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>  
+<%@ page import="javax.servlet.http.*,javax.servlet.*" %>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>  
+  
+<html>  
+<head>  
+<title>sql:query Tag</title>  
+</head>  
+<body>  
+   
+<sql:setDataSource var="db" driver="com.mysql.jdbc.Driver"  
+     url="jdbc:mysql://localhost/mphasis237"  
+     user="root"  password="1234"/>  
+  
+<sql:query dataSource="${db}" var="rs">  
+SELECT * from Student;  
+</sql:query>  
+   
+<table border="2" width="100%">  
+<tr>  
+<th>Student ID</th>  
+<th>Name</th>  
+<th>Email</th>  
+<th>Phone no</th>  
+<th>Salary</th>  
+<th>Address</th>  
+
+</tr>  
+<c:forEach var="table" items="${rs.rows}">  
+<tr>  
+<td><c:out value="${table.id}"/></td>  
+<td><c:out value="${table.Name}"/></td>  
+<td><c:out value="${table.Email}"/></td>  
+<td><c:out value="${table.Phone}"/></td>
+<td><c:out value="${table.Salary}"/></td>
+<td><c:out value="${table.Address}"/></td>
+</tr>  
+</c:forEach>  
+</table>  
+  
+</body>  
+</html>  
+------------------------------------------------------------------------------------------------------
+example-6
+---------------------------------
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
+  
+<html>  
+  <head>  
+ <title>fmt:parseNumber tag</title>  
+  </head>  
+  <body>  
+<h3>The fmt:parseNumber tag Example is:</h3>  
+  
+<c:set var="Amount" value="786.970" />  
+  
+    <fmt:parseNumber var="j" type="number" value="${Amount}" />  
+    <p><i>Amount is:</i>  <c:out value="${j}" /></p>  
+  
+    <fmt:parseNumber var="j" integerOnly="true" type="number" value="${Amount}" />  
+    <p><i>Amount is:</i>  <c:out value="${j}" /></p>  
+  </body>  
+</html>  
+----------------------------------------------------------------------------------------------------------
+example-7
+---------------------
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
+<html>  
+<head>  
+<title>fmt:formatDate</title>  
+</head>  
+<body>  
+<h2>Different Formats of the Date</h2>  
+<c:set var="Date" value="<%=new java.util.Date()%>" />  
+<p>  
+Formatted Time :  
+<fmt:formatDate type="time" value="${Date}" />  
+</p>  
+<p>  
+Formatted Date :  
+<fmt:formatDate type="date" value="${Date}" />  
+</p>  
+<p>  
+Formatted Date and Time :  
+<fmt:formatDate type="both" value="${Date}" />  
+</p>  
+<p>  
+Formatted Date and Time in short style :  
+<fmt:formatDate type="both" dateStyle="short" timeStyle="short"  
+value="${Date}" />  
+</p>  
+<p>  
+Formatted Date and Time in medium style :  
+<fmt:formatDate type="both" dateStyle="medium" timeStyle="medium"  
+value="${Date}" />  
+</p>  
+<p>  
+Formatted Date and Time in long style :  
+<fmt:formatDate type="both" dateStyle="long" timeStyle="long"  
+value="${Date}" />  
+</p>  
+  
+</body>  
+</html>  
+-------------------------------------------------------------------------------------------------------
+example-8
+----------------------
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
+<html>  
+<head>  
+<title> Using JSTL Function </title>  
+</head>  
+<body>  
+<c:set var="string" value="Welcome to JSP Programming"/>  
+${fn:toLowerCase("HELLO,")}  
+${fn:toLowerCase(string)}  
+</body>  
+</html>  
+---------------------------------------------------------------
