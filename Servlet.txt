@@ -1678,9 +1678,9 @@ Enter password<input type=text name=t2 size=20><br>
 -------------------------------------------------------------------------------
 firstservlet.java
 --------------------------
-import javax.servlet.*;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import jakarta.servlet.*;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.*;
 import java.io.*;
 @WebServlet("/firstservlet")
 public class firstservlet extends HttpServlet
@@ -1711,9 +1711,9 @@ catch(Exception ae)
 --------------------------------------------------------------------------------------
 secondServlet.java
 ------------------------------------------
-import javax.servlet.*;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import jakarta.servlet.*;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.*;
 import java.io.*;
 @WebServlet("/secondServlet")
 public class secondServlet extends HttpServlet
@@ -1745,9 +1745,9 @@ catch(Exception ae)
 -------------------------------------------------------------------------------------------------
 third.java
 ---------------------------
-import javax.servlet.*;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import jakarta.servlet.*;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.*;
 import java.io.*;
 @WebServlet("/third")
 public class third extends HttpServlet
@@ -1760,7 +1760,7 @@ res.setContentType("text/html");
 PrintWriter pw=res.getWriter();
 String e=req.getParameter("t5");
 String f=req.getParameter("t6");
-HttpSession ses=req.getSession(false);//no new session is created it mentain the same session id
+HttpSession ses=req.getSession(false);//no new session is created it maintain the same session id
 ses.setAttribute("i",e);
 ses.setAttribute("j",f);
 String a=(String)ses.getAttribute("x");
@@ -1801,9 +1801,9 @@ addcookies.html
 addcookies.java
 -------------------------------
 import java.io.*;
-import javax.servlet.*;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import jakarta.servlet.*;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.*;
 @WebServlet("/addcookies")
 public class addcookies extends HttpServlet
  {
@@ -1847,9 +1847,9 @@ getcookies.html
 getcookies.java
 -----------------------------------
 import java.io.*;
-import javax.servlet.*;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import jakarta.servlet.*;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.*;
 @WebServlet("/getcookies")
 public class getcookies extends HttpServlet 
 {
