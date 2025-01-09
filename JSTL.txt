@@ -131,7 +131,7 @@ session.setAttribute("obj",name);
 %>
 <core:forEach items="${sessionScope.obj}" var="abc" begin="0" end="4" >
 <core:out value="${abc}"></core:out></core:forEach>
---------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------
 example-5
 -----------------------------
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>  
@@ -257,3 +257,19 @@ ${fn:toLowerCase(string)}
 </body>  
 </html>  
 ---------------------------------------------------------------
+example-9
+------------------------
+<%@taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
+<core:set var="a" scope="session" value="raj"></core:set>
+<core:out value="${sessionScope.a}"></core:out>
+
+<%
+String name[]={"aaa","bbb","ccc","ddd","eee"};
+session.setAttribute("obj",name);
+%>
+<core:forEach items="${sessionScope.obj}" var="x" begin="0" end="${fn:length(sessionScope.obj) - 1}">
+<core:out value="${x}"></core:out>
+</core:forEach>
+--------------------------------------------------------------------------------------
