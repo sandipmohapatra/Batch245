@@ -1045,7 +1045,7 @@ it is classified into
 
 Directives:-
 ---------------
-Jsp directives are messages for jsp engine.they donot produce output.they tell the engine what to do with rest of the jsp page.it is enclosed with <%@-------%> tag
+Jsp directives are messages for jsp engine. they donot produce output.they tell the engine what to do with rest of the jsp page.it is enclosed with <%@-------%> tag
 the three primary directives are:-
 1)page 
 2)include
@@ -1095,7 +1095,7 @@ it treats the contents of the file to be included as if it were part of the orig
 
 Custom tag libraries :-
 ---------------------------------
-it is also called jsp tag extensions.It provides a way of encapsulating reusable functionality on jsp page.It has ability to generate dynamic content by using java code.
+it is also called jsp tag extensions.It provides a way of encapsulating reusable functionality on jsp page. It has ability to generate dynamic content by using java code.
 
 Scripting element:-
 ------------------------
@@ -2041,54 +2041,39 @@ JSP EXAMPLE-1
           <title>JSP Page</title>
     </head>
     <body>
-
         <%  out.println("Scripting tag"); %>
-
         <h1>Welcome to jsp</h1>
-
         <% out.println("welcome to jsp page"); %>
-        
-        
-    </body>
+   </body>
 </html>
 --------------------------------------------------------------------------------
 JSP EXAMPLE-2 (DECLARATION TAG)
 ----------------------------------------------------------------------
-
 <html>
     <head>
          <title>JSP Page</title>
     </head>
-
     <body>
          <%
-        int a!=10,b=20,sum;
+        int a=10,b=20,sum;
         sum=a+b;
         out.println("the sum of two numbers is"+sum);
         %>
-          
-        <h1>Hello World!</h1>
-       
-
+       <h1>Hello World!</h1>
     </body>
 </html>
-
 -------------------------------------------------------------------------------------------------------------
 JSP EXAMPLE-3 (EXPRESSION TAG)
 -----------------------------------------------------------------
 <body>
         <h1>Hello World!</h1>
 //expression tag
-       
+    
  <%
         out.print("expression=");
         %>
-
         <%= 5+4 %>
-
-
 //declarative
-
         <%int sum, a, b;%>
         <%
               a=10;
@@ -2622,6 +2607,125 @@ out.println("the emp phoneno is "+p);
 
  %>
 --------------------------------------------------------------------------------
+Login and Register
+--------------------------------
+import java.sql.*;
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+public class register extends HttpServlet
+ {
+PreparedStatement st=null;
+Connection con=null;
+public void init()
+{
+System.out.println("init");
+try
+{
+Class.forName("com.mysql.cj.jdbc.Driver");
+ con=DriverManager.getConnection
+ 			("jdbc:mysql://localhost:3306/mphasis245","root","1234");
+}
+catch(Exception ae)
+{}
+}
 
+    public void doGet(HttpServletRequest req, HttpServletResponse res)throws ServletException, IOException 
+{
+        res.setContentType("text/html");
+        PrintWriter out = res.getWriter();
+       
+	String a=req.getParameter("t1");
+	String b=req.getParameter("t2");
+	String c=req.getParameter("t3");
+	String d=req.getParameter("t4");
+	String e=req.getParameter("t5");
+	String f=req.getParameter("t6");
+ try 
+{
 
+st=con.prepareStatement("insert into regist values(?,?,?,?,?,?)");
+	st.setString(1,a);
+	st.setString(2,b);
+	st.setString(3,c);
+	st.setString(4,d);
+	st.setString(5,e);
+	st.setString(6,f);
+	
+	st.execute();
+}
+catch(Exception at)
+{}
+             res.sendRedirect("E-TOUR.html");
+	
+            out.println("</body>");
+            out.println("</html>");
+              } 
+
+ 
+}
+------------------------------------------------------------------------------------------------------------------------
+Login.java
+--------------------------------
+import java.sql.*;
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+public class login extends HttpServlet
+ {
+PreparedStatement st=null;
+Connection con=null;
+ResultSet rs=null;
+int i=0;
+public void init()
+{
+System.out.println("init");
+try
+{
+Class.forName("com.mysql.cj.jdbc.Driver");
+ con=DriverManager.getConnection
+ 			("jdbc:mysql://localhost:3306/mphasis245","root","1234");
+
+}
+catch(Exception ae)
+{}
+}
+
+    public void doGet(HttpServletRequest req, HttpServletResponse res)throws ServletException, IOException 
+{
+        res.setContentType("text/html");
+        PrintWriter out = res.getWriter();
+       
+	String a=req.getParameter("t1");
+	String b=req.getParameter("t2");
+	
+	 
+ try 
+{
+
+st=con.prepareStatement("select * from regist where name=? and address=?");
+	st.setString(1,a);
+	st.setString(2,b);
+	rs=st.executeQuery();
+	while(rs.next())
+	{
+	i=1;
+	}
+if(i==1)
+	res.sendRedirect("Accomodations.html");
+else
+	res.sendRedirect("login.html");
+	
+}
+catch(Exception at)
+{}
+             
+
+            out.println("</body>");
+            out.println("</html>");
+              } 
+
+ 
+}
+-------------------------------------------------------------------------------------------------------
 
