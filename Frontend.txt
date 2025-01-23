@@ -1,0 +1,34 @@
+Frontend Questions
+-----------------------------------------
+1)Http client --->common package
+2)typescript code snippet function where input is 2 numbers but o/p is 1 number where the function returns Boolean
+--->compilation error
+3)explicit dependency injection in constructor  --->@Inject
+4)pipe 2 type -->pure and impure
+5)what is the command to create component in angular --->ng g c <component name>
+6)html 5 support ---->time and  number
+7)typescript code snippet function where input is var length of  numbers but o/p is function sum returns --->3,6,15
+8)angular component consists of --->html files, css file, ts file.
+9)what are the versions of software used in angular ----->package.json
+10)what to strategy we follow if we want to use components, pipes and directives in another angular projects------>  angular libraries 
+11)if the user change the form value then which properties change -->Dirty, Touched ,untouched, modified
+12)answer----> valid 
+13)answer---><li *ngFor 'let num of numbers'>{{num}}</li>
+14.) answer --> [ngClass]="['A', 'B']"   ,  [ngClass]="{'A': true, 'B': true}"
+15.) answer--> structural decorator(ngIf, ngFor, ngSwitch) 
+16.) a:visited
+17.) answer: Query Parameter and route parameter
+18.) answer: -->inline template 
+19) <router-outlet></router-outlet>
+20)default provider used in angular --->useClass
+21)Container fluid (edge to edge width and breadth)
+22)
+
+
+
+
+
+
+
+
+
