@@ -1,0 +1,23 @@
+Swagger
+---------------------------------------------------------------------------
+http://localhost:8090/swagger-ui.html#
+-----------------------------------------------------------------------------
+Swagger is the standard way of documenting the Standard APIs. 
+Swagger is primarily used for documenting API.
+It is very important to document the APIs; if you want APIs to be consumed and properly used.
+
+Swagger is a framework for describing and documenting RESTful APIs. 
+It simplifies the development process by providing tools for designing, building, and consuming APIs. With Swagger, API creators can generate interactive documentation, client SDKs, and server stubs automatically.
+The documentation follows the OpenAPI Specification (OAS), which is a standard format for describing REST APIs.
+
+Key components of Swagger include:
+
+Swagger UI: Provides a visual interface for interacting with the API, allowing users to try out endpoints directly from the browser.
+
+Swagger Editor: A web-based editor for writing OpenAPI definitions and creating API documentation.
+
+Swagger Codegen: A tool that generates client libraries, server stubs, and API documentation from OpenAPI definitions.
+
+OpenAPI Specification (OAS): A standard specification for describing RESTful APIs, including details like endpoints, HTTP methods, request/response models, and authentication methods.
+
+The OpenAPI Specification allows you to define your API’s structure in a JSON or YAML format, which can be consumed by different tools to automate various parts of the API lifecycle, including testing, documentation, and client integration.
